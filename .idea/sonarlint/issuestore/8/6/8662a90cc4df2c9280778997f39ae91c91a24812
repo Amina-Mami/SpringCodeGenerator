@@ -1,0 +1,25 @@
+
+e
+java:S1192k"HDefine a constant instead of duplicating this literal "    }
+
+" 4 times.(®†Ç8÷ßÃ«€2
+f
+java:S1192€"HDefine a constant instead of duplicating this literal "import " 3 times.(Ó§ˆ¾8÷ßÃ«€2
+k
+java:S1192"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8÷ßÃ«€2
+m
+java:S1192j"PDefine a constant instead of duplicating this literal "        return " 3 times.(ß¹–ä8÷ßÃ«€2
+E
+java:S5411%"(Use a primitive boolean expression here.(Ä‚î•8€àÃ«€2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8“àÃ«€2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8“àÃ«€2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8“àÃ«€2
+Y
+java:S1854I"<Remove this useless assignment to local variable "enumName".(´»ÏŒ8àÃ«€2
+J
+java:S1481I"-Remove this unused "enumName" local variable.(´»ÏŒ8¢àÃ«€2
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8àÌ„¬€2

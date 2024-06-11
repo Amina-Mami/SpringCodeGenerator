@@ -1,0 +1,133 @@
+2024-05-24 00:43:45,824[http-nio-7070-exec-5] INFO  javatechy.codegen.controller.CodeGenController - == Creating empty project ==
+2024-05-24 00:43:45,852[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - Application Class Name => TryingApplication
+2024-05-24 00:43:45,852[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying
+2024-05-24 00:43:45,852[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying
+2024-05-24 00:43:45,852[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/java
+2024-05-24 00:43:45,852[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\java
+2024-05-24 00:43:45,854[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/resources
+2024-05-24 00:43:45,854[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\resources
+2024-05-24 00:43:45,855[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying
+2024-05-24 00:43:45,855[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\java\exercice\trying
+2024-05-24 00:43:45,859[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying/service/impl
+2024-05-24 00:43:45,859[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\java\exercice\trying\service\impl
+2024-05-24 00:43:45,861[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying/controller
+2024-05-24 00:43:45,861[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\java\exercice\trying\controller
+2024-05-24 00:43:45,862[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying/exception
+2024-05-24 00:43:45,862[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\java\exercice\trying\exception
+2024-05-24 00:43:45,863[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying/dao
+2024-05-24 00:43:45,863[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\java\exercice\trying\dao
+2024-05-24 00:43:45,863[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/fayce/Desktop/Mahaneji/src/main/java/exercice/trying/entity
+2024-05-24 00:43:45,863[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\fayce\Desktop\Mahaneji\src\main\java\exercice\trying\entity
+2024-05-24 00:43:45,865[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/fayce/Desktop/pfe/codegen/target/classes/template/pom.xml
+2024-05-24 00:43:45,866[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/fayce/Desktop/pfe/codegen/target/classes/template/pom.xml => <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>${name}</name>
+	<description>${description}</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>21</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+2024-05-24 00:43:45,868[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/fayce/Desktop/pfe/codegen/target/classes/template/DemoApplication.java
+2024-05-24 00:43:45,868[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/fayce/Desktop/pfe/codegen/target/classes/template/DemoApplication.java => package ${groupId}.${artifactId};
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ${applicationClassName}{
+
+	public static void main(String[] args) {
+		SpringApplication.run(${applicationClassName}.class, args);
+	}
+}
+
+2024-05-24 00:43:45,870[http-nio-7070-exec-5] INFO  javatechy.codegen.controller.CodeGenController - Creating application properties => 
+2024-05-24 00:43:45,871[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/fayce/Desktop/pfe/codegen/target/classes/template/application.properties
+2024-05-24 00:43:45,873[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/fayce/Desktop/pfe/codegen/target/classes/template/application.properties => server.port=${applicationPort}
+
+# to remove all null values from the response
+spring.jackson.default-property-inclusion: NON_NULL
+
+#date format
+#spring.jackson.serialization.write_dates_as_timestamps=false
+management.security.enabled=false

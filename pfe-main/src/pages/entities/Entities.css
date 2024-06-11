@@ -1,0 +1,104 @@
+.entities-header-card {
+  width: 200px; 
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.btncreate {
+  margin-left: 800px;
+}
+
+.entities-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.entities-title {
+  font-size: 16px; 
+}
+
+.form-container {
+  width: 400px; 
+  margin-left: 20px; 
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.entities-form {
+  width: 100%;
+}
+
+.createbtn {
+  justify-content: center;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.ant-form-item {
+  margin-bottom: 10px;
+}
+
+.entities-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  gap: 20px; 
+  margin-top: 20px;
+  width: 100%;
+}
+
+.entity-wrapper {
+  position: relative; 
+}
+
+.entity-table {
+  width: 250px; 
+  border-collapse: collapse;
+  margin: 0 auto; 
+  background: none; 
+  border-radius: 0;
+  border: 2px solid #201f1f; 
+  padding: 10px;
+}
+
+.entity-header {
+  background-color: #f0f2f5; 
+  text-align: center;
+  font-weight: bold;
+  padding: 10px; 
+  border-bottom: 1px solid #171616;
+}
+
+.entity-field {
+  text-align: left;
+  padding: 5px 10px; 
+  border-top: none; 
+  border-left: 0px solid #ddd; 
+}
+
+.entity-field:first-child {
+  border-top: 0px solid #ddd; 
+}
+
+.entity-field td:first-child {
+  font-weight: bold; 
+}
+
+#relationship-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; 
+  z-index: -1; 
+}

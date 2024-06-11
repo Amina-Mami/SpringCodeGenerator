@@ -1,0 +1,958 @@
+2024-06-07 14:39:52,875[main] INFO  javatechy.codegen.CodeGenApplication - Starting CodeGenApplication on DESKTOP-3J84415 with PID 7300 (C:\Users\User\Desktop\generator-master\target\classes started by User in C:\Users\User\Desktop\generator-master)
+2024-06-07 14:39:52,923[main] INFO  javatechy.codegen.CodeGenApplication - No active profile set, falling back to default profiles: default
+2024-06-07 14:39:53,126[main] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@69f1a286: startup date [Fri Jun 07 14:39:53 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:39:58,182[main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b0295bc6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-06-07 14:40:00,283[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 7070 (http)
+2024-06-07 14:40:00,330[main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-07 14:40:00,334[main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.23
+2024-06-07 14:40:00,899[localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-07 14:40:00,901[localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 7776 ms
+2024-06-07 14:40:02,318[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2024-06-07 14:40:02,333[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+2024-06-07 14:40:02,334[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2024-06-07 14:40:02,336[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2024-06-07 14:40:02,337[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2024-06-07 14:40:02,338[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2024-06-07 14:40:02,339[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2024-06-07 14:40:02,339[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+2024-06-07 14:40:03,836[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:40:03,858[main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2024-06-07 14:40:03,984[main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.0.12.Final}
+2024-06-07 14:40:03,986[main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2024-06-07 14:40:03,989[main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+2024-06-07 14:40:04,061[main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2024-06-07 14:40:04,310[main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2024-06-07 14:40:05,330[main] INFO  org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000228: Running hbm2ddl schema update
+2024-06-07 14:40:05,766[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:40:06,719[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/projects],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<javatechy.codegen.dto.JsonFile>> javatechy.codegen.controller.CodeGenController.getAllProjects()
+2024-06-07 14:40:06,721[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/user],methods=[POST]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.User> javatechy.codegen.controller.CodeGenController.createUser(javatechy.codegen.dto.User)
+2024-06-07 14:40:06,722[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/create/{userId}],methods=[POST],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.createProject(java.lang.Long,javatechy.codegen.dto.Request)
+2024-06-07 14:40:06,723[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> javatechy.codegen.controller.CodeGenController.login(javatechy.codegen.dto.User)
+2024-06-07 14:40:06,724[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/json/{jsonFileId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.regenerateProject(java.lang.Long)
+2024-06-07 14:40:06,725[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/download/{projectId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<org.springframework.core.io.Resource> javatechy.codegen.controller.CodeGenController.downloadProject(java.lang.Long) throws java.io.IOException
+2024-06-07 14:40:06,726[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/delete/{projectId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.deleteProject(java.lang.Long)
+2024-06-07 14:40:06,727[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/ping],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.health()
+2024-06-07 14:40:06,728[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/config],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.fetch(java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:40:06,729[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2024-06-07 14:40:06,731[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2024-06-07 14:40:06,732[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2024-06-07 14:40:06,733[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2024-06-07 14:40:06,735[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2024-06-07 14:40:06,736[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2024-06-07 14:40:06,939[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,940[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,941[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2024-06-07 14:40:06,942[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,943[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,944[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,946[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2024-06-07 14:40:06,948[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2024-06-07 14:40:06,949[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,951[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2024-06-07 14:40:06,952[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,956[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2024-06-07 14:40:06,957[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:40:06,957[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,959[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2024-06-07 14:40:06,960[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:06,962[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:40:07,400[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@69f1a286: startup date [Fri Jun 07 14:39:53 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:40:07,460[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:40:07,460[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:40:07,474[main] INFO  org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionInterceptor
+2024-06-07 14:40:07,493[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:40:07,795[main] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2024-06-07 14:40:07,816[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 0
+2024-06-07 14:40:07,888[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2024-06-07 14:40:07,888[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2024-06-07 14:40:07,908[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-06-07 14:40:07,919[main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2024-06-07 14:40:08,340[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat started on port(s): 7070 (http)
+2024-06-07 14:40:08,349[main] INFO  javatechy.codegen.CodeGenApplication - Started CodeGenApplication in 16.596 seconds (JVM running for 19.667)
+2024-06-07 14:40:11,848[http-nio-7070-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2024-06-07 14:40:11,848[http-nio-7070-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2024-06-07 14:40:11,867[http-nio-7070-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2024-06-07 14:40:11,956[http-nio-7070-exec-3] INFO  org.hibernate.hql.internal.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+2024-06-07 14:46:41,966[http-nio-7070-exec-5] ERROR javatechy.codegen.exception.ExceptionInterceptor - Unknown Exception found
+java.lang.IllegalStateException: Project location is not initialized
+	at javatechy.codegen.service.impl.ProjectServiceImpl.generateProjectZip(ProjectServiceImpl.java:65)
+	at javatechy.codegen.controller.CodeGenController.downloadProject(CodeGenController.java:166)
+	at $javatechy.codegen.controller.CodeGenController$$FastClassBySpringCGLIB$$f7eb1205.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:669)
+	at $javatechy.codegen.controller.CodeGenController$$EnhancerBySpringCGLIB$$270aaf96.downloadProject(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-06-07 14:53:40,214[Thread-3] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@69f1a286: startup date [Fri Jun 07 14:39:53 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:53:40,217[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2024-06-07 14:53:40,219[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 0
+2024-06-07 14:53:40,220[Thread-3] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2024-06-07 14:53:40,227[Thread-3] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:53:46,975[main] INFO  javatechy.codegen.CodeGenApplication - Starting CodeGenApplication on DESKTOP-3J84415 with PID 1352 (C:\Users\User\Desktop\generator-master\target\classes started by User in C:\Users\User\Desktop\generator-master)
+2024-06-07 14:53:46,979[main] INFO  javatechy.codegen.CodeGenApplication - No active profile set, falling back to default profiles: default
+2024-06-07 14:53:47,031[main] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5a3bc7ed: startup date [Fri Jun 07 14:53:47 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:53:48,370[main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7d7523c0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-06-07 14:53:48,707[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 7070 (http)
+2024-06-07 14:53:48,719[main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-07 14:53:48,720[main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.23
+2024-06-07 14:53:48,831[localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-07 14:53:48,832[localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1802 ms
+2024-06-07 14:53:49,079[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2024-06-07 14:53:49,082[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+2024-06-07 14:53:49,083[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2024-06-07 14:53:49,083[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2024-06-07 14:53:49,083[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2024-06-07 14:53:49,084[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2024-06-07 14:53:49,084[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2024-06-07 14:53:49,084[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+2024-06-07 14:53:49,532[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:53:49,548[main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2024-06-07 14:53:49,629[main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.0.12.Final}
+2024-06-07 14:53:49,631[main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2024-06-07 14:53:49,633[main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+2024-06-07 14:53:49,671[main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2024-06-07 14:53:49,832[main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2024-06-07 14:53:50,259[main] INFO  org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000228: Running hbm2ddl schema update
+2024-06-07 14:53:50,501[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:53:51,131[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/create/{userId}],methods=[POST],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.createProject(java.lang.Long,javatechy.codegen.dto.Request)
+2024-06-07 14:53:51,133[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/user],methods=[POST]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.User> javatechy.codegen.controller.CodeGenController.createUser(javatechy.codegen.dto.User)
+2024-06-07 14:53:51,134[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/projects],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<javatechy.codegen.dto.JsonFile>> javatechy.codegen.controller.CodeGenController.getAllProjects()
+2024-06-07 14:53:51,134[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> javatechy.codegen.controller.CodeGenController.login(javatechy.codegen.dto.User)
+2024-06-07 14:53:51,135[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/download/{projectId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<org.springframework.core.io.Resource> javatechy.codegen.controller.CodeGenController.downloadProject(java.lang.Long) throws java.io.IOException
+2024-06-07 14:53:51,135[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/json/{jsonFileId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.regenerateProject(java.lang.Long)
+2024-06-07 14:53:51,136[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/delete/{projectId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.deleteProject(java.lang.Long)
+2024-06-07 14:53:51,137[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/config],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.fetch(java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:53:51,137[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/ping],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.health()
+2024-06-07 14:53:51,138[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2024-06-07 14:53:51,140[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2024-06-07 14:53:51,141[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2024-06-07 14:53:51,142[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2024-06-07 14:53:51,143[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2024-06-07 14:53:51,144[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2024-06-07 14:53:51,303[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2024-06-07 14:53:51,304[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,304[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,304[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,305[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2024-06-07 14:53:51,305[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,306[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2024-06-07 14:53:51,307[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2024-06-07 14:53:51,307[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,309[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2024-06-07 14:53:51,309[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:53:51,309[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,310[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,310[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,311[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,311[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:53:51,312[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2024-06-07 14:53:51,578[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5a3bc7ed: startup date [Fri Jun 07 14:53:47 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:53:51,622[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:53:51,622[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:53:51,634[main] INFO  org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionInterceptor
+2024-06-07 14:53:51,653[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:53:51,894[main] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2024-06-07 14:53:51,906[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 0
+2024-06-07 14:53:51,951[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2024-06-07 14:53:51,951[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2024-06-07 14:53:51,970[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-06-07 14:53:51,977[main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2024-06-07 14:53:52,266[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat started on port(s): 7070 (http)
+2024-06-07 14:53:52,270[main] INFO  javatechy.codegen.CodeGenApplication - Started CodeGenApplication in 5.758 seconds (JVM running for 6.647)
+2024-06-07 14:53:57,293[http-nio-7070-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2024-06-07 14:53:57,294[http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2024-06-07 14:53:57,310[http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
+2024-06-07 14:58:43,713[Thread-3] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5a3bc7ed: startup date [Fri Jun 07 14:53:47 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:58:43,716[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2024-06-07 14:58:43,717[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 0
+2024-06-07 14:58:43,718[Thread-3] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2024-06-07 14:58:43,719[Thread-3] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:58:50,037[main] INFO  javatechy.codegen.CodeGenApplication - Starting CodeGenApplication on DESKTOP-3J84415 with PID 1828 (C:\Users\User\Desktop\generator-master\target\classes started by User in C:\Users\User\Desktop\generator-master)
+2024-06-07 14:58:50,040[main] INFO  javatechy.codegen.CodeGenApplication - No active profile set, falling back to default profiles: default
+2024-06-07 14:58:50,086[main] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@42530531: startup date [Fri Jun 07 14:58:50 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:58:51,561[main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d906cfad] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-06-07 14:58:52,023[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 7070 (http)
+2024-06-07 14:58:52,036[main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-07 14:58:52,038[main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.23
+2024-06-07 14:58:52,135[localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-07 14:58:52,136[localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2050 ms
+2024-06-07 14:58:52,367[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2024-06-07 14:58:52,371[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+2024-06-07 14:58:52,371[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2024-06-07 14:58:52,371[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2024-06-07 14:58:52,372[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2024-06-07 14:58:52,372[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2024-06-07 14:58:52,372[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2024-06-07 14:58:52,372[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+2024-06-07 14:58:52,835[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:58:52,851[main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2024-06-07 14:58:52,931[main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.0.12.Final}
+2024-06-07 14:58:52,933[main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2024-06-07 14:58:52,935[main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+2024-06-07 14:58:52,978[main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2024-06-07 14:58:53,124[main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2024-06-07 14:58:53,544[main] INFO  org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000228: Running hbm2ddl schema update
+2024-06-07 14:58:53,777[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:58:54,367[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/create/{userId}],methods=[POST],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.createProject(java.lang.Long,javatechy.codegen.dto.Request)
+2024-06-07 14:58:54,368[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/projects],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<javatechy.codegen.dto.JsonFile>> javatechy.codegen.controller.CodeGenController.getAllProjects()
+2024-06-07 14:58:54,369[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/user],methods=[POST]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.User> javatechy.codegen.controller.CodeGenController.createUser(javatechy.codegen.dto.User)
+2024-06-07 14:58:54,369[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> javatechy.codegen.controller.CodeGenController.login(javatechy.codegen.dto.User)
+2024-06-07 14:58:54,370[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/delete/{projectId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.deleteProject(java.lang.Long)
+2024-06-07 14:58:54,370[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/download/{projectId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<org.springframework.core.io.Resource> javatechy.codegen.controller.CodeGenController.downloadProject(java.lang.Long) throws java.io.IOException
+2024-06-07 14:58:54,371[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/json/{jsonFileId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.regenerateProject(java.lang.Long)
+2024-06-07 14:58:54,372[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/config],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.fetch(java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:58:54,372[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/ping],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.health()
+2024-06-07 14:58:54,373[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2024-06-07 14:58:54,375[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2024-06-07 14:58:54,377[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2024-06-07 14:58:54,378[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2024-06-07 14:58:54,380[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2024-06-07 14:58:54,380[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2024-06-07 14:58:54,541[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2024-06-07 14:58:54,542[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:58:54,542[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,543[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2024-06-07 14:58:54,543[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,544[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,544[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,545[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2024-06-07 14:58:54,546[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2024-06-07 14:58:54,547[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2024-06-07 14:58:54,547[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,547[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,548[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,549[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2024-06-07 14:58:54,549[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,550[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,550[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:58:54,806[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@42530531: startup date [Fri Jun 07 14:58:50 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:58:54,850[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:58:54,850[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:58:54,863[main] INFO  org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionInterceptor
+2024-06-07 14:58:54,881[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:58:55,123[main] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2024-06-07 14:58:55,135[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 0
+2024-06-07 14:58:55,186[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2024-06-07 14:58:55,186[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2024-06-07 14:58:55,202[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-06-07 14:58:55,210[main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2024-06-07 14:58:55,465[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat started on port(s): 7070 (http)
+2024-06-07 14:58:55,470[main] INFO  javatechy.codegen.CodeGenApplication - Started CodeGenApplication in 5.939 seconds (JVM running for 6.755)
+2024-06-07 14:59:02,379[http-nio-7070-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2024-06-07 14:59:02,379[http-nio-7070-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2024-06-07 14:59:02,397[http-nio-7070-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2024-06-07 14:59:23,163[Thread-3] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@42530531: startup date [Fri Jun 07 14:58:50 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:59:23,166[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2024-06-07 14:59:23,167[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 0
+2024-06-07 14:59:23,168[Thread-3] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2024-06-07 14:59:23,169[Thread-3] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:59:28,259[main] INFO  javatechy.codegen.CodeGenApplication - Starting CodeGenApplication on DESKTOP-3J84415 with PID 14652 (C:\Users\User\Desktop\generator-master\target\classes started by User in C:\Users\User\Desktop\generator-master)
+2024-06-07 14:59:28,262[main] INFO  javatechy.codegen.CodeGenApplication - No active profile set, falling back to default profiles: default
+2024-06-07 14:59:28,308[main] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1b75c2e3: startup date [Fri Jun 07 14:59:28 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:59:29,889[main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ad6200dc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-06-07 14:59:30,233[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 7070 (http)
+2024-06-07 14:59:30,247[main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-07 14:59:30,248[main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.23
+2024-06-07 14:59:30,389[localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-07 14:59:30,390[localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2082 ms
+2024-06-07 14:59:30,653[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2024-06-07 14:59:30,656[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+2024-06-07 14:59:30,657[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2024-06-07 14:59:30,657[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2024-06-07 14:59:30,658[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2024-06-07 14:59:30,658[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2024-06-07 14:59:30,658[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2024-06-07 14:59:30,658[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+2024-06-07 14:59:31,078[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:59:31,093[main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2024-06-07 14:59:31,160[main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.0.12.Final}
+2024-06-07 14:59:31,161[main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2024-06-07 14:59:31,162[main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+2024-06-07 14:59:31,197[main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2024-06-07 14:59:31,319[main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2024-06-07 14:59:31,702[main] INFO  org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000228: Running hbm2ddl schema update
+2024-06-07 14:59:31,933[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 14:59:32,525[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/create/{userId}],methods=[POST],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.createProject(java.lang.Long,javatechy.codegen.dto.Request)
+2024-06-07 14:59:32,527[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/user],methods=[POST]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.User> javatechy.codegen.controller.CodeGenController.createUser(javatechy.codegen.dto.User)
+2024-06-07 14:59:32,528[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/projects],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<javatechy.codegen.dto.JsonFile>> javatechy.codegen.controller.CodeGenController.getAllProjects()
+2024-06-07 14:59:32,528[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> javatechy.codegen.controller.CodeGenController.login(javatechy.codegen.dto.User)
+2024-06-07 14:59:32,529[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/delete/{projectId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.deleteProject(java.lang.Long)
+2024-06-07 14:59:32,529[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/json/{jsonFileId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.regenerateProject(java.lang.Long)
+2024-06-07 14:59:32,530[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/download/{projectId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<org.springframework.core.io.Resource> javatechy.codegen.controller.CodeGenController.downloadProject(java.lang.Long) throws java.io.IOException
+2024-06-07 14:59:32,531[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/ping],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.health()
+2024-06-07 14:59:32,531[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/config],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.fetch(java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:59:32,532[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2024-06-07 14:59:32,535[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2024-06-07 14:59:32,536[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2024-06-07 14:59:32,537[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2024-06-07 14:59:32,539[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2024-06-07 14:59:32,540[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2024-06-07 14:59:32,707[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2024-06-07 14:59:32,707[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,708[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,709[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,709[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,710[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,710[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,712[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2024-06-07 14:59:32,713[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,713[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2024-06-07 14:59:32,714[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2024-06-07 14:59:32,714[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,715[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2024-06-07 14:59:32,716[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,718[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2024-06-07 14:59:32,719[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 14:59:32,719[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 14:59:32,993[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1b75c2e3: startup date [Fri Jun 07 14:59:28 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 14:59:33,062[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:59:33,062[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:59:33,087[main] INFO  org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionInterceptor
+2024-06-07 14:59:33,123[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 14:59:33,478[main] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2024-06-07 14:59:33,489[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 0
+2024-06-07 14:59:33,534[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2024-06-07 14:59:33,535[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2024-06-07 14:59:33,550[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-06-07 14:59:33,559[main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2024-06-07 14:59:33,814[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat started on port(s): 7070 (http)
+2024-06-07 14:59:33,819[main] INFO  javatechy.codegen.CodeGenApplication - Started CodeGenApplication in 6.041 seconds (JVM running for 6.822)
+2024-06-07 14:59:53,290[http-nio-7070-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2024-06-07 14:59:53,290[http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2024-06-07 14:59:53,306[http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
+2024-06-07 14:59:53,463[http-nio-7070-exec-1] INFO  javatechy.codegen.controller.CodeGenController - == Creating empty project ==
+2024-06-07 14:59:53,468[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - Application Class Name => 07481156Application
+2024-06-07 14:59:53,470[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156
+2024-06-07 14:59:53,471[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156
+2024-06-07 14:59:53,472[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/java
+2024-06-07 14:59:53,473[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\java
+2024-06-07 14:59:53,480[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/resources
+2024-06-07 14:59:53,481[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\resources
+2024-06-07 14:59:53,482[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156
+2024-06-07 14:59:53,483[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\java\com\exemple\07481156
+2024-06-07 14:59:53,486[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156/service/impl
+2024-06-07 14:59:53,487[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\java\com\exemple\07481156\service\impl
+2024-06-07 14:59:53,490[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156/controller
+2024-06-07 14:59:53,490[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\java\com\exemple\07481156\controller
+2024-06-07 14:59:53,492[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156/exception
+2024-06-07 14:59:53,492[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\java\com\exemple\07481156\exception
+2024-06-07 14:59:53,498[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156/dao
+2024-06-07 14:59:53,499[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\java\com\exemple\07481156\dao
+2024-06-07 14:59:53,499[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagement/src/main/java/com/exemple/07481156/entity
+2024-06-07 14:59:53,500[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagement\src\main\java\com\exemple\07481156\entity
+2024-06-07 14:59:53,502[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/pom.xml
+2024-06-07 14:59:53,504[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/pom.xml => <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>${name}</name>
+	<description>${description}</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>21</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+2024-06-07 14:59:53,529[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/DemoApplication.java
+2024-06-07 14:59:53,529[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/DemoApplication.java => package ${groupId}.${artifactId};
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ${applicationClassName}{
+
+	public static void main(String[] args) {
+		SpringApplication.run(${applicationClassName}.class, args);
+	}
+}
+
+2024-06-07 14:59:53,531[http-nio-7070-exec-1] INFO  javatechy.codegen.controller.CodeGenController - Creating application properties => 
+2024-06-07 14:59:53,531[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/application.properties
+2024-06-07 14:59:53,538[http-nio-7070-exec-1] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/application.properties => server.port=${applicationPort}
+
+# to remove all null values from the response
+spring.jackson.default-property-inclusion: NON_NULL
+
+#date format
+#spring.jackson.serialization.write_dates_as_timestamps=false
+management.security.enabled=false
+2024-06-07 15:00:01,710[http-nio-7070-exec-3] INFO  org.hibernate.hql.internal.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+2024-06-07 15:03:24,944[http-nio-7070-exec-7] INFO  javatechy.codegen.controller.CodeGenController - == Creating empty project ==
+2024-06-07 15:03:24,945[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - Application Class Name => 07481156Application
+2024-06-07 15:03:24,945[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156
+2024-06-07 15:03:24,945[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156
+2024-06-07 15:03:24,945[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/java
+2024-06-07 15:03:24,946[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\java
+2024-06-07 15:03:24,948[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/resources
+2024-06-07 15:03:24,948[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\resources
+2024-06-07 15:03:24,949[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156
+2024-06-07 15:03:24,949[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\java\com\exemple\07481156
+2024-06-07 15:03:24,951[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156/service/impl
+2024-06-07 15:03:24,951[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\java\com\exemple\07481156\service\impl
+2024-06-07 15:03:24,952[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156/controller
+2024-06-07 15:03:24,952[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\java\com\exemple\07481156\controller
+2024-06-07 15:03:24,953[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156/exception
+2024-06-07 15:03:24,953[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\java\com\exemple\07481156\exception
+2024-06-07 15:03:24,954[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156/dao
+2024-06-07 15:03:24,954[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\java\com\exemple\07481156\dao
+2024-06-07 15:03:24,954[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/HotelManagements/src/main/java/com/exemple/07481156/entity
+2024-06-07 15:03:24,954[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\HotelManagements\src\main\java\com\exemple\07481156\entity
+2024-06-07 15:03:24,955[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/pom.xml
+2024-06-07 15:03:24,956[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/pom.xml => <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>${name}</name>
+	<description>${description}</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>21</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+2024-06-07 15:03:24,957[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/DemoApplication.java
+2024-06-07 15:03:24,958[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/DemoApplication.java => package ${groupId}.${artifactId};
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ${applicationClassName}{
+
+	public static void main(String[] args) {
+		SpringApplication.run(${applicationClassName}.class, args);
+	}
+}
+
+2024-06-07 15:03:24,959[http-nio-7070-exec-7] INFO  javatechy.codegen.controller.CodeGenController - Creating application properties => 
+2024-06-07 15:03:24,959[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/application.properties
+2024-06-07 15:03:24,961[http-nio-7070-exec-7] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/application.properties => server.port=${applicationPort}
+
+# to remove all null values from the response
+spring.jackson.default-property-inclusion: NON_NULL
+
+#date format
+#spring.jackson.serialization.write_dates_as_timestamps=false
+management.security.enabled=false
+2024-06-07 15:58:18,077[Thread-3] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1b75c2e3: startup date [Fri Jun 07 14:59:28 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 15:58:18,259[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2024-06-07 15:58:18,278[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 0
+2024-06-07 15:58:18,313[Thread-3] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2024-06-07 15:58:18,325[Thread-3] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 22:57:41,670[main] INFO  javatechy.codegen.CodeGenApplication - Starting CodeGenApplication on DESKTOP-3J84415 with PID 4744 (C:\Users\User\Desktop\generator-master\target\classes started by User in C:\Users\User\Desktop\generator-master)
+2024-06-07 22:57:41,674[main] INFO  javatechy.codegen.CodeGenApplication - No active profile set, falling back to default profiles: default
+2024-06-07 22:57:41,734[main] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@50de186c: startup date [Fri Jun 07 22:57:41 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 22:57:43,829[main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bb91dd47] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-06-07 22:57:44,555[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 7070 (http)
+2024-06-07 22:57:44,570[main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-07 22:57:44,573[main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.23
+2024-06-07 22:57:44,733[localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-07 22:57:44,734[localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3000 ms
+2024-06-07 22:57:44,989[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2024-06-07 22:57:44,995[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+2024-06-07 22:57:44,995[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2024-06-07 22:57:44,996[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2024-06-07 22:57:44,996[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2024-06-07 22:57:44,996[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2024-06-07 22:57:44,996[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2024-06-07 22:57:44,997[localhost-startStop-1] INFO  org.springframework.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+2024-06-07 22:57:45,684[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2024-06-07 22:57:45,706[main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2024-06-07 22:57:45,807[main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.0.12.Final}
+2024-06-07 22:57:45,809[main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2024-06-07 22:57:45,811[main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+2024-06-07 22:57:45,861[main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2024-06-07 22:57:46,057[main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2024-06-07 22:57:46,714[main] INFO  org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000228: Running hbm2ddl schema update
+2024-06-07 22:57:46,892[main] INFO  org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl - HHH000262: Table not found: relationship
+2024-06-07 22:57:46,960[main] INFO  org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl - HHH000262: Table not found: relationship
+2024-06-07 22:57:47,256[main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-07 22:57:48,357[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/create/{userId}],methods=[POST],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.createProject(java.lang.Long,javatechy.codegen.dto.Request)
+2024-06-07 22:57:48,360[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/json/{jsonFileId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.regenerateProject(java.lang.Long)
+2024-06-07 22:57:48,361[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/user],methods=[POST]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.User> javatechy.codegen.controller.CodeGenController.createUser(javatechy.codegen.dto.User)
+2024-06-07 22:57:48,362[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/projects],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<javatechy.codegen.dto.JsonFile>> javatechy.codegen.controller.CodeGenController.getAllProjects()
+2024-06-07 22:57:48,363[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/login],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> javatechy.codegen.controller.CodeGenController.login(javatechy.codegen.dto.User)
+2024-06-07 22:57:48,364[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/delete/{projectId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<javatechy.codegen.dto.Response> javatechy.codegen.controller.CodeGenController.deleteProject(java.lang.Long)
+2024-06-07 22:57:48,364[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/project/download/{projectId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<org.springframework.core.io.Resource> javatechy.codegen.controller.CodeGenController.downloadProject(java.lang.Long) throws java.io.IOException
+2024-06-07 22:57:48,366[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/config],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.fetch(java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 22:57:48,367[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/ping],methods=[GET]}" onto public java.lang.String javatechy.codegen.controller.ConfigController.health()
+2024-06-07 22:57:48,369[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2024-06-07 22:57:48,372[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2024-06-07 22:57:48,373[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2024-06-07 22:57:48,374[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2024-06-07 22:57:48,376[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2024-06-07 22:57:48,377[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2024-06-07 22:57:48,557[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,559[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2024-06-07 22:57:48,560[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2024-06-07 22:57:48,560[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,561[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,562[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2024-06-07 22:57:48,563[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2024-06-07 22:57:48,564[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,564[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2024-06-07 22:57:48,565[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,566[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2024-06-07 22:57:48,567[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,575[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2024-06-07 22:57:48,576[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,577[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,578[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,579[main] INFO  org.springframework.boot.actuate.endpoint.mvc.EndpointHandlerMapping - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2024-06-07 22:57:48,897[main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@50de186c: startup date [Fri Jun 07 22:57:41 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 22:57:48,979[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 22:57:48,979[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 22:57:48,996[main] INFO  org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionInterceptor
+2024-06-07 22:57:49,021[main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2024-06-07 22:57:49,308[main] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2024-06-07 22:57:49,320[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 0
+2024-06-07 22:57:49,375[main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2024-06-07 22:57:49,375[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2024-06-07 22:57:49,410[main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-06-07 22:57:49,427[main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2024-06-07 22:57:49,810[main] INFO  org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat started on port(s): 7070 (http)
+2024-06-07 22:57:49,817[main] INFO  javatechy.codegen.CodeGenApplication - Started CodeGenApplication in 8.806 seconds (JVM running for 9.888)
+2024-06-07 22:57:56,049[http-nio-7070-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2024-06-07 22:57:56,050[http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2024-06-07 22:57:56,082[http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 30 ms
+2024-06-07 22:57:56,251[http-nio-7070-exec-1] INFO  org.hibernate.hql.internal.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+2024-06-07 23:01:55,991[http-nio-7070-exec-5] INFO  javatechy.codegen.controller.CodeGenController - == Creating empty project ==
+2024-06-07 23:01:55,996[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - Application Class Name => MycliniqueApplication
+2024-06-07 23:01:55,997[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/User/Desktop/Clinique/src/main/java/com/exemple/myclinique
+2024-06-07 23:01:55,998[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.ProjectCreatorImpl - javaCodeLoc => /Users/User/Desktop/Clinique/src/main/java/com/exemple/myClinique
+2024-06-07 23:01:55,999[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/java
+2024-06-07 23:01:56,000[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\java
+2024-06-07 23:01:56,007[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/resources
+2024-06-07 23:01:56,008[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\resources
+2024-06-07 23:01:56,009[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/java/com/exemple/myClinique
+2024-06-07 23:01:56,010[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\java\com\exemple\myClinique
+2024-06-07 23:01:56,014[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/java/com/exemple/myClinique/service/impl
+2024-06-07 23:01:56,015[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\java\com\exemple\myClinique\service\impl
+2024-06-07 23:01:56,019[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/java/com/exemple/myClinique/controller
+2024-06-07 23:01:56,019[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\java\com\exemple\myClinique\controller
+2024-06-07 23:01:56,021[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/java/com/exemple/myClinique/exception
+2024-06-07 23:01:56,021[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\java\com\exemple\myClinique\exception
+2024-06-07 23:01:56,022[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/java/com/exemple/myClinique/dao
+2024-06-07 23:01:56,023[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\java\com\exemple\myClinique\dao
+2024-06-07 23:01:56,025[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> /Users/User/Desktop/Clinique/src/main/java/com/exemple/myClinique/entity
+2024-06-07 23:01:56,025[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - [createDirectories]File Location=> \Users\User\Desktop\Clinique\src\main\java\com\exemple\myClinique\entity
+2024-06-07 23:01:56,027[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/pom.xml
+2024-06-07 23:01:56,030[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/pom.xml => <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>${name}</name>
+	<description>${description}</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>21</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.0</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+2024-06-07 23:01:56,045[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/DemoApplication.java
+2024-06-07 23:01:56,047[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/DemoApplication.java => package ${groupId}.${artifactId};
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ${applicationClassName}{
+
+	public static void main(String[] args) {
+		SpringApplication.run(${applicationClassName}.class, args);
+	}
+}
+
+2024-06-07 23:01:56,050[http-nio-7070-exec-5] INFO  javatechy.codegen.controller.CodeGenController - Creating application properties => 
+2024-06-07 23:01:56,050[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Reading file => C:/Users/User/Desktop/generator-master/target/classes/template/application.properties
+2024-06-07 23:01:56,051[http-nio-7070-exec-5] INFO  javatechy.codegen.service.impl.FileUtilServiceImpl - Data read  from C:/Users/User/Desktop/generator-master/target/classes/template/application.properties => server.port=${applicationPort}
+
+# to remove all null values from the response
+spring.jackson.default-property-inclusion: NON_NULL
+
+#date format
+#spring.jackson.serialization.write_dates_as_timestamps=false
+management.security.enabled=false
+2024-06-07 23:01:56,121[http-nio-7070-exec-5] ERROR javatechy.codegen.exception.ExceptionInterceptor - Unknown Exception found
+java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()" because the return value of "javatechy.codegen.dto.Entity.getCrud()" is null
+	at javatechy.codegen.service.impl.EntityFileCreatorServiceImpl.createEntityFiles(EntityFileCreatorServiceImpl.java:36)
+	at javatechy.codegen.service.impl.ProjectServiceImpl.createProject(ProjectServiceImpl.java:57)
+	at javatechy.codegen.controller.CodeGenController.createProject(CodeGenController.java:67)
+	at $javatechy.codegen.controller.CodeGenController$$FastClassBySpringCGLIB$$f7eb1205.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:669)
+	at $javatechy.codegen.controller.CodeGenController$$EnhancerBySpringCGLIB$$9fa44869.createProject(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-06-07 23:17:17,628[Thread-3] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@50de186c: startup date [Fri Jun 07 22:57:41 GMT+01:00 2024]; root of context hierarchy
+2024-06-07 23:17:17,632[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2024-06-07 23:17:17,633[Thread-3] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 0
+2024-06-07 23:17:17,634[Thread-3] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2024-06-07 23:17:17,635[Thread-3] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'

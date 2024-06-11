@@ -1,0 +1,11 @@
+
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ
+Q
+java:S2696"6Make the enclosing method "static" or remove this set.(ÝŸ¦Öøÿÿÿÿ
+L
+java:S26962"6Make the enclosing method "static" or remove this set.(Ÿ‘‡ó
+Q
+java:S2696:"6Make the enclosing method "static" or remove this set.(°ú×¿úÿÿÿÿ
+c
+java:S5361E"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÙåíÊûÿÿÿÿ

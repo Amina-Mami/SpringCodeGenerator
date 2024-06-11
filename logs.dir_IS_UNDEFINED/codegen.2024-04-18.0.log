@@ -1,0 +1,4 @@
+2024-04-18 00:36:52,634[Thread-2] INFO  org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@481ba2cf: startup date [Wed Apr 17 22:50:03 WAT 2024]; root of context hierarchy
+2024-04-18 00:36:52,758[Thread-2] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2024-04-18 00:36:52,774[Thread-2] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Stopping beans in phase 0
+2024-04-18 00:36:52,786[Thread-2] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
