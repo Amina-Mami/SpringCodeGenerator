@@ -7,6 +7,7 @@ public class Entity {
 
     private String name;
     private Boolean crud;
+    private FieldKey primaryKey;
     private List<Field> fields;
 
     public List<EnumDefinition> getEnums() {
@@ -59,4 +60,10 @@ public class Entity {
     public void setRelationships(List<Relationship> relationships) {
         this.relationships = relationships;
     }
-}
+    public FieldKey getPrimaryKey() {
+        return primaryKey;
+    }
+
+    public void setPrimaryKey(FieldKey primaryKey) {
+        this.primaryKey = primaryKey;
+    }}

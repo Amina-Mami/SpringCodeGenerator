@@ -20,6 +20,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
     @Autowired
     private EnumGenerationService enumGenerationService;
 
+
     @Override
     public void createEntityFiles(Request request) throws IOException {
         Properties properties = request.getProperties();
@@ -39,7 +40,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
 
             for (EnumDefinition enumDefinition : entity.getEnums()) {
                 String enumContent = enumGenerationService.generateEnumContent(enumDefinition, properties);
-                String enumFilePath = ProjectServiceImpl.javaCodeLoc + "/enum/" + enumDefinition.getName() + ".java";
+                String enumFilePath = ProjectServiceImpl.javaCodeLoc + "/enums/" + enumDefinition.getName() + ".java";
                 fileUtilService.writeDataToFile(enumContent, enumFilePath);
             }
 
@@ -48,6 +49,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
             }
         }
     }
+
 
     private String generateEntityClassContent(Entity entity, String packageLine, Properties properties) {
         StringBuilder sb = new StringBuilder();
@@ -58,32 +60,44 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
 
 
         for (EnumDefinition enumDefinition : entity.getEnums()) {
-            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".entity." + enumDefinition.getName();
+            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".enums." + enumDefinition.getName(); // Ensure it's 'enums'
             sb.append("import ").append(enumImport).append(";\n");
         }
 
         sb.append("@Entity\n");
         sb.append("public class ").append(entity.getName()).append(" {\n\n");
 
+
+        if (entity.getPrimaryKey() != null) {
+            FieldKey primaryKeyField = entity.getPrimaryKey();
+            sb.append("    @Id\n");
+            sb.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\n");
+            sb.append("    @Column(name = \"").append(primaryKeyField.getName()).append("\")\n");
+            sb.append("    private ").append(primaryKeyField.getType()).append(" ").append(primaryKeyField.getName()).append(";\n\n");
+        }
+
+
         for (Field field : entity.getFields()) {
-            if (field.isPrimaryKey()) {
-                sb.append("    @Id\n");
-                sb.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\n");
-            }
-
             if (isEnumField(field)) {
-                String enumName = capitalize(field.getName());
                 sb.append("    @Enumerated(EnumType.STRING)\n");
-
             }
 
             sb.append("    @Column(name = \"").append(field.getName()).append("\")\n");
             sb.append("    private ").append(getFieldType(field)).append(" ").append(field.getName()).append(";\n\n");
         }
 
+
         for (Relationship relationship : entity.getRelationships()) {
             sb.append(relationshipService.generateRelationshipContent(relationship, entity)).append("\n");
         }
+
+
+        if (entity.getPrimaryKey() != null) {
+            FieldKey primaryKeyField = entity.getPrimaryKey();
+            sb.append(generateGetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
+            sb.append(generateSetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
+        }
+
 
         for (Field field : entity.getFields()) {
             String fieldType = getFieldType(field);
@@ -97,6 +111,15 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
 
         return sb.toString();
     }
+
+
+
+
+
+
+
+
+
 
 
 

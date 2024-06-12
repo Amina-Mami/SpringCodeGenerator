@@ -119,3 +119,5 @@ g
 0src/main/java/javatechy/codegen/dto/Swagger.java,1\a\1ac9a4979263a540b2496c020edeffd9df3c1649
 _
 /src/main/java/javatechy/codegen/dto/Values.java,8\5\85f7539ceaf61c1a831f9aa0bbd517f47cb02c92
+a
+1src/main/java/javatechy/codegen/dto/FieldKey.java,5\3\53f02e7addf7881653608a83be2c7112dff58869

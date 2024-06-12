@@ -12,7 +12,10 @@ public class Field {
     private String type;
     private Boolean isUnique;
     private Boolean isNullable;
-    private boolean primaryKey;
+
+
+
+
 
 
 
@@ -55,13 +58,6 @@ public class Field {
 
 
 
-    public boolean isPrimaryKey() {
-        return primaryKey;
-    }
-
-    public void setPrimaryKey(boolean primaryKey) {
-        this.primaryKey = primaryKey;
-    }
 
 }
 

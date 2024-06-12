@@ -15,17 +15,17 @@ public class EnumGenerationServiceImpl implements EnumGenerationService {
     public String generateEnumContent(EnumDefinition enumDefinition, Properties properties) {
         StringBuilder enumContent = new StringBuilder();
 
-        String packageName = properties.getGroupId() + "." + properties.getArtifactId() + ".entity";
+        String packageName = properties.getGroupId() + "." + properties.getArtifactId() + ".enums";
         enumContent.append("package ").append(packageName).append(";\n\n");
 
         enumContent.append("public enum ").append(enumDefinition.getName()).append(" {\n");
 
         List<Values> values = enumDefinition.getValues();
         for (Values value : values) {
-            enumContent.append("\t").append(value.getValues()).append(",\n");
+            enumContent.append("    ").append(value.getValues()).append(",\n");
         }
 
-
+       
         int lastIndex = enumContent.lastIndexOf(",");
         if (lastIndex != -1) {
             enumContent.deleteCharAt(lastIndex);
