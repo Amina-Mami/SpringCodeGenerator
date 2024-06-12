@@ -1,5 +1,9 @@
 # CodeGen backend
-CodeGen backend project.
+Spring Boot Code Generator.
+
+About:
+-----------------------------
+The Spring Boot Code Generator is a powerful tool designed to simplify and accelerate the development process for web applications using React.js and Spring frameworks. This tool empowers users to effortlessly create fully-functional projects by defining entities, enums, and relationships, thus significantly reducing development time and effort.
 
 Assumptions:
 -----------------------------
@@ -10,9 +14,12 @@ Assuming:
  * MySQL is installed on the machine on port 3306(default port), if not please change port in `application.properties`
 
 
-APIs:
+Features:
 -----------------------------
-- create project - api
+-Entity generation: Define entities with fields and data types, and the generator will create corresponding Java classes and database tables.
+-Enum generation: Define enums with values, and the generator will create corresponding Java enums.
+-Relationship mapping: Define relationships between entities, and the generator will handle the necessary JPA mappings.
+-REST API generation: Automatically generate RESTful APIs for CRUD operations on entities.
 
 Running the application
 -----------------------------
@@ -31,42 +38,5 @@ To release a production version `mvn release:clean release:prepare`
 #### Deploy :
 To deploy build on nexus  `mvn clean deploy`
 
-#### Deployment Script
-```
-applicationLoc="/Users/deepak/projects/codegen/target/"
 
-propertyLoc="/Users/deepak/projects/codegen/application-prod.properties"
-
-portNumber="8010"
-
-port=$(netstat -ntpln | grep $portNumber | awk -F '/java' '{print $1}' | awk -F'LISTEN' '{print $2}' | awk '{ gsub (" ", "", $0); print}')
-
-echo "Killing pid"
-
-kill -9 $port
-
-echo "application Name : $applicationLoc"
-
-cd /Users/deepak/projects/codegen
-mvn clean install -DskipTests=true
-cd target/
-pwd
-echo "current location is "
-pwd
-cd $applicationLoc
-
-jarName="codegen-0.0.1-SNAPSHOT.jar"
-
-echo "Jar Name $jarName"
-
-echo "executing : nohup java  application-prod.properties -jar $applicationLoc$jarName --spring.config.location=file:$propertyLoc >> /Users/deepak/projects/applicationlog/codegen.log &"
-
-#nohup java -Xmx1024m -Xms512m -jar $applicationLoc$jarName --spring.config.location=file:$propertyLoc > /dev/null &
-```
-**Note**:  
-   
-
-Exception Handling
------------------------------
-This project uses global exception handling using `ResponseEntityExceptionHandler` check `ExceptionInterceptor` class for reference.
 
