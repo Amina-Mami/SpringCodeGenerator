@@ -1,5 +1,3 @@
-
-
 package javatechy.codegen.service.impl;
 
 import javatechy.codegen.dto.*;
@@ -30,7 +28,8 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         String packageLine = "package " + groupId + "." + artifactId + ".entity;\n\n";
 
         for (Entity entity : request.getEntities()) {
-            String entityClassContent = generateEntityClassContent(entity, packageLine);
+            String entityClassContent = generateEntityClassContent(entity, packageLine, properties);
+
             String entityFilePath = ProjectServiceImpl.javaCodeLoc + "/entity/" + entity.getName() + ".java";
             fileUtilService.writeDataToFile(entityClassContent, entityFilePath);
 
@@ -38,13 +37,11 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
                 generateRepositoryAndController(entity, properties);
             }
 
-
             for (EnumDefinition enumDefinition : entity.getEnums()) {
                 String enumContent = enumGenerationService.generateEnumContent(enumDefinition, properties);
                 String enumFilePath = ProjectServiceImpl.javaCodeLoc + "/enum/" + enumDefinition.getName() + ".java";
                 fileUtilService.writeDataToFile(enumContent, enumFilePath);
             }
-
 
             for (Relationship relationship : entity.getRelationships()) {
                 relationshipService.createRelationshipFiles(relationship, entity);
@@ -52,16 +49,21 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         }
     }
 
-    private String generateEntityClassContent(Entity entity, String packageLine) {
+    private String generateEntityClassContent(Entity entity, String packageLine, Properties properties) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(packageLine);
-        sb.append("import javax.persistence.*;\n");
+        sb.append("import jakarta.persistence.*;\n");
         sb.append("import java.util.List;\n\n");
+
+
+        for (EnumDefinition enumDefinition : entity.getEnums()) {
+            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".entity." + enumDefinition.getName();
+            sb.append("import ").append(enumImport).append(";\n");
+        }
 
         sb.append("@Entity\n");
         sb.append("public class ").append(entity.getName()).append(" {\n\n");
-
 
         for (Field field : entity.getFields()) {
             if (field.isPrimaryKey()) {
@@ -69,20 +71,19 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
                 sb.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\n");
             }
 
-            if ("Enum".equalsIgnoreCase(field.getType())) {
+            if (isEnumField(field)) {
                 String enumName = capitalize(field.getName());
                 sb.append("    @Enumerated(EnumType.STRING)\n");
+
             }
 
             sb.append("    @Column(name = \"").append(field.getName()).append("\")\n");
             sb.append("    private ").append(getFieldType(field)).append(" ").append(field.getName()).append(";\n\n");
         }
 
-
         for (Relationship relationship : entity.getRelationships()) {
             sb.append(relationshipService.generateRelationshipContent(relationship, entity)).append("\n");
         }
-
 
         for (Field field : entity.getFields()) {
             String fieldType = getFieldType(field);
@@ -97,9 +98,23 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         return sb.toString();
     }
 
-    private String getFieldType(Field field) {
-        return "Enum".equalsIgnoreCase(field.getType()) ? capitalize(field.getName()) : field.getType();
+
+
+
+    private boolean isEnumField(Field field) {
+
+        List<String> basicTypes = List.of("Integer", "String", "Long", "Boolean", "Double", "Float", "Short", "Byte", "Character");
+
+        return !basicTypes.contains(field.getType());
     }
+
+    private String getFieldType(Field field) {
+
+        return field.getType();
+    }
+
+
+
 
     private String generateGetter(String fieldType, String fieldName, String capitalizedFieldName) {
         return "    public " + fieldType + " get" + capitalizedFieldName + "() {\n" +
@@ -159,3 +174,4 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }
+

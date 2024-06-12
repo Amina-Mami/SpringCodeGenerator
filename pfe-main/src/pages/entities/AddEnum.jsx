@@ -1,27 +1,25 @@
-
-
 import React, { useEffect, useState } from "react";
 import { Form, Modal, Input, Button, Alert } from "antd";
 
-const AddEnum = ({ isOpen, onClose, onSave }) => {
+const AddEnum = ({ isOpen, onClose, onSubmit }) => {
   const [form] = Form.useForm();
   const [valuesError, setValuesError] = useState(null);
   const [enumValues, setEnumValues] = useState([""]);
 
   useEffect(() => {
     form.resetFields();
-    setEnumValues([""]); 
+    setEnumValues([""]);
   }, [isOpen, form]);
 
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      const formattedValues = enumValues.filter((v) => v.trim() !== ""); 
+      const formattedValues = enumValues.filter((v) => v.trim() !== "");
       if (formattedValues.length === 0) {
         setValuesError("Enum values cannot be empty.");
         return;
       }
-      onSave({ name: values.name, values: formattedValues });
+      onSubmit({ name: values.name, values: formattedValues });
       onClose();
     } catch (errorInfo) {
       console.log("Validation Error:", errorInfo);
@@ -43,7 +41,7 @@ const AddEnum = ({ isOpen, onClose, onSave }) => {
   };
 
   const addInput = () => {
-    setEnumValues([...enumValues, ""]); 
+    setEnumValues([...enumValues, ""]);
   };
 
   const removeInput = (index) => {

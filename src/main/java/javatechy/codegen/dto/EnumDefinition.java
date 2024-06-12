@@ -5,8 +5,16 @@ import java.util.List;
 public class EnumDefinition {
 
     private String name;
-    private List<String> values;
 
+    public List<Values> getValues() {
+        return values;
+    }
+
+    public void setValues(List<Values> values) {
+        this.values = values;
+    }
+
+    private List<Values> values;
     public String getName() {
         return name;
     }
@@ -15,11 +23,5 @@ public class EnumDefinition {
         this.name = name;
     }
 
-    public List<String> getValues() {
-        return values;
-    }
 
-    public void setValues(List<String> values) {
-        this.values = values;
-    }
 }

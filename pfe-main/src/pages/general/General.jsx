@@ -40,7 +40,6 @@ function General() {
 
             message.success("Project created successfully");
             form.resetFields();
-
             setTimeout(() => {
               window.location.href = "/dashboard";
             }, 2000);

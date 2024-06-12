@@ -1,25 +1,25 @@
 
-e
-java:S1192k"HDefine a constant instead of duplicating this literal "    }
-
-" 4 times.(®†Ç8÷ßÃ«€2
 f
-java:S1192€"HDefine a constant instead of duplicating this literal "import " 3 times.(Ó§ˆ¾8÷ßÃ«€2
+java:S1192="IDefine a constant instead of duplicating this literal ".entity." 3 times.(«¾Ù×8ÁÚÍ€2
+e
+java:S1192z"HDefine a constant instead of duplicating this literal "    }
+
+" 4 times.(®†Ç8ÙªÏÍ€2
+j
+java:S1192>"HDefine a constant instead of duplicating this literal "import " 4 times.(âåÍ¾ûÿÿÿÿ8ÂÚÍ€2
 k
-java:S1192"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8÷ßÃ«€2
+java:S1192"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8ï˜§Ì€2
 m
-java:S1192j"PDefine a constant instead of duplicating this literal "        return " 3 times.(ß¹–ä8÷ßÃ«€2
+java:S1192y"PDefine a constant instead of duplicating this literal "        return " 3 times.(ß¹–ä8ÚªÏÍ€2
 E
-java:S5411%"(Use a primitive boolean expression here.(Ä‚î•8€àÃ«€2
+java:S5411$"(Use a primitive boolean expression here.(Ä‚î•8ğ˜§Ì€2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8“àÃ«€2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úœ§Ì€2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8“àÃ«€2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úœ§Ì€2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8“àÃ«€2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úœ§Ì€2
 Y
-java:S1854I"<Remove this useless assignment to local variable "enumName".(´»ÏŒ8àÃ«€2
+java:S1854K"<Remove this useless assignment to local variable "enumName".(´»ÏŒ8Ê®‹Î€2
 J
-java:S1481I"-Remove this unused "enumName" local variable.(´»ÏŒ8¢àÃ«€2
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8àÌ„¬€2
+java:S1481K"-Remove this unused "enumName" local variable.(´»ÏŒ8Ï®‹Î€2

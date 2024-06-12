@@ -117,3 +117,5 @@ g
 7src/main/java/javatechy/codegen/dto/EnumDefinition.java,b\9\b9d7a58b34315e6523ecbe2584fa6d82db1a80f0
 `
 0src/main/java/javatechy/codegen/dto/Swagger.java,1\a\1ac9a4979263a540b2496c020edeffd9df3c1649
+_
+/src/main/java/javatechy/codegen/dto/Values.java,8\5\85f7539ceaf61c1a831f9aa0bbd517f47cb02c92

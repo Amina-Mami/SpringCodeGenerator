@@ -1,5 +1,6 @@
 package javatechy.codegen.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Entity {
@@ -7,9 +8,7 @@ public class Entity {
     private String name;
     private Boolean crud;
     private List<Field> fields;
-    //works
-    private List<Relationship> relationships;
-    private List<EnumDefinition> enums;
+
     public List<EnumDefinition> getEnums() {
         return enums;
     }
@@ -17,6 +16,15 @@ public class Entity {
     public void setEnums(List<EnumDefinition> enums) {
         this.enums = enums;
     }
+
+    private List<EnumDefinition> enums;
+    //works
+    private List<Relationship> relationships;
+
+
+
+
+
 
 
 

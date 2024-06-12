@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -33,20 +32,19 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
         restEndpoints: entity.crud || false,
       });
     } else {
-      form.resetFields(); 
+      form.resetFields();
     }
   }, [entity, form]);
   const handleOk = () => {
     form
       .validateFields()
       .then((values) => {
-        
         if (values.primaryKey.isPrimary) {
           values.primaryKey.isPrimary = true;
         }
 
-        form.resetFields(); 
-        onSubmit(values); 
+        form.resetFields();
+        onSubmit(values);
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
@@ -63,7 +61,7 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
     { value: "Date", label: "Date" },
     { value: "Integer", label: "Integer" },
     { value: "Long", label: "Long" },
-    
+
     ...(enumValues || []).map((enumData) => ({
       value: enumData.name,
       label: enumData.name,
@@ -74,7 +72,6 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
   const onSelectChange = (value, key) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
 
-    
     if (value === "primarykey") {
       form.setFieldsValue({
         primaryKey: {
