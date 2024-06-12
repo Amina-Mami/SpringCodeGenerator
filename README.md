@@ -17,8 +17,11 @@ Assuming:
 Features:
 -----------------------------
 -Entity generation: Define entities with fields and data types, and the generator will create corresponding Java classes and database tables.
+
 -Enum generation: Define enums with values, and the generator will create corresponding Java enums.
+
 -Relationship mapping: Define relationships between entities, and the generator will handle the necessary JPA mappings.
+
 -REST API generation: Automatically generate RESTful APIs for CRUD operations on entities.
 
 Running the application
