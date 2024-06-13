@@ -61,6 +61,7 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
     { value: "Date", label: "Date" },
     { value: "Integer", label: "Integer" },
     { value: "Long", label: "Long" },
+    { value: "Boolean", label: "Boolean" },
 
     ...(enumValues || []).map((enumData) => ({
       value: enumData.name,

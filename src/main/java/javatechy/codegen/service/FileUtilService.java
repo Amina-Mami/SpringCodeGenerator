@@ -17,4 +17,6 @@ public interface FileUtilService {
     void writeDataToFile(String data, String fileName) throws IOException;
 
     void appendDataToFile(String relationshipContent, String filePath) throws IOException;
+
+    String readDataFromFile(String fileName) throws IOException;
 }

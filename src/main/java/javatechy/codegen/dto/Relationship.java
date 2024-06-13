@@ -12,6 +12,10 @@ import javax.persistence.Id;
 public class Relationship {
 
     private String type;
+
+
+
+    private String direction;
     private String sourceEntity;
     private String targetEntity;
 
@@ -39,7 +43,13 @@ public class Relationship {
         this.targetEntity = targetEntity;
     }
 
+    public String getDirection() {
+        return direction;
+    }
 
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
 
 
 }

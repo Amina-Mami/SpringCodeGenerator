@@ -1,24 +1,38 @@
 
-o
-java:S1192L"MDefine a constant instead of duplicating this literal "    private " 3 times.(æäîÉşÿÿÿÿ8åÕĞì€2
+i
+java:S1192Z"LDefine a constant instead of duplicating this literal "    public " 4 times.(‰İ¶Ã8ë¬©ü€2
 f
-java:S1192‘"HDefine a constant instead of duplicating this literal "    }
+java:S1192º"HDefine a constant instead of duplicating this literal "    }
 
-" 4 times.(®†Ç8ÙªÏÍ€2
+" 4 times.(®†Ç8ÈíÇö€2
 j
-java:S1192@"HDefine a constant instead of duplicating this literal "import " 4 times.(âåÍ¾ûÿÿÿÿ8æÕĞì€2
+java:S1192N"HDefine a constant instead of duplicating this literal "import " 4 times.(âåÍ¾ûÿÿÿÿ8ôè…ı€2
 k
-java:S1192"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8ÊÈÒì€2
+java:S1192&"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8äˆÒû€2
 n
-java:S1192"PDefine a constant instead of duplicating this literal "        return " 3 times.(ß¹–ä8ÚªÏÍ€2
+java:S1192¹"PDefine a constant instead of duplicating this literal "        return " 3 times.(ß¹–ä8ÉíÇö€2
+c
+java:S1192-"FDefine a constant instead of duplicating this literal ".java" 3 times.(„™œ™8äˆÒû€2
 b
-java:S1192K"EDefine a constant instead of duplicating this literal "\")
-" 3 times.(Ë¿Øœ8æÕĞì€2
+java:S1192Y"EDefine a constant instead of duplicating this literal "\")
+" 3 times.(Ë¿Øœ8åˆÒû€2
+Z
+java:S2629ˆ"7Use the built-in formatting to construct this argument.(˜öİãşÿÿÿÿ8 Ğòû€2
 E
-java:S5411%"(Use a primitive boolean expression here.(Ä‚î•8ÌÈÒì€2
+java:S54110"(Use a primitive boolean expression here.(Ä‚î•8èˆÒû€2
+‚
+java:S2259m"`"NullPointerException" will be thrown when invoking method "appendRelationshipToTargetEntity()".(ëÔè¯ùÿÿÿÿ8ˆ¦ƒı€2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úœ§Ì€2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÉğÇö€2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úœ§Ì€2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÊğÇö€2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úœ§Ì€2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÊğÇö€2
+a
+java:S3416"?Update this logger to use "EntityFileCreatorServiceImpl.class".(û½Ç¬úÿÿÿÿ8ÅĞòû€2
+e
+java:S1172ƒ"BRemove these unused method parameters "packageLine", "properties".(ß«ğ‘úÿÿÿÿ8¦Éáû€2
+d
+java:S3457ˆ"AFormat specifiers should be used instead of string concatenation.(˜öİãşÿÿÿÿ8ãĞòû€2
+_
+java:S3457•"AFormat specifiers should be used instead of string concatenation.(¤ìù»8åĞòû€2

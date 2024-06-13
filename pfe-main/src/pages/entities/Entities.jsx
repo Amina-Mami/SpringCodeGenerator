@@ -155,6 +155,7 @@ const Entities = () => {
       sourceEntity: sourceEntityName,
       targetEntity: targetEntityName,
       type: relationshipData.type,
+      direction: relationshipData.direction,
     };
 
     const updatedEntities = entities.map((entity) => {

@@ -1,5 +1,6 @@
 package javatechy.codegen.service.impl;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -42,10 +43,21 @@ public class FileUtilServiceImpl implements FileUtilService {
     @Override
     public String readFileData(String fileName) throws IOException {
         logger.info("Reading file => " + fileName);
-        String data = new String (Files.readAllBytes(Paths.get(fileName)), StandardCharsets.UTF_8);
-        logger.info("Data read  from " + fileName + " => " + data);
+
+        Path filePath = Paths.get(fileName);
+        if (!Files.exists(filePath)) {
+            logger.error("File not found: " + fileName);
+            throw new FileNotFoundException("File not found: " + fileName);
+        }
+
+        String data = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
+        logger.info("Data read from " + fileName + " => " + data);
+
         return data;
     }
+
+
+
 
     @Override
     public void copyFileToDestDir(String sourceFile, String destDir) {
@@ -66,5 +78,14 @@ public class FileUtilServiceImpl implements FileUtilService {
         Path path = Paths.get(filePath);
         Files.write(path, data.getBytes(), StandardOpenOption.APPEND);
     }
+
+    @Override
+    public String readDataFromFile(String fileName) throws IOException {
+        logger.info("Reading file => " + fileName);
+        String data = new String(Files.readAllBytes(Paths.get(fileName)), StandardCharsets.UTF_8);
+        logger.info("Data read from " + fileName + " => " + data);
+        return data;
+    }
+
 
 }

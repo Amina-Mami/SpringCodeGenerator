@@ -10,8 +10,6 @@ import java.io.IOException;
 public interface RelationshipService {
 
 
-    void createRelationshipFiles(Relationship relationship, Entity entity) throws IOException;
-
-    String generateRelationshipContent(Relationship relationship, Entity entity);
+    String[] generateRelationshipContent(Relationship relationship, Entity sourceEntity, Entity targetEntity);
 }
 

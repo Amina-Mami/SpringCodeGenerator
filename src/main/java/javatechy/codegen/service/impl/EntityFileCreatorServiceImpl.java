@@ -6,7 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+
+
 
 @Service
 public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
@@ -20,6 +28,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
     @Autowired
     private EnumGenerationService enumGenerationService;
 
+    private static final Logger logger = LogManager.getLogger(FileUtilServiceImpl.class);
 
     @Override
     public void createEntityFiles(Request request) throws IOException {
@@ -28,8 +37,10 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         String artifactId = properties.getArtifactId();
         String packageLine = "package " + groupId + "." + artifactId + ".entity;\n\n";
 
-        for (Entity entity : request.getEntities()) {
-            String entityClassContent = generateEntityClassContent(entity, packageLine, properties);
+        List<Entity> allEntities = request.getEntities();
+
+        for (Entity entity : allEntities) {
+            String entityClassContent = generateEntityClassContent(entity, packageLine, properties, allEntities);
 
             String entityFilePath = ProjectServiceImpl.javaCodeLoc + "/entity/" + entity.getName() + ".java";
             fileUtilService.writeDataToFile(entityClassContent, entityFilePath);
@@ -43,39 +54,41 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
                 String enumFilePath = ProjectServiceImpl.javaCodeLoc + "/enums/" + enumDefinition.getName() + ".java";
                 fileUtilService.writeDataToFile(enumContent, enumFilePath);
             }
-
-            for (Relationship relationship : entity.getRelationships()) {
-                relationshipService.createRelationshipFiles(relationship, entity);
-            }
         }
     }
 
-
-    private String generateEntityClassContent(Entity entity, String packageLine, Properties properties) {
+    private String generateEntityClassContent(Entity entity, String packageLine, Properties properties, List<Entity> allEntities) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(packageLine);
         sb.append("import jakarta.persistence.*;\n");
-        sb.append("import java.util.List;\n\n");
+        sb.append("import java.util.*;\n\n");
+        Set<String> usedEnumNames = new HashSet<>();
 
+        for (Field field : entity.getFields()) {
+            if (isEnumField(field)) {
+                usedEnumNames.add(field.getType());
+            }
+        }
 
+        // Generate imports only for the enums that are used
         for (EnumDefinition enumDefinition : entity.getEnums()) {
-            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".enums." + enumDefinition.getName(); // Ensure it's 'enums'
-            sb.append("import ").append(enumImport).append(";\n");
+            if (usedEnumNames.contains(enumDefinition.getName())) {
+                String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".enums." + enumDefinition.getName();
+                sb.append("import ").append(enumImport).append(";\n");
+            }
         }
 
         sb.append("@Entity\n");
         sb.append("public class ").append(entity.getName()).append(" {\n\n");
-
 
         if (entity.getPrimaryKey() != null) {
             FieldKey primaryKeyField = entity.getPrimaryKey();
             sb.append("    @Id\n");
             sb.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\n");
             sb.append("    @Column(name = \"").append(primaryKeyField.getName()).append("\")\n");
-            sb.append("    private ").append(primaryKeyField.getType()).append(" ").append(primaryKeyField.getName()).append(";\n\n");
+            sb.append("    public ").append(primaryKeyField.getType()).append(" ").append(primaryKeyField.getName()).append(";\n\n");
         }
-
 
         for (Field field : entity.getFields()) {
             if (isEnumField(field)) {
@@ -83,21 +96,24 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
             }
 
             sb.append("    @Column(name = \"").append(field.getName()).append("\")\n");
-            sb.append("    private ").append(getFieldType(field)).append(" ").append(field.getName()).append(";\n\n");
+            sb.append("    public ").append(getFieldType(field)).append(" ").append(field.getName()).append(";\n\n");
         }
-
 
         for (Relationship relationship : entity.getRelationships()) {
-            sb.append(relationshipService.generateRelationshipContent(relationship, entity)).append("\n");
-        }
+            Entity targetEntity = findEntityByName(relationship.getTargetEntity(), allEntities);
+            String[] relationshipContents = relationshipService.generateRelationshipContent(relationship, entity, targetEntity);
 
+            sb.append(relationshipContents[0]).append("\n");
+
+            // Append the relationship content to the target entity as well
+            appendRelationshipToTargetEntity(targetEntity, relationshipContents[1], packageLine, properties);
+        }
 
         if (entity.getPrimaryKey() != null) {
             FieldKey primaryKeyField = entity.getPrimaryKey();
             sb.append(generateGetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
             sb.append(generateSetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
         }
-
 
         for (Field field : entity.getFields()) {
             String fieldType = getFieldType(field);
@@ -112,13 +128,38 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         return sb.toString();
     }
 
+    private void appendRelationshipToTargetEntity(Entity targetEntity, String relationshipContent, String packageLine, Properties properties) {
+        try {
+            String targetEntityFilePath = ProjectServiceImpl.javaCodeLoc + "/entity/" + targetEntity.getName() + ".java";
+
+            // Log the file path for debugging
+            logger.info("Reading target entity file: " + targetEntityFilePath);
+
+            // Read the content from the file
+            String targetEntityClassContent = fileUtilService.readDataFromFile(targetEntityFilePath);
+
+            // Find the index to insert the relationship content
+            int insertIndex = targetEntityClassContent.lastIndexOf("}");
+            if (insertIndex != -1) {
+                String updatedContent = new StringBuilder(targetEntityClassContent).insert(insertIndex, relationshipContent).toString();
+                fileUtilService.writeDataToFile(updatedContent, targetEntityFilePath);
+            }
+        } catch (IOException e) {
+            // Log the exception
+            logger.error("Error reading or updating target entity file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 
-
-
-
-
-
+    private Entity findEntityByName(String name, List<Entity> allEntities) {
+        for (Entity entity : allEntities) {
+            if (entity.getName().equals(name)) {
+                return entity;
+            }
+        }
+        return null;
+    }
 
 
 
