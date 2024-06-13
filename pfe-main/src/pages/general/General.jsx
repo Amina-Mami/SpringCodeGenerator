@@ -40,9 +40,9 @@ function General() {
 
             message.success("Project created successfully");
             form.resetFields();
-            setTimeout(() => {
-              window.location.href = "/dashboard";
-            }, 2000);
+            // setTimeout(() => {
+            //   window.location.href = "/dashboard";
+            // }, 2000);
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -167,7 +167,7 @@ function General() {
         <Title>Database</Title>
         <Form.Item
           label="database "
-          name={["database", "isDatabaseEnabled"]}
+          name={["database", "databaseEnabled"]}
           valuePropName="checked"
         >
           <Checkbox onChange={changeDatabaseState}>Enable</Checkbox>
@@ -186,6 +186,22 @@ function General() {
                 <Radio value="postgresql">postgresql</Radio>
                 <Radio value="mongodb">mongodb</Radio>
               </Radio.Group>
+            </Form.Item>
+            <Form.Item
+              label="Port"
+              name={["database", "port"]}
+              rules={[{ required: true, message: "Please enter the port" }]}
+            >
+              <Input placeholder="Enter port : 3006" />
+            </Form.Item>
+            <Form.Item
+              label="Database Name"
+              name={["database", "databaseName"]}
+              rules={[
+                { required: true, message: "Please enter the database Name" },
+              ]}
+            >
+              <Input placeholder="Enter database Name : myDb" />
             </Form.Item>
             <Form.Item
               label="User Name"

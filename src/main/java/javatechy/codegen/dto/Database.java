@@ -5,19 +5,22 @@ package javatechy.codegen.dto;
 
 
 public class Database {
+    private Boolean databaseEnabled;
 
-    private Boolean isDatabaseEnabled;
     private String databaseType;
+
+    private Integer port;
+    private String databaseName;
     private String userName;
     private String password;
 
 
-    public Boolean getIsDatabaseEnabled() {
-        return isDatabaseEnabled;
+    public Boolean getDatabaseEnabled() {
+        return databaseEnabled;
     }
 
-    public void setIsDatabaseEnabled(Boolean isDatabaseEnabled) {
-        this.isDatabaseEnabled = isDatabaseEnabled;
+    public void setDatabaseEnabled(Boolean databaseEnabled) {
+        this.databaseEnabled = databaseEnabled;
     }
 
     public String getDatabaseType() {
@@ -26,6 +29,24 @@ public class Database {
 
     public void setDatabaseType(String databaseType) {
         this.databaseType = databaseType;
+    }
+
+
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
+    }
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
     }
 
     public String getUserName() {
@@ -43,5 +64,4 @@ public class Database {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

@@ -26,8 +26,13 @@ public class Entity {
 
 
 
+    public Entity() {
+        this.relationships = new ArrayList<>();
+    }
 
-
+    public void addRelationship(Relationship relationship) {
+        this.relationships.add(relationship);
+    }
 
     public String getName() {
         return name;
@@ -67,3 +72,4 @@ public class Entity {
     public void setPrimaryKey(FieldKey primaryKey) {
         this.primaryKey = primaryKey;
     }}
+

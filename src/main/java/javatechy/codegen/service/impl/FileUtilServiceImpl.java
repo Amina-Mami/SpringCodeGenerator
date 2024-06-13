@@ -2,6 +2,9 @@ package javatechy.codegen.service.impl;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -64,15 +67,21 @@ public class FileUtilServiceImpl implements FileUtilService {
     }
 
     @Override
-    public String getDataFromClassLoader(String fileLoc) throws IOException {
-        return readFileData(this.getFileNameFromClassLoader(fileLoc));
+    public String getDataFromClassLoader(String resourcePath) throws IOException {
+        URL resource = getClass().getClassLoader().getResource(resourcePath);
+        if (resource == null) {
+            throw new IOException("Resource not found: " + resourcePath);
+        }
+        try {
+            URI uri = resource.toURI();
+            Path path = Paths.get(uri);
+            return new String(Files.readAllBytes(path));
+        } catch (URISyntaxException e) {
+            throw new IOException("Invalid URI syntax for resource: " + resourcePath, e);
+        }
     }
 
-    public void writeDataToFile(String data, String filePath) throws IOException {
-        Path path = Paths.get(filePath);
-        Files.createDirectories(path.getParent());
-        Files.write(path, data.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-    }
+
 
     public void appendDataToFile(String data, String filePath) throws IOException {
         Path path = Paths.get(filePath);
@@ -80,11 +89,19 @@ public class FileUtilServiceImpl implements FileUtilService {
     }
 
     @Override
-    public String readDataFromFile(String fileName) throws IOException {
-        logger.info("Reading file => " + fileName);
-        String data = new String(Files.readAllBytes(Paths.get(fileName)), StandardCharsets.UTF_8);
-        logger.info("Data read from " + fileName + " => " + data);
-        return data;
+    public String readDataFromFile(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+        if (!Files.exists(path)) {
+            throw new IOException("File not found: " + filePath);
+        }
+        return new String(Files.readAllBytes(path));
+    }
+
+    @Override
+    public void writeDataToFile(String data, String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+        Files.createDirectories(path.getParent());
+        Files.write(path, data.getBytes());
     }
 
 
