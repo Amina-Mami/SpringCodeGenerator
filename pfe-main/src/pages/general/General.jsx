@@ -34,7 +34,7 @@ function General() {
         console.log(requestData);
 
         axios
-          .post("http://localhost:7070/project/create/4", requestData)
+          .post("http://localhost:7070/project/create/1", requestData)
           .then((response) => {
             console.log("Response:", response.data);
 

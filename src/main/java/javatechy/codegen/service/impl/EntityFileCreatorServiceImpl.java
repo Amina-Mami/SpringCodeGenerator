@@ -51,22 +51,29 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
     }
 
 
-    private String generateEntityClassContent(Entity entity, String packageLine, Properties properties) {
+    public String generateEntityClassContent(Entity entity, String packageLine, Properties properties) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(packageLine);
         sb.append("import jakarta.persistence.*;\n");
         sb.append("import java.util.List;\n\n");
-
+        sb.append("import lombok.*;\n\n");
 
         for (EnumDefinition enumDefinition : entity.getEnums()) {
-            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".enums." + enumDefinition.getName(); // Ensure it's 'enums'
+            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".enums." + enumDefinition.getName();
             sb.append("import ").append(enumImport).append(";\n");
         }
 
         sb.append("@Entity\n");
-        sb.append("public class ").append(entity.getName()).append(" {\n\n");
 
+
+        sb.append("@NoArgsConstructor\n");
+        sb.append("@AllArgsConstructor\n");
+        sb.append("@ToString\n");
+        sb.append("@Getter\n");
+        sb.append("@Setter\n");
+
+        sb.append("public class ").append(entity.getName()).append(" {\n\n");
 
         if (entity.getPrimaryKey() != null) {
             FieldKey primaryKeyField = entity.getPrimaryKey();
@@ -75,7 +82,6 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
             sb.append("    @Column(name = \"").append(primaryKeyField.getName()).append("\")\n");
             sb.append("    private ").append(primaryKeyField.getType()).append(" ").append(primaryKeyField.getName()).append(";\n\n");
         }
-
 
         for (Field field : entity.getFields()) {
             if (isEnumField(field)) {
@@ -86,26 +92,11 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
             sb.append("    private ").append(getFieldType(field)).append(" ").append(field.getName()).append(";\n\n");
         }
 
-
         for (Relationship relationship : entity.getRelationships()) {
             sb.append(relationshipService.generateRelationshipContent(relationship, entity)).append("\n");
         }
 
 
-        if (entity.getPrimaryKey() != null) {
-            FieldKey primaryKeyField = entity.getPrimaryKey();
-            sb.append(generateGetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
-            sb.append(generateSetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
-        }
-
-
-        for (Field field : entity.getFields()) {
-            String fieldType = getFieldType(field);
-            String capitalizedFieldName = capitalize(field.getName());
-
-            sb.append(generateGetter(fieldType, field.getName(), capitalizedFieldName));
-            sb.append(generateSetter(fieldType, field.getName(), capitalizedFieldName));
-        }
 
         sb.append("}\n");
 
@@ -139,7 +130,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
 
 
 
-    private String generateGetter(String fieldType, String fieldName, String capitalizedFieldName) {
+   /* private String generateGetter(String fieldType, String fieldName, String capitalizedFieldName) {
         return "    public " + fieldType + " get" + capitalizedFieldName + "() {\n" +
                 "        return " + fieldName + ";\n" +
                 "    }\n\n";
@@ -149,7 +140,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         return "    public void set" + capitalizedFieldName + "(" + fieldType + " " + fieldName + ") {\n" +
                 "        this." + fieldName + " = " + fieldName + ";\n" +
                 "    }\n\n";
-    }
+    } */
 
     private void generateRepositoryAndController(Entity entity, Properties properties) throws IOException {
         String repositoryContent = generateRepositoryContent(entity, properties);
@@ -170,6 +161,8 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
     }
 
     private String generateControllerContent(Entity entity, Properties properties) {
+        String primaryKeyType = entity.getPrimaryKey().getType();
+
         return "package " + properties.getGroupId() + "." + properties.getArtifactId() + ".controller;\n\n" +
                 "import " + properties.getGroupId() + "." + properties.getArtifactId() + ".entity." + entity.getName() + ";\n" +
                 "import " + properties.getGroupId() + "." + properties.getArtifactId() + ".repository." + entity.getName() + "Repository;\n" +
@@ -189,12 +182,27 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
                 "    public List<" + entity.getName() + "> getAll" + entity.getName() + "s() {\n" +
                 "        return " + entity.getName().toLowerCase() + "Repository.findAll();\n" +
                 "    }\n\n" +
+                "    @GetMapping(\"/" + entity.getName().toLowerCase() + "\")\n" +
+                "    public " + entity.getName() + " getPersonne(@RequestParam Long id) {\n" +
+                "        return " + entity.getName().toLowerCase() + "Repository.findById(id).orElse(null);\n" +
+                "    }\n\n" +
+                "    @PutMapping(\"/" + entity.getName().toLowerCase() + "/{id}\")\n" +
+                "    public " + entity.getName() + " update" + entity.getName() + "(@PathVariable " + primaryKeyType + " id, @RequestBody " + entity.getName() + " updated" + entity.getName() + ") {\n" +
+                "        updated" + entity.getName() + ".set" + entity.getPrimaryKey().getName().substring(0, 1).toUpperCase() + entity.getPrimaryKey().getName().substring(1) + "(id); \n" +
+                "        return " + entity.getName().toLowerCase() + "Repository.save(updated" + entity.getName() + ");\n" +
+                "    }\n\n" +
+                "    @DeleteMapping(\"/" + entity.getName().toLowerCase() + "/{id}\")\n" +
+                "    public void delete" + entity.getName() + "(@PathVariable " + primaryKeyType + " id) {\n" +
+                "        " + entity.getName().toLowerCase() + "Repository.deleteById(id);\n" +
+                "    }\n\n" +
                 "    // Additional CRUD operations here\n" +
                 "}\n";
     }
 
-    private String capitalize(String str) {
+
+
+    /*private String capitalize(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
-    }
+    }*/
 }
 
