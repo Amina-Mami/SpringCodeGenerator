@@ -19,6 +19,7 @@ public class ProjectServiceImpl implements ProjectService {
     private final Logger logger = Logger.getLogger(CodeGenController.class);
     public static String projectLocation;
     public static final String pomLocation = "template/pom.xml";
+    public static final String swaggerLocation = "template/SwaggerConfigTemplate.java";
     public static String applicationClassLocation = "template/DemoApplication.java";
     public static String controllerClassLocation = "template/TemplateController.java";
     public static String srcMainJavaLoc;
@@ -39,6 +40,8 @@ public class ProjectServiceImpl implements ProjectService {
     private DatabaseService databaseService;
     @Autowired
     private ControllerGenService controllerGenService;
+    @Autowired
+    private SwaggerService swaggerService;
 
     @Override
     public void createProject(Request request) throws IOException {
@@ -49,6 +52,7 @@ public class ProjectServiceImpl implements ProjectService {
         projectCreator.initiliaze(request);
         projectCreator.generateEmptyProject(request);
         pomMakerService.createPomXml(request);
+        swaggerService.createSwaggerConfig(request);
         projectCreator.generateMainClass(request);
         appPropertiesService.generateApplicationProperties(request);
         pomMakerService.addDependencies(request);

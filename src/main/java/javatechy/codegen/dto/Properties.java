@@ -20,7 +20,9 @@ public class Properties {
     private Boolean isLombokEnabled;
     private Boolean isActuatorEnabled;
     private String basePackage;
-
+    private String username;
+    private String email;
+    private String password;
     public String getUsername() {
         return username;
     }
@@ -37,15 +39,15 @@ public class Properties {
         this.password = password;
     }
 
-    private String username;
-    private String password;
 
 
+    public String getEmail() {
+        return email;
+    }
 
-
-
-
-
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public void setBasePackage(String basePackage) {
         this.basePackage = basePackage;

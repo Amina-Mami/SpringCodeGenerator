@@ -43,7 +43,7 @@ public class AppPropertiesServiceImpl implements AppPropertiesService {
         Map<String, String> objectMapString = JacksonParser.jacksonObjectToMap(properties);
 
         Database database = request.getDatabase();
-        if (database != null) {
+        if (database != null && Boolean.TRUE.equals(database.getDatabaseEnabled())) {
             objectMapString.put("port", String.valueOf(database.getPort()));
             objectMapString.put("databaseName", database.getDatabaseName());
             objectMapString.put("userName", database.getUserName());
@@ -61,7 +61,7 @@ public class AppPropertiesServiceImpl implements AppPropertiesService {
 
     private String determineActiveProfile(Request request) {
         Database database = request.getDatabase();
-        if (database != null && database.getDatabaseEnabled() != null && database.getDatabaseEnabled()) {
+        if (database != null && Boolean.TRUE.equals(database.getDatabaseEnabled())) {
             String dbType = database.getDatabaseType();
             if ("mysql".equalsIgnoreCase(dbType)) {
                 return "mysql";

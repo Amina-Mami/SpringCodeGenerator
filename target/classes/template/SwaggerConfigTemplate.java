@@ -1,4 +1,4 @@
-package ${groupId}.${artifactId}.config;
+package ${groupId}.${artifactId}.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    /**
-     * Required to autowire SpringSwaggerConfig
-     */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
@@ -26,9 +23,9 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        Contact contact = new Contact("${developerName}", "", "${developerEmailId}");
+        Contact contact = new Contact("${developerName}", "", "${email}");
 
-        ApiInfo apiInfo = new ApiInfo("${description}", "${name}", "V${version}", "https://www.gogle.com/terms-conditions", contact, "MIT License", "https://www.mit.com/privacy-policy");
+        ApiInfo apiInfo = new ApiInfo("${description}", "${name}", "V1.0", "https://www.google.com/terms-conditions", contact, "MIT License", "https://www.mit.com/privacy-policy");
 
         return apiInfo;
     }

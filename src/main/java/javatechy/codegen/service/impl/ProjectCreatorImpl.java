@@ -35,6 +35,7 @@ public class ProjectCreatorImpl implements ProjectCreator {
         fileUtilService.createDirectories(ProjectServiceImpl.javaCodeLoc + "/exception");
         fileUtilService.createDirectories(ProjectServiceImpl.javaCodeLoc + "/dao");
         fileUtilService.createDirectories(ProjectServiceImpl.javaCodeLoc + "/entity");
+        fileUtilService.createDirectories(ProjectServiceImpl.javaCodeLoc + "/configurations");
     }
 
     @Override
