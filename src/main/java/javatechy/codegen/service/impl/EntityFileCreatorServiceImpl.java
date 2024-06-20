@@ -51,27 +51,34 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
     }
 
 
-    public String generateEntityClassContent(Entity entity, String packageLine, Properties properties) {
+
+
+
+    private String generateEntityClassContent(Entity entity, String packageLine, Properties properties) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(packageLine);
         sb.append("import jakarta.persistence.*;\n");
         sb.append("import java.util.List;\n\n");
-        sb.append("import lombok.*;\n\n");
+        if (properties.getIsLombokEnabled()) {
+            sb.append("import lombok.*;\n\n");
+        }
 
         for (EnumDefinition enumDefinition : entity.getEnums()) {
-            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".enums." + enumDefinition.getName();
+            String enumImport = properties.getGroupId() + "." + properties.getArtifactId() + ".enums." + enumDefinition.getName(); // Ensure it's 'enums'
             sb.append("import ").append(enumImport).append(";\n");
         }
 
         sb.append("@Entity\n");
 
-
-        sb.append("@NoArgsConstructor\n");
-        sb.append("@AllArgsConstructor\n");
-        sb.append("@ToString\n");
-        sb.append("@Getter\n");
-        sb.append("@Setter\n");
+        // Conditionally add Lombok annotations only if Lombok is enabled
+        if (properties.getIsLombokEnabled()) {
+            sb.append("@NoArgsConstructor\n");
+            sb.append("@AllArgsConstructor\n");
+            sb.append("@ToString\n");
+            sb.append("@Getter\n");
+            sb.append("@Setter\n");
+        }
 
         sb.append("public class ").append(entity.getName()).append(" {\n\n");
 
@@ -96,12 +103,27 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
             sb.append(relationshipService.generateRelationshipContent(relationship, entity)).append("\n");
         }
 
+        // Generate getters and setters if Lombok is not enabled
+        if (!properties.getIsLombokEnabled()) {
+            if (entity.getPrimaryKey() != null) {
+                FieldKey primaryKeyField = entity.getPrimaryKey();
+                sb.append(generateGetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
+                sb.append(generateSetter(primaryKeyField.getType(), primaryKeyField.getName(), capitalize(primaryKeyField.getName())));
+            }
 
+            for (Field field : entity.getFields()) {
+                String fieldType = getFieldType(field);
+                String capitalizedFieldName = capitalize(field.getName());
+                sb.append(generateGetter(fieldType, field.getName(), capitalizedFieldName));
+                sb.append(generateSetter(fieldType, field.getName(), capitalizedFieldName));
+            }
+        }
 
         sb.append("}\n");
 
         return sb.toString();
     }
+
 
 
 
@@ -130,7 +152,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
 
 
 
-   /* private String generateGetter(String fieldType, String fieldName, String capitalizedFieldName) {
+    private String generateGetter(String fieldType, String fieldName, String capitalizedFieldName) {
         return "    public " + fieldType + " get" + capitalizedFieldName + "() {\n" +
                 "        return " + fieldName + ";\n" +
                 "    }\n\n";
@@ -140,7 +162,7 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
         return "    public void set" + capitalizedFieldName + "(" + fieldType + " " + fieldName + ") {\n" +
                 "        this." + fieldName + " = " + fieldName + ";\n" +
                 "    }\n\n";
-    } */
+    }
 
     private void generateRepositoryAndController(Entity entity, Properties properties) throws IOException {
         String repositoryContent = generateRepositoryContent(entity, properties);
@@ -201,8 +223,8 @@ public class EntityFileCreatorServiceImpl implements EntityFileCreatorService {
 
 
 
-    /*private String capitalize(String str) {
+    private String capitalize(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
-    }*/
+    }
 }
 
