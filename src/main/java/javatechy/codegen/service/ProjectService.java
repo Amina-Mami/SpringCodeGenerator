@@ -8,9 +8,11 @@ import org.springframework.core.io.ByteArrayResource;
 
 public interface ProjectService {
 
-    void createProject(Request request) throws IOException;
 
-    ByteArrayResource generateProjectZip(Long projectId) throws IOException;
 
-    Path zipProjectDirectory(Path projectPath) throws IOException;
+
+
+    void createProject(Request request, Path projectDirectory) throws IOException;
+
+
 }

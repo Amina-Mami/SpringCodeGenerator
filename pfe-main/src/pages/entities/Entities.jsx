@@ -109,13 +109,9 @@ const Entities = () => {
   };
 
   const renderField = (fields) => {
-    return (
-      <ul>
-        {fields.map((field, index) => (
-          <li key={index}>{`${field.name} (${field.type})`}</li>
-        ))}
-      </ul>
-    );
+    return fields.map((field, index) => (
+      <div key={index}>{`${field.name}: ${field.type}`}</div>
+    ));
   };
 
   const renderCrud = (crud) => {
@@ -225,6 +221,7 @@ const Entities = () => {
                   <thead>
                     <tr>
                       <th>Name</th>
+                      <th>PrimaryKey</th>
                       <th>Fields</th>
                       <th>CRUD</th>
                       <th>Relationships</th>
@@ -235,6 +232,10 @@ const Entities = () => {
                     {entities.map((entity, index) => (
                       <tr key={index}>
                         <td>{entity.name}</td>
+                        <td>
+                          {entity.primaryKey.name}: {entity.primaryKey.type}
+                        </td>
+
                         <td>{renderField(entity.fields)}</td>
                         <td>{renderCrud(entity.crud)}</td>
                         <td>{renderRelationships(entity.relationships)}</td>

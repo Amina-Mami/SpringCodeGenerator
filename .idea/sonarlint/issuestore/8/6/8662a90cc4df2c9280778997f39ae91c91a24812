@@ -1,30 +1,49 @@
 
+i
+java:S1192h"LDefine a constant instead of duplicating this literal "    public " 6 times.(‰İ¶Ã8é› ™„2
+f
+java:S1192º"HDefine a constant instead of duplicating this literal "    }
+
+" 7 times.(®†Ç8é› ™„2
+c
+java:S1192¾"EDefine a constant instead of duplicating this literal ") {
+" 3 times.(»¡“ı8é› ™„2
 j
-java:S1192¿"LDefine a constant instead of duplicating this literal "    public " 3 times.(‰İ¶Ã8ÀÏĞ2
+java:S1192T"HDefine a constant instead of duplicating this literal "import " 4 times.(âåÍ¾ûÿÿÿÿ8é› ™„2
 k
-java:S1192³"HDefine a constant instead of duplicating this literal "import " 4 times.(âåÍ¾ûÿÿÿÿ8ÁÏĞ2
-l
-java:S1192…"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8ÁÏĞ2
-d
-java:S1192"FDefine a constant instead of duplicating this literal ".java" 3 times.(„™œ™8ÁÏĞ2
+java:S1192$"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8ê› ™„2
+n
+java:S1192¹"PDefine a constant instead of duplicating this literal "        return " 5 times.(ß¹–ä8ê› ™„2
+c
+java:S1192,"FDefine a constant instead of duplicating this literal ".java" 3 times.(„™œ™8ê› ™„2
+b
+java:S1192g"EDefine a constant instead of duplicating this literal "\")
+" 4 times.(Ë¿Øœ8ê› ™„2
 Z
-java:S2629à"7Use the built-in formatting to construct this argument.(˜öİãşÿÿÿÿ8ÄÏĞ2
-F
-java:S5411"(Use a primitive boolean expression here.(Ä‚î•8ÄÏĞ2
-X	java:S125"<This block of commented-out lines of code should be removed.(üÜ¾8©ğ2
-`
-java:S6813õ"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÉğÇö€2
-`
-java:S6813ø"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÊğÇö€2
-`
-java:S6813û"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÊğÇö€2
-O
-java:S1172¡"2Remove this unused method parameter "allEntities".(‹åó?8¶ğ2
-d
-java:S3457Ô"AFormat specifiers should be used instead of string concatenation.(ëÁÉ‘ÿÿÿÿÿ8İÑĞ2
-e
-java:S1172İ"BRemove these unused method parameters "packageLine", "properties".(ß«ğ‘úÿÿÿÿ8áÑĞ2
-d
-java:S3457à"AFormat specifiers should be used instead of string concatenation.(˜öİãşÿÿÿÿ8áÑĞ2
+java:S2629—"7Use the built-in formatting to construct this argument.(˜öİãşÿÿÿÿ8í› ™„2
+E
+java:S5411/"(Use a primitive boolean expression here.(Ä‚î•8í› ™„2
+E
+java:S5411M"(Use a primitive boolean expression here.(Ï½›²8í› ™„2
+E
+java:S5411Z"(Use a primitive boolean expression here.(Ï½›²8í› ™„2
+J
+java:S5411t"(Use a primitive boolean expression here.(ßìÿ„şÿÿÿÿ8î› ™„2
 _
-java:S3457é"AFormat specifiers should be used instead of string concatenation.(¤ìù»8ãÑĞ2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Œœ ™„2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Œœ ™„2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Œœ ™„2
+n
+java:S3776@"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(‹åó?8–œ ™„2
+N
+java:S1172@"2Remove this unused method parameter "allEntities".(‹åó?8—œ ™„2
+d
+java:S3457‹"AFormat specifiers should be used instead of string concatenation.(ëÁÉ‘ÿÿÿÿÿ8¾œ ™„2
+e
+java:S1172”"BRemove these unused method parameters "packageLine", "properties".(ß«ğ‘úÿÿÿÿ8Àœ ™„2
+d
+java:S3457—"AFormat specifiers should be used instead of string concatenation.(˜öİãşÿÿÿÿ8Áœ ™„2
+_
+java:S3457 "AFormat specifiers should be used instead of string concatenation.(¤ìù»8Âœ ™„2

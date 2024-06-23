@@ -27,6 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
     public static final String applicationProp = "template/application.properties";
     public static String applicationClassName;
     public static String javaCodeLoc;
+    private static final String PROJECT_DIRECTORY = "C:\\Users\\User\\Desktop\\projects\\";
 
     @Autowired
     private AppPropertiesService appPropertiesService;
@@ -44,9 +45,9 @@ public class ProjectServiceImpl implements ProjectService {
     private SwaggerService swaggerService;
 
     @Override
-    public void createProject(Request request) throws IOException {
+    public void createProject(Request request, Path projectDirectory) throws IOException {
         logger.info("== Creating empty project ==");
-        projectLocation = "/Users/User/Desktop/" + request.getProperties().getName();
+        projectLocation = projectDirectory.toString();
         srcMainJavaLoc = projectLocation + "/src/main/java";
         resourceLoc = projectLocation + "/src/main/resources";
         projectCreator.initiliaze(request);
@@ -61,36 +62,7 @@ public class ProjectServiceImpl implements ProjectService {
         entityFileCreatorService.createEntityFiles(request);
     }
 
-    @Override
-    public ByteArrayResource generateProjectZip(Long projectId) throws IOException {
 
-        if (projectLocation == null) {
-            // Gérer le cas où projectLocation est null
-            throw new IllegalStateException("Project location is not initialized");
-        }
-        // Assuming createProject method has already been called
-        Path projectPath = Paths.get(projectLocation);
-        Path zipPath = zipProjectDirectory(projectPath);
-        byte[] zipBytes = Files.readAllBytes(zipPath);
-        return new ByteArrayResource(zipBytes);
-    }
-@Override
-public Path zipProjectDirectory(Path projectPath) throws IOException {
-        Path zipPath = Files.createTempFile("project", ".zip");
-        try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(zipPath))) {
-            Files.walk(projectPath)
-                    .filter(path -> !Files.isDirectory(path))
-                    .forEach(path -> {
-                        ZipEntry zipEntry = new ZipEntry(projectPath.relativize(path).toString());
-                        try {
-                            zs.putNextEntry(zipEntry);
-                            Files.copy(path, zs);
-                            zs.closeEntry();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-        }
-        return zipPath;
-    }
+
+
 }

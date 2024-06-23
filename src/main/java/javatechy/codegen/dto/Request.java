@@ -13,8 +13,17 @@ public class Request {
     private Swagger swagger;
     private Database database;
     private Logging logging;
+    private boolean enableFrontendReact;
 
     // Getters and Setters
+
+    public boolean isEnableFrontendReact() {
+        return enableFrontendReact;
+    }
+
+    public void setEnableFrontendReact(boolean enableFrontendReact) {
+        this.enableFrontendReact = enableFrontendReact;
+    }
     public Date getTimestamp() {
         return timestamp;
     }

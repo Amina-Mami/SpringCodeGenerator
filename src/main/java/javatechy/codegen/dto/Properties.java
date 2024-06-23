@@ -17,8 +17,9 @@ public class Properties {
     private String springVerison;
     private Boolean isConstantFile;
     private Boolean isGlobalExceptionEnabled;
-    private Boolean isLombokEnabled;
+    private Boolean isLombokEnabled = false;
     private Boolean isActuatorEnabled;
+
     private String basePackage;
     private String username;
     private String email;

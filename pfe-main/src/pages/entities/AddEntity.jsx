@@ -35,6 +35,7 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
       form.resetFields();
     }
   }, [entity, form]);
+
   const handleOk = () => {
     form
       .validateFields()
