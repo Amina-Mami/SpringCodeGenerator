@@ -20,6 +20,7 @@ public class Properties {
     private Boolean isLombokEnabled = false;
     private Boolean isActuatorEnabled;
     private String basePackage;
+    private Boolean isDockerEnabled = false;
 
 
 
@@ -135,6 +136,13 @@ public class Properties {
 
     public void setIsLombokEnabled(Boolean isLombokEnabled) {
         this.isLombokEnabled = isLombokEnabled;
+    }
+    public Boolean getIsDockerEnabled() {
+        return isDockerEnabled;
+    }
+
+    public void setIsDockerEnabled(Boolean isDockerEnabled) {
+        this.isDockerEnabled = isDockerEnabled;
     }
 
 }

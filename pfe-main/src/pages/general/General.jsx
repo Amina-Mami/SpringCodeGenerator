@@ -228,7 +228,7 @@ function General() {
         <Title>Deployment</Title>
         <Form.Item label="Is docker enabled">
           <Form.Item
-            name={["deployment", "isDockerEnabled"]}
+            name={["properties", "isDockerEnabled"]}
             valuePropName="checked"
           >
             <Checkbox>Enable</Checkbox>

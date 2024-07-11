@@ -27,6 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
     public static String applicationClassName;
     public static String javaCodeLoc;
 
+
     @Autowired
     private AppPropertiesService appPropertiesService;
     @Autowired

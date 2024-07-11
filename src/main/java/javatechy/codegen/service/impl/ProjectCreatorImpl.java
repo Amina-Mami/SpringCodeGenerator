@@ -1,6 +1,8 @@
 package javatechy.codegen.service.impl;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -35,6 +37,9 @@ public class ProjectCreatorImpl implements ProjectCreator {
         fileUtilService.createDirectories(ProjectServiceImpl.javaCodeLoc + "/exception");
         fileUtilService.createDirectories(ProjectServiceImpl.javaCodeLoc + "/dao");
         fileUtilService.createDirectories(ProjectServiceImpl.javaCodeLoc + "/entity");
+
+        // Call to create Dockerfile if Docker is enabled
+        createDockerFile(request.getProperties(), ProjectServiceImpl.projectLocation);
     }
 
     @Override
@@ -64,8 +69,8 @@ public class ProjectCreatorImpl implements ProjectCreator {
      */
     private String getJavaCodeLoc(Request request) {
         return (ProjectServiceImpl.srcMainJavaLoc + "." + request.getProperties()
-            .getGroupId() + "."
-            + request.getProperties()
+                .getGroupId() + "."
+                + request.getProperties()
                 .getArtifactId()).replaceAll("\\.", "/");
     }
 
@@ -75,6 +80,20 @@ public class ProjectCreatorImpl implements ProjectCreator {
         String applicationClassData = fileUtilService.getDataFromClassLoader(ProjectServiceImpl.applicationClassLocation);
         applicationClassData = Common.replaceParams(applicationClassData, objectMapString);
         fileUtilService.writeDataToFile(applicationClassData, ProjectServiceImpl.javaCodeLoc + "/" + ProjectServiceImpl.applicationClassName + ".java");
+    }
 
+    private void createDockerFile(Properties properties, String projectPath) {
+        if (properties.getIsDockerEnabled()) {
+            String dockerFileContent = "FROM openjdk:11-jre-slim\n" +
+                    "VOLUME /tmp\n" +
+                    "COPY target/" + properties.getArtifactId() + "-0.0.1-SNAPSHOT.jar app.jar\n" +
+                    "ENTRYPOINT [\"java\", \"-Djava.security.egd=file:/dev/./urandom\", \"-jar\", \"/app.jar\"]";
+
+            try {
+                Files.write(Paths.get(projectPath + "/Dockerfile"), dockerFileContent.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
