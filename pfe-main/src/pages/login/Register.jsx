@@ -1,4 +1,3 @@
-import React from "react";
 import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography, message } from "antd";
 import "./Login.css";
@@ -9,7 +8,7 @@ const Register = () => {
   const onFinish = async (values) => {
     try {
       const response = await axios.post(
-        "http://localhost:7070/project/user",
+        "http://localhost:7070/user/user",
         values
       );
       if (response.status === 201) {

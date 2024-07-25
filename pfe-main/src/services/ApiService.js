@@ -1,31 +1,13 @@
-// ApiService.js
 import axios from "axios";
 
-const BASE_URL = "http://localhost:7070";
+const API_URL = "http://localhost:7070/project";
 
-const ApiService = {
-  getEntities: async () => {
-    const response = await axios.get(`${BASE_URL}/api/entities`);
+export const getEntitiesByProjectId = async (projectId) => {
+  try {
+    const response = await axios.get(`${API_URL}/${projectId}/entities`);
     return response.data;
-  },
-
-  createEntity: async (entityData) => {
-    const response = await axios.post(`${BASE_URL}/api/entities`, entityData);
-    return response.data;
-  },
-
-  updateEntity: async (entityId, entityData) => {
-    const response = await axios.put(
-      `${BASE_URL}/api/entities/${entityId}`,
-      entityData
-    );
-    return response.data;
-  },
-
-  deleteEntity: async (entityId) => {
-    const response = await axios.delete(`${BASE_URL}/api/entities/${entityId}`);
-    return response.data;
-  },
+  } catch (error) {
+    console.error("Error fetching entities:", error);
+    throw error;
+  }
 };
-
-export default ApiService;

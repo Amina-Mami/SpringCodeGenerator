@@ -1,11 +1,19 @@
 
+D
+java:S5411c"(Use a primitive boolean expression here.(ñÛ„K8Á´‹2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‹­Ö›‹2
 X
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
-Q
-java:S2696"6Make the enclosing method "static" or remove this set.(İŸ¦Öøÿÿÿÿ
-L
-java:S26963"6Make the enclosing method "static" or remove this set.(Ÿ‘‡ó
-Q
-java:S2696;"6Make the enclosing method "static" or remove this set.(°ú×¿úÿÿÿÿ
-c
-java:S5361F"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÙåíÊûÿÿÿÿ
+java:S2696"6Make the enclosing method "static" or remove this set.(İŸ¦Öøÿÿÿÿ8‘­Ö›‹2
+S
+java:S2696"6Make the enclosing method "static" or remove this set.(‘»·Â8‘­Ö›‹2
+S
+java:S26969"6Make the enclosing method "static" or remove this set.(Ÿ‘‡ó8–­Ö›‹2
+X
+java:S2696A"6Make the enclosing method "static" or remove this set.(°ú×¿úÿÿÿÿ8–­Ö›‹2
+S
+java:S2696B"6Make the enclosing method "static" or remove this set.(‹¾ƒ½8—­Ö›‹2
+j
+java:S5361M"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÙåíÊûÿÿÿÿ8˜­Ö›‹2
+j
+java:S5361W"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÙåíÊûÿÿÿÿ8š­Ö›‹2

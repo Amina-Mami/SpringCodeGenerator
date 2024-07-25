@@ -1,3 +1,7 @@
 
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8©®üÒş1
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8©®üÒş1
+J	java:S108 ")Either remove or fill this block of code.(¢­§Œÿÿÿÿÿ8ò…2
+L	java:S106C"+Replace this use of System.out by a logger.(îêĞ±úÿÿÿÿ8Ğ›ë×2
+_
+java:S1128"=Remove this unused import 'javatechy.codegen.dto.Properties'.(ÚÇØüÿÿÿÿ8ÿÍé€2

@@ -78,5 +78,4 @@ async function generateReactProject(projectName) {
   }
 }
 
-// Call the function with your project name
 generateReactProject(process.argv[2]);

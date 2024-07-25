@@ -1,15 +1,15 @@
 package javatechy.codegen.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.persistence.Entity;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -21,45 +21,41 @@ public class JsonFile {
 
     private String filePath;
 
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
+    private String date;
 
     private String projectName;
 
+    @Lob
+    private String requestDataJson;
+
     @ManyToOne
-    @JsonIgnore
     private User user;
+
     public JsonFile(String filePath, User user) {
         this.filePath = filePath;
         this.user = user;
-    }
-    public Long getId() {
-        return id;
+        this.date = new SimpleDateFormat("yyyy/MM/dd").format(new Date()); // Automatically set the date to the current date in desired format
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    @PrePersist
+    protected void onCreate() {
+        if (date == null) {
+            this.date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+        }
     }
 
-    public User getUser() {
-        return user;
+    public static JsonFile fromRequestData(String projectName, String requestDataJson, User user) {
+        JsonFile jsonFile = new JsonFile();
+        jsonFile.setProjectName(projectName);
+        jsonFile.setRequestDataJson(requestDataJson);
+        jsonFile.setUser(user);
+        jsonFile.setDate(String.valueOf(new Date()));
+        return jsonFile;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setEntities(List<javatechy.codegen.dto.Entity> entities) {
     }
 
-
+    public void setEnums(List<EnumDefinition> enums) {
+    }
 }

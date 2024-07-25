@@ -1,61 +1,70 @@
 
 x
-java:S1104"[Make projectLocation a static final constant or non-public and provide accessors if needed.(ŸÎá8‘ Ö„2
+java:S1104"[Make projectLocation a static final constant or non-public and provide accessors if needed.(ŸÎá8ˆ·®Ï„2
 
-java:S1104"dMake applicationClassLocation a static final constant or non-public and provide accessors if needed.(Û¿¾¼8‘ Ö„2
+java:S1104"dMake applicationClassLocation a static final constant or non-public and provide accessors if needed.(Û¿¾¼8ˆ·®Ï„2
 …
-java:S1104"cMake controllerClassLocation a static final constant or non-public and provide accessors if needed.(Àêøÿÿÿÿÿ8‘ Ö„2
+java:S1104"cMake controllerClassLocation a static final constant or non-public and provide accessors if needed.(Àêøÿÿÿÿÿ8ˆ·®Ï„2
 |
-java:S1104"ZMake srcMainJavaLoc a static final constant or non-public and provide accessors if needed.(í£ÚÌøÿÿÿÿ8‘ Ö„2
+java:S1104"ZMake srcMainJavaLoc a static final constant or non-public and provide accessors if needed.(í£ÚÌøÿÿÿÿ8ˆ·®Ï„2
+|
+java:S1104"ZMake srcTestJavaLoc a static final constant or non-public and provide accessors if needed.(ş¬Ãùÿÿÿÿ8ˆ·®Ï„2
 y
-java:S1104"WMake resourceLoc a static final constant or non-public and provide accessors if needed.(Òî¥•ıÿÿÿÿ8‘ Ö„2
+java:S1104"WMake resourceLoc a static final constant or non-public and provide accessors if needed.(Òî¥•ıÿÿÿÿ8ˆ·®Ï„2
 ‚
-java:S1104"`Make applicationClassName a static final constant or non-public and provide accessors if needed.(ºÒ§üÿÿÿÿ8’ Ö„2
+java:S1104"`Make applicationClassName a static final constant or non-public and provide accessors if needed.(ºÒ§üÿÿÿÿ8ˆ·®Ï„2
 t
-java:S1104"WMake javaCodeLoc a static final constant or non-public and provide accessors if needed.(ØÀã8’ Ö„2
+java:S1104"WMake javaCodeLoc a static final constant or non-public and provide accessors if needed.(ØÀã8ˆ·®Ï„2
+y
+java:S1104"WMake testCodeLoc a static final constant or non-public and provide accessors if needed.(Û©¶úüÿÿÿÿ8‰·®Ï„2
 R
-java:S1444"5Make this "public static projectLocation" field final(ŸÎá8’ Ö„2
+java:S1444"5Make this "public static projectLocation" field final(ŸÎá8‰·®Ï„2
 [
-java:S1444">Make this "public static applicationClassLocation" field final(Û¿¾¼8’ Ö„2
+java:S1444">Make this "public static applicationClassLocation" field final(Û¿¾¼8‰·®Ï„2
 _
-java:S1444"=Make this "public static controllerClassLocation" field final(Àêøÿÿÿÿÿ8’ Ö„2
+java:S1444"=Make this "public static controllerClassLocation" field final(Àêøÿÿÿÿÿ8‰·®Ï„2
 V
-java:S1444"4Make this "public static srcMainJavaLoc" field final(í£ÚÌøÿÿÿÿ8’ Ö„2
+java:S1444"4Make this "public static srcMainJavaLoc" field final(í£ÚÌøÿÿÿÿ8‰·®Ï„2
+V
+java:S1444"4Make this "public static srcTestJavaLoc" field final(ş¬Ãùÿÿÿÿ8‰·®Ï„2
 S
-java:S1444"1Make this "public static resourceLoc" field final(Òî¥•ıÿÿÿÿ8’ Ö„2
+java:S1444"1Make this "public static resourceLoc" field final(Òî¥•ıÿÿÿÿ8‰·®Ï„2
 \
-java:S1444":Make this "public static applicationClassName" field final(ºÒ§üÿÿÿÿ8“ Ö„2
+java:S1444":Make this "public static applicationClassName" field final(ºÒ§üÿÿÿÿ8‰·®Ï„2
 N
-java:S1444"1Make this "public static javaCodeLoc" field final(ØÀã8“ Ö„2
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(š†Š8¤ Ö„2
-{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(›Ûÿıÿÿÿÿ8¤ Ö„2
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(€‰ğø8¤ Ö„2
+java:S1444"1Make this "public static javaCodeLoc" field final(ØÀã8‰·®Ï„2
+S
+java:S1444"1Make this "public static testCodeLoc" field final(Û©¶úüÿÿÿÿ8‰·®Ï„2
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(š†Š8˜·®Ï„2
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(›Ûÿıÿÿÿÿ8˜·®Ï„2
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(€‰ğø8˜·®Ï„2
 _
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8¥ Ö„2
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8™·®Ï„2
 _
-java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8¥ Ö„2
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8š·®Ï„2
 _
-java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄŞ8¥ Ö„2
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8œ·®Ï„2
 _
-java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8¥ Ö„2
+java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄŞ8œ·®Ï„2
 _
-java:S6813("BRemove this field injection and use constructor injection instead.(êæÄŞ8¥ Ö„2
+java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8œ·®Ï„2
 _
-java:S6813*"BRemove this field injection and use constructor injection instead.(êæÄŞ8¦ Ö„2
+java:S6813+"BRemove this field injection and use constructor injection instead.(êæÄŞ8œ·®Ï„2
 _
-java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8¦ Ö„2
+java:S6813-"BRemove this field injection and use constructor injection instead.(êæÄŞ8·®Ï„2
 R
-java:S3416"5Update this logger to use "ProjectServiceImpl.class".(€›³˜8¦ Ö„2
+java:S3416"5Update this logger to use "ProjectServiceImpl.class".(€›³˜8·®Ï„2
 S
-java:S26962"6Make the enclosing method "static" or remove this set.(¿›¯²8® Ö„2
+java:S26963"6Make the enclosing method "static" or remove this set.(¿›¯²8ª·®Ï„2
 S
-java:S26963"6Make the enclosing method "static" or remove this set.(ßöûß8® Ö„2
+java:S26964"6Make the enclosing method "static" or remove this set.(ßöûß8ª·®Ï„2
 X
-java:S26964"6Make the enclosing method "static" or remove this set.(‰ÕÕŞùÿÿÿÿ8® Ö„2
-G
-java:S1128"*Remove this unused import 'java.util.zip'.(é³³Š8ùÅ„™„2
-g
-java:S1128
-"JRemove this unused import 'org.springframework.core.io.ByteArrayResource'.(Ã¤Ê¾8şÅ„™„2
+java:S26965"6Make the enclosing method "static" or remove this set.(êì˜èúÿÿÿÿ8ª·®Ï„2
+X
+java:S26966"6Make the enclosing method "static" or remove this set.(‰ÕÕŞùÿÿÿÿ8ª·®Ï„2
+Q
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ8Æ™ĞÎ2
+]
+java:S1128";Remove this unused import 'javatechy.codegen.dto.JsonFile'.(ßûôŒıÿÿÿÿ8Æ™ĞÎ2
 W
-java:S1068"5Remove this unused "PROJECT_DIRECTORY" private field.(ª•‰„øÿÿÿÿ8×Ìå•„2
+java:S1068"5Remove this unused "PROJECT_DIRECTORY" private field.(ª•‰„øÿÿÿÿ8¬·®Ï„2

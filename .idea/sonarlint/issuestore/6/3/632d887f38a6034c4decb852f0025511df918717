@@ -1,0 +1,31 @@
+
+
+java:S1192/"pDefine a constant instead of duplicating this literal "An error occurred while processing the request." 3 times.(®Øóï8Ûšµ’‰2
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Éé€Ö8İšµ’‰2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‚›µ’‰2
+_
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8‚›µ’‰2
+]
+java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(µú¯é8‰›µ’‰2
+C
+java:S1452&"&Remove usage of generic wildcard type.(µú¯é8Š›µ’‰2
+b
+java:S46846"@Replace this persistent entity with a simple POJO or DTO object.(Ú‰¹€øÿÿÿÿ8›µ’‰2
+H
+java:S1452`"&Remove usage of generic wildcard type.(İèÁ¹ÿÿÿÿÿ8š›µ’‰2
+C
+java:S1452t"&Remove usage of generic wildcard type.(·‰ïü8‰ªå”‰2
+p
+java:S1128"NRemove this unused import 'javatechy.codegen.Repository.AdminStatsRepository'.(ûøŞ¡ûÿÿÿÿ8·ïå”‰2
+b
+java:S1128"ERemove this unused import 'javatechy.codegen.dto.ProjectCountPerDay'.(®ÀÊŒ8·ïå”‰2
+h
+java:S1128	"FRemove this unused import 'javatechy.codegen.service.JsonFileService'.(ÙÛ¤ìúÿÿÿÿ8·ïå”‰2
+g
+java:S1128
+"ERemove this unused import 'javatechy.codegen.service.ProjectService'.(ıâõ´üÿÿÿÿ8·ïå”‰2
+c
+java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8·ïå”‰2
+V
+java:S1128"4Remove this unused import 'java.awt.print.Pageable'.(¾Ğıøÿÿÿÿ8·ïå”‰2

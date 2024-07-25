@@ -1,29 +1,43 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Typography, message } from "antd";
 import "./Login.css";
 import backgroundImage from "../../images/background.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext"; 
 
 const Login = () => {
-  //const navigate = useNavigate();
-  const [loginError, setLoginError] = useState(false);
+  const { login } = useAuth(); 
   const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState(false);
 
+ 
   const onFinish = async (values) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:7070/project/login",
+        "http://localhost:7070/user/login",
         values
       );
       if (response.status === 200) {
-        message.success("Login successful!");
-
-        window.location.href = "/dashboard";
+        const userData = response.data; 
+        console.log("User data from login:", userData);
+        if (userData.id) {
+          const role = userData.role;
+          login(userData, role); 
+          message.success("Login successful!");
+          if (role === "admin") {
+            window.location.href = "/admin"; 
+          } else {
+            window.location.href = "/dashboard"; 
+          }
+        } else {
+          message.error("Invalid user data received. Please try again.");
+        }
       } else {
         message.error("Invalid username or password. Please try again.");
+        setLoginError(true);
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -70,10 +84,9 @@ const Login = () => {
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-
-          <a className="login-form-forgot" href="/forgetpassword">
+          <Link className="login-form-forgot" to="/forgot-password">
             Forgot password
-          </a>
+          </Link>
         </Form.Item>
 
         <Form.Item>

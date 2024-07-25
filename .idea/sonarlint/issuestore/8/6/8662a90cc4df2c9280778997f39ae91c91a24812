@@ -1,49 +1,111 @@
 
-i
-java:S1192h"LDefine a constant instead of duplicating this literal "    public " 6 times.(‰İ¶Ã8é› ™„2
-f
-java:S1192º"HDefine a constant instead of duplicating this literal "    }
-
-" 7 times.(®†Ç8é› ™„2
-c
-java:S1192¾"EDefine a constant instead of duplicating this literal ") {
-" 3 times.(»¡“ı8é› ™„2
+a
+java:S6208•"CMerge the previous cases into this one using comma-separated label.(Æÿ–…8ºµ€2
+a
+java:S6208¤"CMerge the previous cases into this one using comma-separated label.(Æÿ–…8»µ€2
+x
+java:S1192¶"UDefine a constant instead of duplicating this literal "Repository.findById(" 5 times.(Š‹Ïùÿÿÿÿ8¼µ€2
 j
-java:S1192T"HDefine a constant instead of duplicating this literal "import " 4 times.(âåÍ¾ûÿÿÿÿ8é› ™„2
-k
-java:S1192$"IDefine a constant instead of duplicating this literal "package " 3 times.(½õŠŸıÿÿÿÿ8ê› ™„2
-n
-java:S1192¹"PDefine a constant instead of duplicating this literal "        return " 5 times.(ß¹–ä8ê› ™„2
+java:S1192»"GDefine a constant instead of duplicating this literal "String" 3 times.(—‘„¨üÿÿÿÿ8¼µ€2
+z
+java:S1192¬"WDefine a constant instead of duplicating this literal "() throws Exception {
+" 3 times.(¼ÆÑ°ÿÿÿÿÿ8¼µ€2
+Ÿ
+java:S1192£"€Define a constant instead of duplicating this literal "import org.springframework.beans.factory.annotation.Autowired;
+" 3 times.(™»·¯8¼µ€2
 c
-java:S1192,"FDefine a constant instead of duplicating this literal ".java" 3 times.(„™œ™8ê› ™„2
+java:S1192Ê"EDefine a constant instead of duplicating this literal ") {
+" 9 times.(»¡“ı8½µ€2
+k
+java:S1192#"IDefine a constant instead of duplicating this literal "package " 6 times.(½õŠŸıÿÿÿÿ8½µ€2
+f
+java:S1192­"HDefine a constant instead of duplicating this literal " = new " 6 times.(‘âĞ‹8½µ€2
+r
+java:S1192¬"ODefine a constant instead of duplicating this literal "    @Override
+" 5 times.(ÊÏ¶åşÿÿÿÿ8½µ€2
+i
+java:S1192r"LDefine a constant instead of duplicating this literal "    public " 6 times.(‰İ¶Ã8½µ€2
+g
+java:S1192"IDefine a constant instead of duplicating this literal " updated" 4 times.(ú´Šö8½µ€2
+t
+java:S1192±"VDefine a constant instead of duplicating this literal "        Mockito.when(" 6 times.(àúÚ’8½µ€2
 b
-java:S1192g"EDefine a constant instead of duplicating this literal "\")
-" 4 times.(Ë¿Øœ8ê› ™„2
-Z
-java:S2629—"7Use the built-in formatting to construct this argument.(˜öİãşÿÿÿÿ8í› ™„2
-E
-java:S5411/"(Use a primitive boolean expression here.(Ä‚î•8í› ™„2
-E
-java:S5411M"(Use a primitive boolean expression here.(Ï½›²8í› ™„2
-E
-java:S5411Z"(Use a primitive boolean expression here.(Ï½›²8í› ™„2
-J
-java:S5411t"(Use a primitive boolean expression here.(ßìÿ„şÿÿÿÿ8î› ™„2
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Œœ ™„2
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Œœ ™„2
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Œœ ™„2
+java:S1192q"EDefine a constant instead of duplicating this literal "\")
+" 6 times.(Ë¿Øœ8¾µ€2
+k
+java:S1192»"HDefine a constant instead of duplicating this literal "Integer" 3 times.(—‘„¨üÿÿÿÿ8¾µ€2
+g
+java:S1192í"IDefine a constant instead of duplicating this literal ".entity." 5 times.(Ó§ˆ¾8¾µ€2
+k
+java:S1192k"NDefine a constant instead of duplicating this literal "public class " 4 times.(±“†¨8¾µ€2
+g
+java:S1192Æ"IDefine a constant instead of duplicating this literal "    }
+
+" 14 times.(®†Ç8¾µ€2
+h
+java:S1192º"JDefine a constant instead of duplicating this literal "        " 12 times.(Í–ÃÇ8¾µ€2
 n
-java:S3776@"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(‹åó?8–œ ™„2
-N
-java:S1172@"2Remove this unused method parameter "allEntities".(‹åó?8—œ ™„2
+java:S1192Å"PDefine a constant instead of duplicating this literal "        return " 5 times.(ß¹–ä8¿µ€2
+‡
+java:S1192·"iDefine a constant instead of duplicating this literal "                .andExpect(jsonPath(\"$." 3 times.(æÃĞÿ8¿µ€2
+n
+java:S1192ª"PDefine a constant instead of duplicating this literal "    @Autowired
+" 3 times.(ÅÀ¸ı8¿µ€2
+k
+java:S1192«"MDefine a constant instead of duplicating this literal "    private " 3 times.(¥“óš8¿µ€2
+
+java:S1192¶"mDefine a constant instead of duplicating this literal "                .andExpect(status().isOk())
+" 4 times.(Ÿ §ƒıÿÿÿÿ8¿µ€2
 d
-java:S3457‹"AFormat specifiers should be used instead of string concatenation.(ëÁÉ‘ÿÿÿÿÿ8¾œ ™„2
-e
-java:S1172”"BRemove these unused method parameters "packageLine", "properties".(ß«ğ‘úÿÿÿÿ8Àœ ™„2
-d
-java:S3457—"AFormat specifiers should be used instead of string concatenation.(˜öİãşÿÿÿÿ8Áœ ™„2
+java:S1192·"FDefine a constant instead of duplicating this literal ")));
+" 4 times.(æÃĞÿ8¿µ€2
+k
+java:S1192_"IDefine a constant instead of duplicating this literal "import " 10 times.(âåÍ¾ûÿÿÿÿ8¿µ€2
+c
+java:S1192±"EDefine a constant instead of duplicating this literal ");
+
+" 3 times.(àúÚ’8Àµ€2
+c
+java:S1192­"EDefine a constant instead of duplicating this literal "();
+" 6 times.(‘âĞ‹8Àµ€2
+c
+java:S1192+"FDefine a constant instead of duplicating this literal ".java" 3 times.(„™œ™8Àµ€2
+n
+java:S1192«"KDefine a constant instead of duplicating this literal "    @Test
+" 5 times.(ÛÓŞŒÿÿÿÿÿ8Àµ€2
+f
+java:S1192·"HDefine a constant instead of duplicating this literal "\", is(" 4 times.(æÃĞÿ8Àµ€2
+W
+java:S11413"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8Âµ€2
+Z
+java:S2629£"7Use the built-in formatting to construct this argument.(¾ÿË—ùÿÿÿÿ8Åµ€2
+E
+java:S5411X"(Use a primitive boolean expression here.(Ï½›²8Åµ€2
+E
+java:S5411d"(Use a primitive boolean expression here.(Ï½›²8Æµ€2
+J
+java:S5411~"(Use a primitive boolean expression here.(ßìÿ„şÿÿÿÿ8Æµ€2
 _
-java:S3457 "AFormat specifiers should be used instead of string concatenation.(¤ìù»8Âœ ™„2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ëˆµ€2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ëˆµ€2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ìˆµ€2
+c
+java:S34578"AFormat specifiers should be used instead of string concatenation.(œƒèÉûÿÿÿÿ8¦‰µ€2
+^
+java:S3457<"AFormat specifiers should be used instead of string concatenation.(³²«›8§‰µ€2
+c
+java:S3457E"AFormat specifiers should be used instead of string concatenation.(ÆÄşÑıÿÿÿÿ8©‰µ€2
+n
+java:S3776J"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(‹åó?8«‰µ€2
+N
+java:S1172J"2Remove this unused method parameter "allEntities".(‹åó?8¬‰µ€2
+d
+java:S3457•"AFormat specifiers should be used instead of string concatenation.(ëÁÉ‘ÿÿÿÿÿ8É‰µ€2
+e
+java:S1172 "BRemove these unused method parameters "packageLine", "properties".(âşÄÛıÿÿÿÿ8Í‰µ€2
+d
+java:S3457£"AFormat specifiers should be used instead of string concatenation.(¾ÿË—ùÿÿÿÿ8Ï‰µ€2
+d
+java:S3457¬"AFormat specifiers should be used instead of string concatenation.(ù³¸‘ıÿÿÿÿ8Ò‰µ€2

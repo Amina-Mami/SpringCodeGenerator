@@ -18,10 +18,6 @@ public class Field {
 
 
 
-
-
-
-
     // Standard getters and setters
 
     public String getName() {

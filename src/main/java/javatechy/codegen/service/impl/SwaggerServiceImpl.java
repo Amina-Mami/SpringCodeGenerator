@@ -1,3 +1,4 @@
+
 package javatechy.codegen.service.impl;
 
 import javatechy.codegen.common.Common;
@@ -12,17 +13,20 @@ import java.io.IOException;
 import java.util.Map;
 
 @Service
-public class SwaggerServiceImpl  implements SwaggerService {
+public class SwaggerServiceImpl implements SwaggerService {
     @Autowired
     private FileUtilService fileUtilService;
 
-
-
     @Override
     public void createSwaggerConfig(Request request) throws IOException {
-        String swaggerdata = fileUtilService.getDataFromClassLoader(ProjectServiceImpl.swaggerLocation);
-        Map<String, String> objectMapString = JacksonParser.jacksonObjectToMap(request.getProperties());
-        swaggerdata = Common.replaceParams(swaggerdata, objectMapString);
-        fileUtilService.writeDataToFile(swaggerdata, ProjectServiceImpl.javaCodeLoc + "/configurations/" + "SwaggerConfig.java");
+
+        if (request.getSwagger() != null && request.getSwagger().getIsEnabled() != null && request.getSwagger().getIsEnabled()) {
+            String swaggerdata = fileUtilService.getDataFromClassLoader(ProjectServiceImpl.swaggerLocation);
+            Map<String, String> objectMapString = JacksonParser.jacksonObjectToMap(request.getProperties());
+            swaggerdata = Common.replaceParams(swaggerdata, objectMapString);
+            fileUtilService.writeDataToFile(swaggerdata, ProjectServiceImpl.javaCodeLoc + "/configurations/" + "SwaggerConfig.java");
+        } else {
+            System.out.println("Swagger configuration is not enabled.");
+        }
     }
 }

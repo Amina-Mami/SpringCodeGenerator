@@ -1,21 +1,21 @@
 
-r
-java:S1192-"PDefine a constant instead of duplicating this literal "    public Set<" 6 times.(Ä Ë×úÿÿÿÿ8ÊÍ”ı€2
+e
+java:S1192#"HDefine a constant instead of duplicating this literal "_id\")
+" 6 times.(£Ç‹œ8×èş‹2
+n
+java:S1192."QDefine a constant instead of duplicating this literal "    private Set<" 6 times.(­˜áÕ8×èş‹2
 j
-java:S1192""HDefine a constant instead of duplicating this literal "_id\")
-" 7 times.(ÅïÕ¯úÿÿÿÿ8ËÍ”ı€2
-g
-java:S1192-"EDefine a constant instead of duplicating this literal "s;
+java:S1192 "MDefine a constant instead of duplicating this literal "    private " 5 times.(Úó™ 8×èş‹2
+b
+java:S1192."EDefine a constant instead of duplicating this literal "s;
 
-" 6 times.(Ä Ë×úÿÿÿÿ8ËÍ”ı€2
-h
-java:S1192"LDefine a constant instead of duplicating this literal "    public " 5 times.(œÉÅ98ş÷·û€2
-|
-java:S1192""ZDefine a constant instead of duplicating this literal "    @JoinColumn(name = \"" 5 times.(ÅïÕ¯úÿÿÿÿ8ÌÍ”ı€2
-`
-java:S1192"DDefine a constant instead of duplicating this literal ";
+" 6 times.(­˜áÕ8×èş‹2
+w
+java:S1192#"ZDefine a constant instead of duplicating this literal "    @JoinColumn(name = \"" 5 times.(£Ç‹œ8×èş‹2
+a
+java:S1192 "DDefine a constant instead of duplicating this literal ";
 
-" 5 times.(œÉÅ98ÌÍ”ı€2
+" 5 times.(Úó™ 8Øèş‹2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ì•¢û€2
->	java:S131""Add a default case to this switch.(”¦¿°8ºø·û€2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ëèş‹2
+>	java:S131""Add a default case to this switch.(”¦¿°8ôèş‹2

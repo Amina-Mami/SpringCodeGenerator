@@ -19,11 +19,18 @@ public class Properties {
     private Boolean isGlobalExceptionEnabled;
     private Boolean isLombokEnabled = false;
     private Boolean isActuatorEnabled;
-
+    private Boolean isDockerEnabled = false;
     private String basePackage;
     private String username;
     private String email;
     private String password;
+
+
+
+
+
+
+
     public String getUsername() {
         return username;
     }
@@ -79,6 +86,14 @@ public class Properties {
 
     public void setApplicationClassName(String applicationClassName) {
         this.applicationClassName = applicationClassName;
+    }
+
+    public Boolean getIsDockerEnabled() {
+        return isDockerEnabled;
+    }
+
+    public void setIsDockerEnabled(Boolean dockerEnabled) {
+        isDockerEnabled = dockerEnabled;
     }
 
     public String getDescription() {

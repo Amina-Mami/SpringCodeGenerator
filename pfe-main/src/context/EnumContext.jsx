@@ -1,13 +1,21 @@
 import React, { createContext, useState } from "react";
 
-export const EnumContext = createContext();
+export const EntityContext = createContext();
 
-export const EnumProvider = ({ children }) => {
-  const [enumValues, setEnumValues] = useState([]); // Ensure enumValues is initialized properly
+export const EntityProvider = ({ children }) => {
+  const [enumValues, setEnumValues] = useState([]);
+
+  const updateEnumValues = (index, values) => {
+    setEnumValues((prevEnumValues) => {
+      const updatedValues = [...prevEnumValues];
+      updatedValues[index] = values;
+      return updatedValues;
+    });
+  };
 
   return (
-    <EnumContext.Provider value={{ enumValues, setEnumValues }}>
+    <EntityContext.Provider value={{ enumValues, updateEnumValues }}>
       {children}
-    </EnumContext.Provider>
+    </EntityContext.Provider>
   );
 };

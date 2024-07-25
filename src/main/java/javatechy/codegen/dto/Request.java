@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Request {
 
-    private Date timestamp;
+    private Date date;
     private String projectName;
     private List<Entity> entities;
     private List<EnumDefinition> enums;
@@ -25,11 +25,11 @@ public class Request {
         this.enableFrontendReact = enableFrontendReact;
     }
     public Date getTimestamp() {
-        return timestamp;
+        return date;
     }
 
     public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+        this.date = timestamp;
     }
 
     public String getProjectName() {
@@ -87,4 +87,7 @@ public class Request {
     public void setLogging(Logging logging) {
         this.logging = logging;
     }
+
+
+
 }

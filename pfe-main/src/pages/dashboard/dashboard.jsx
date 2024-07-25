@@ -1,31 +1,43 @@
+
+
 import { useEffect, useState } from "react";
 import { Table, Button, Space, Popconfirm, message } from "antd";
 import {
-  DownloadOutlined,
-  EditOutlined,
   DeleteOutlined,
+  EditOutlined,
+  DownloadOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 const ProjectTable = () => {
+  const { user, isAuthenticated } = useAuth();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
-    fetchProjects();
-  }, []);
+    console.log("isAuthenticated:", isAuthenticated());
+    console.log("user:", user);
+    if (isAuthenticated() && user && user.id) {
+      fetchProjects(user.id);
+    } else {
+      setLoading(false);
+    }
+  }, [user, isAuthenticated]);
 
-  const fetchProjects = async () => {
+  const fetchProjects = async (userId) => {
     try {
-      const response = await fetch("http://localhost:7070/project/projects");
-      if (!response.ok) {
-        throw new Error("Failed to fetch projects");
-      }
-      const data = await response.json();
-      setProjects(data);
+      const response = await axios.get(
+        `http://localhost:7070/project/projects/${userId}`
+      );
+      console.log("Response from API:", response.data);
+      setProjects(response.data);
       setLoading(false);
     } catch (error) {
+      console.error("Error fetching projects:", error);
       setError(error.message);
       setLoading(false);
     }
@@ -33,17 +45,15 @@ const ProjectTable = () => {
 
   const handleDelete = async (projectId) => {
     try {
-      const response = await fetch(
-        `http://localhost:7070/project/delete/${projectId}`,
-        {
-          method: "DELETE",
-        }
+      const response = await axios.delete(
+        `http://localhost:7070/project/delete/${projectId}`
       );
-      if (!response.ok) {
+      if (response.status === 200) {
+        message.success("Project deleted successfully");
+        fetchProjects(user.id);
+      } else {
         throw new Error("Failed to delete project");
       }
-
-      fetchProjects();
     } catch (error) {
       setError(error.message);
     }
@@ -53,9 +63,7 @@ const ProjectTable = () => {
     try {
       const response = await axios.get(
         `http://localhost:7070/project/download/${projectId}`,
-        {
-          responseType: "blob",
-        }
+        { responseType: "blob" }
       );
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
@@ -70,9 +78,14 @@ const ProjectTable = () => {
     }
   };
 
+  const handleUpdate = (projectId) => {
+
+    navigate(`project/${projectId}`); 
+  };
+
   const columns = [
     {
-      title: "Project Name",
+      title: "Project",
       dataIndex: "projectName",
       key: "projectName",
     },
@@ -82,25 +95,41 @@ const ProjectTable = () => {
       render: (_, record) => (
         <Space size="middle">
           <Button
-            type="primary"
-            style={{ backgroundColor: "green", borderColor: "green" }}
+            style={{
+              backgroundColor: "#8A9A5B",
+              borderColor: "#8A9A5B",
+              color: "white",
+            }}
             icon={<EditOutlined />}
-            onClick={() => {}}
+            onClick={() => handleUpdate(record.id)}
           >
             Update
           </Button>
+
           <Popconfirm
             title="Are you sure you want to delete this project?"
             onConfirm={() => handleDelete(record.id)}
             okText="Yes"
             cancelText="No"
           >
-            <Button type="primary" danger icon={<DeleteOutlined />}>
+            <Button
+              style={{
+                backgroundColor: "#E27D60",
+                borderColor: "#E27D60",
+                color: "white",
+              }}
+              icon={<DeleteOutlined />}
+            >
               Delete
             </Button>
           </Popconfirm>
+
           <Button
-            type="primary"
+            style={{
+              backgroundColor: "#4A6A8C",
+              borderColor: "#4A6A8C",
+              color: "white",
+            }}
             icon={<DownloadOutlined />}
             onClick={() => handleDownload(record.id, record.projectName)}
           >
@@ -118,6 +147,8 @@ const ProjectTable = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+  console.log("Projects state:", projects);
 
   return <Table columns={columns} dataSource={projects} rowKey="id" />;
 };

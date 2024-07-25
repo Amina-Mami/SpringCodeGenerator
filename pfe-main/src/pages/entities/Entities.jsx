@@ -1,34 +1,186 @@
-import React, { useState, useContext, useEffect } from "react";
-import {
-  Button,
-  Modal,
-  Table,
-  Card,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
-import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { Button, Modal, Row, Col, Card } from "antd";
+import { PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import AddEntity from "./AddEntity";
+import AddEnum from "./AddEnum";
 import AddRelationship from "./AddRelationship";
 import { EntityContext } from "../../context/EntityContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./Entities.css";
-import AddEnum from "./AddEnum";
-import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const Entities = () => {
-  const { entities, setEntities } = useContext(EntityContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const { entities, setEntities, enumValues, setEnumValues } =
+    useContext(EntityContext);
   const [selectedEntity, setSelectedEntity] = useState(null);
+  const [selectedEnum, setSelectedEnum] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showAddEnumModal, setShowAddEnumModal] = useState(false);
+  const [showDeleteEnumModal, setShowDeleteEnumModal] = useState(false);
+  const [localEntities, setLocalEntities] = useState([]);
+  const [localEnums, setLocalEnums] = useState([]);
+  const [jsonData, setJsonData] = useState(null);
   const [deleteIndex, setDeleteIndex] = useState(null);
   const [showRelationshipModal, setShowRelationshipModal] = useState(false);
-  const [showAddEnumModal, setShowAddEnumModal] = useState(false);
-  const [enumValues, setEnumValues] = useState([]);
-  const [selectedEnum, setSelectedEnum] = useState(null);
+  const [isUpdateMode, setIsUpdateMode] = useState(false);
+  const { projectId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (projectId) {
+      axios
+        .get(`http://localhost:7070/project/${projectId}`)
+        .then((response) => {
+          const data = JSON.parse(response.data.request_data_json);
+
+          const updatedEntities = data.entities.map((entity) =>
+            entity.id
+              ? { ...entity, relationships: entity.relationships || [] }
+              : { ...entity, id: uuidv4(), relationships: [] }
+          );
+
+          const extractedEnums = [];
+          updatedEntities.forEach((entity) => {
+            if (entity.enums) {
+              entity.enums.forEach((enumItem) => {
+                if (!extractedEnums.find((e) => e.name === enumItem.name)) {
+                  extractedEnums.push(enumItem);
+                }
+              });
+              delete entity.enums;
+            }
+          });
+
+          const updatedData = {
+            ...data,
+            entities: updatedEntities,
+            enums: extractedEnums,
+          };
+
+          setJsonData(updatedData);
+          setEntities(updatedEntities);
+          setEnumValues(extractedEnums);
+          setLocalEntities(updatedEntities);
+          setLocalEnums(extractedEnums);
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    } else {
+      console.error("Project ID is undefined");
+    }
+  }, [projectId]);
+
+  useEffect(() => {
+    const savedEntities = JSON.parse(localStorage.getItem("entities"));
+    const savedEnums = JSON.parse(localStorage.getItem("enums"));
+
+    if (savedEntities) {
+      setLocalEntities(savedEntities);
+    }
+    if (savedEnums) {
+      setLocalEnums(savedEnums);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("entities", JSON.stringify(localEntities));
+  }, [localEntities]);
+
+  useEffect(() => {
+    localStorage.setItem("enums", JSON.stringify(localEnums));
+  }, [localEnums]);
+
+  const handleSaveEntity = (entity) => {
+    if (!entity.id) {
+      entity.id = uuidv4();
+    }
+
+    const newEntity = {
+      ...entity,
+      relationships: entity.relationships || [],
+      fields: entity.fields || [],
+      crud: entity.restEndpoints,
+    };
+
+    const updatedEntities = selectedEntity
+      ? localEntities.map((ent) => (ent.id === newEntity.id ? newEntity : ent))
+      : [...localEntities, newEntity];
+
+    setLocalEntities(updatedEntities);
+  };
+
+  const handleDeleteEntity = () => {
+    const updatedEntities = localEntities.filter(
+      (_, index) => index !== deleteIndex
+    );
+    setLocalEntities(updatedEntities);
+    setShowDeleteModal(false);
+  };
+
+  const handleSaveEnum = (enumData, index) => {
+    const updatedEnums = [...localEnums];
+    const formattedValues = enumData.values.map((v) =>
+      typeof v === "object" ? v.values : v
+    );
+
+    const newEnumData = {
+      ...enumData,
+      values: formattedValues,
+    };
+
+    if (index !== undefined) {
+      updatedEnums[index] = newEnumData;
+    } else {
+      updatedEnums.push(newEnumData);
+    }
+
+    setLocalEnums(updatedEnums);
+    setShowAddEnumModal(false);
+  };
+
+  const handleDeleteEnum = () => {
+    const updatedEnums = localEnums.filter((_, index) => index !== deleteIndex);
+    setLocalEnums(updatedEnums);
+    setShowDeleteEnumModal(false);
+  };
+
+  const handleSaveRelationship = (relationshipData) => {
+    const sourceEntityIndex = localEntities.findIndex(
+      (entity) => entity.id === relationshipData.sourceEntity
+    );
+
+    const updatedEntities = [...localEntities];
+
+    if (sourceEntityIndex !== -1) {
+      const sourceEntity = updatedEntities[sourceEntityIndex];
+
+      const updatedRelationshipData = {
+        sourceEntity: sourceEntity.name,
+        targetEntity:
+          localEntities.find(
+            (entity) => entity.id === relationshipData.targetEntity
+          )?.name || "",
+        type: relationshipData.type,
+        direction: relationshipData.direction,
+      };
+
+      if (!sourceEntity.relationships) {
+        sourceEntity.relationships = [];
+      }
+
+      sourceEntity.relationships = [
+        ...sourceEntity.relationships,
+        updatedRelationshipData,
+      ];
+
+      updatedEntities[sourceEntityIndex] = sourceEntity;
+    }
+
+    setLocalEntities(updatedEntities);
+  };
+
   const openModal = (entity) => {
     setSelectedEntity(entity);
     setIsOpen(true);
@@ -39,73 +191,43 @@ const Entities = () => {
     setIsOpen(false);
   };
 
-  const handleClick = () => {
-    navigate("/dashboard/general");
+  const openEnumModal = (enumItem, index) => {
+    setSelectedEnum({ enumItem, index });
+    setShowAddEnumModal(true);
   };
-  const handleSaveEntity = (entity) => {
-    if (!entity || !entity.fields) {
-      console.error("Entity or fields are undefined");
-      return;
-    }
 
-    const formattedEntity = {
-      id: entity.id || new Date().getTime().toString(),
-      name: entity.name,
-      primaryKey: entity.primaryKey
-        ? { name: entity.primaryKey.name, type: entity.primaryKey.type }
-        : undefined,
-      fields: entity.fields.map((field) => ({
-        name: field.field,
-        type: field.type,
-        size: field.size || undefined,
-        required: field.required,
-        unique: field.unique,
-      })),
-      crud: entity.restEndpoints,
-      relationships: entity.relationships || [],
-      enums: enumValues,
+  const closeEnumModal = () => {
+    setSelectedEnum(null);
+    setShowAddEnumModal(false);
+  };
+  const handleUpdateProject = () => {
+    const projectData = {
+      entities: localEntities,
+      enums: localEnums,
     };
 
-    if (selectedEntity) {
-      const updatedEntities = entities.map((existingEntity, index) =>
-        index === entities.indexOf(selectedEntity)
-          ? formattedEntity
-          : existingEntity
-      );
-      setEntities(updatedEntities);
-    } else {
-      setEntities([...entities, formattedEntity]);
-    }
+    localStorage.setItem("projectData", JSON.stringify(projectData));
+    console.log("Updated entities stored in localStorage:", projectData);
 
-    closeModal();
-    toast.success("Entity saved successfully!");
+    navigate(`/dashboard/update-project/${projectId}`, { state: projectData });
   };
 
-  const handleDeleteEntity = () => {
-    setEntities((prevEntities) =>
-      prevEntities.filter((_, index) => index !== deleteIndex)
-    );
-    setDeleteIndex(null);
-    setShowDeleteModal(false);
+  const cancelbutton = () => {
+    setLocalEntities([]);
+    setLocalEnums([]);
+
+    localStorage.removeItem("entities");
+    localStorage.removeItem("enums");
+
+    navigate(`/dashboard`);
   };
 
-  const handleSaveEnum = (enumData) => {
-    const { name, values } = enumData;
+  const clearAll = () => {
+    setLocalEntities([]);
+    setLocalEnums([]);
 
-    const formattedValues = values.map((value) => ({ values: value }));
-
-    const updatedEnumValues = [
-      ...enumValues,
-      { name, values: formattedValues },
-    ];
-    setEnumValues(updatedEnumValues);
-    setShowAddEnumModal(false);
-    toast.success("Enum saved successfully!");
-  };
-
-  const handleDeleteEnum = (index) => {
-    setEnumValues((prevEnums) => prevEnums.filter((_, i) => i !== index));
-    toast.success("Enum deleted successfully!");
+    localStorage.removeItem("entities");
+    localStorage.removeItem("enums");
   };
 
   const renderField = (fields) => {
@@ -118,262 +240,198 @@ const Entities = () => {
     return crud ? "Yes" : "No";
   };
 
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = "";
-      return "";
-    };
+  const renderRelationships = (relationships = []) =>
+    relationships.map((rel, index) => (
+      <div key={index}>
+        {rel.sourceEntity} - {rel.targetEntity} ({rel.type}, {rel.direction})
+      </div>
+    ));
 
-    if (entities.length > 0) {
-      window.addEventListener("beforeunload", handleBeforeUnload);
-    }
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [entities]);
-
-  const handleSaveRelationship = (relationshipData) => {
-    console.log("Relationship data:", relationshipData);
-
-    const sourceEntity = entities.find(
-      (entity) => entity.id === relationshipData.sourceEntity
-    );
-    const sourceEntityName = sourceEntity?.name || "";
-
-    const targetEntity = entities.find(
-      (entity) => entity.id === relationshipData.targetEntity
-    );
-    const targetEntityName = targetEntity?.name || "";
-
-    const updatedRelationshipData = {
-      sourceEntity: sourceEntityName,
-      targetEntity: targetEntityName,
-      type: relationshipData.type,
-      direction: relationshipData.direction,
-    };
-
-    const updatedEntities = entities.map((entity) => {
-      if (entity.id === relationshipData.sourceEntity) {
-        return {
-          ...entity,
-          relationships: [...entity.relationships, updatedRelationshipData],
-        };
-      }
-      return entity;
-    });
-
-    setEntities(updatedEntities);
-    setShowRelationshipModal(false);
-    toast.success("Relationship saved successfully!");
+  const renderEnumValues = (values) =>
+    values.map((value, index) => (
+      <div key={index}>{typeof value === "object" ? value.values : value}</div>
+    ));
+  const CapitalizeFirstLetter = (text) => {
+    if (!text) return "";
+    return text.charAt(0).toUpperCase() + text.slice(1);
   };
-
-  const renderRelationships = (relationships) => {
-    return (
-      <ul>
-        {relationships.map((relationship, index) => (
-          <li
-            key={index}
-          >{`${relationship.sourceEntity} - ${relationship.targetEntity} (${relationship.type})`}</li>
-        ))}
-      </ul>
-    );
-  };
-
   return (
-    <>
-      <Container fluid className="pt-4">
-        <ToastContainer />
-        <Row>
-          <Col md={12}>
-            <Card className="mb-4 shadow">
-              <Card.Body className="p-0">
-                <div className="d-flex justify-content-between p-3">
-                  <h4>Entities</h4>
-                  <div>
-                    <Button
-                      variant="primary"
-                      className="me-2"
-                      onClick={() => openModal(null)}
-                    >
-                      <PlusOutlined /> Add Entity
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      className="me-2"
-                      onClick={() => setShowAddEnumModal(true)}
-                    >
-                      <PlusOutlined /> Add Enum
-                    </Button>
-                    <Button
-                      variant="warning"
-                      onClick={() => {
-                        setShowRelationshipModal(true);
-                        setShowAddEnumModal(false);
-                      }}
-                    >
-                      <PlusOutlined /> Relationships
-                    </Button>
-                  </div>
-                </div>
-                <Table responsive className="mb-0">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>PrimaryKey</th>
-                      <th>Fields</th>
-                      <th>CRUD</th>
-                      <th>Relationships</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {entities.map((entity, index) => (
-                      <tr key={index}>
-                        <td>{entity.name}</td>
-                        <td>
-                          {entity.primaryKey.name}: {entity.primaryKey.type}
-                        </td>
-
-                        <td>{renderField(entity.fields)}</td>
-                        <td>{renderCrud(entity.crud)}</td>
-                        <td>{renderRelationships(entity.relationships)}</td>
-                        <td>
-                          <Button
-                            variant="info"
-                            size="sm"
-                            onClick={() => openModal(entity)}
-                          >
-                            <EditOutlined />
-                          </Button>
-                          <Button
-                            variant="danger"
-                            size="sm"
-                            className="ms-2"
-                            onClick={() => {
-                              setDeleteIndex(index);
-                              setShowDeleteModal(true);
-                            }}
-                          >
-                            <DeleteOutlined />
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md={12}>
-            <Card className="mb-4 shadow">
-              <Card.Body className="p-0">
-                <div className="d-flex justify-content-between p-3">
-                  <h4>Enums</h4>
-                </div>
-                <Table responsive className="mb-0">
-                  <thead>
-                    <tr>
-                      <th>Enum Name</th>
-                      <th>Values</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {enumValues.map((enumData, index) => (
-                      <tr key={index}>
-                        <td>{enumData.name}</td>
-                        <td>
-                          {enumData.values.map((value, idx) => (
-                            <span key={idx}>
-                              {value.values}
-                              {idx < enumData.values.length - 1 ? ", " : ""}
-                            </span>
-                          ))}
-                        </td>
-                        <td>
-                          <Button
-                            variant="info"
-                            size="sm"
-                            onClick={() => {
-                              setSelectedEnum(enumData);
-                              setShowAddEnumModal(true);
-                            }}
-                          >
-                            <EditOutlined />
-                          </Button>
-                          <Button
-                            variant="danger"
-                            size="sm"
-                            className="ms-2"
-                            onClick={() => handleDeleteEnum(index)}
-                          >
-                            <DeleteOutlined />
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-            <Button
-              variant="success"
-              className="btncreate"
-              onClick={handleClick}
+    <div>
+      <Row gutter={[16, 16]} justify="center">
+        <Col>
+          <Button
+            style={{
+              backgroundColor: "#E27D60",
+              borderColor: "#E27D60",
+              color: "white",
+            }}
+            icon={<PlusOutlined />}
+            onClick={() => setIsOpen(true)}
+          >
+            Add Entity
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            style={{
+              backgroundColor: "#4A6A8C",
+              borderColor: "#4A6A8C",
+              color: "white",
+            }}
+            icon={<PlusOutlined />}
+            onClick={() => setShowAddEnumModal(true)}
+          >
+            Add Enum
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            style={{
+              backgroundColor: "#8A9A5B",
+              borderColor: "#8A9A5B",
+              color: "white",
+            }}
+            icon={<PlusOutlined />}
+            onClick={() => setShowRelationshipModal(true)}
+          >
+            Add Relationship
+          </Button>
+        </Col>
+      </Row>
+      <Row gutter={[16, 16]} justify="center">
+        <Button
+          type="default"
+          style={{ borderColor: "#B0B6B1", marginLeft: "0px" }}
+          icon={<DeleteOutlined />}
+          onClick={clearAll}
+          className="me-3 mt-4"
+        >
+          Clear All
+        </Button>
+      </Row>
+      <Row gutter={[16, 16]} className="mt-5">
+        {localEntities.map((entity, index) => (
+          <Col key={entity.id} span={8}>
+            <Card
+              //title={entity.name}
+              title={CapitalizeFirstLetter(entity.name)}
+              actions={[
+                <EditOutlined key="edit" onClick={() => openModal(entity)} />,
+                <DeleteOutlined
+                  key="delete"
+                  onClick={() => {
+                    setDeleteIndex(index);
+                    setShowDeleteModal(true);
+                  }}
+                />,
+              ]}
             >
-              <PlusOutlined /> Create Project
-            </Button>
+              <div>
+                {entity.primaryKey.name}: {entity.primaryKey.type}
+                {renderField(entity.fields)}
+              </div>
+              <div className="mt-3">
+                <strong>CRUD:</strong> {renderCrud(entity.crud)}
+              </div>
+              <div>
+                <strong>Relationships:</strong>
+                {renderRelationships(entity.relationships)}
+              </div>
+            </Card>
           </Col>
-        </Row>
-      </Container>
+        ))}
+      </Row>
+
+      <Row gutter={[16, 16]} className="mt-5">
+        {localEnums.map((enumItem, index) => (
+          <Col key={index} span={8}>
+            <Card
+              // title={enumItem.name}
+              title={`"enum" :
+                 ${enumItem.name}`}
+              actions={[
+                <EditOutlined
+                  key="edit"
+                  onClick={() => openEnumModal(enumItem, index)}
+                />,
+                <DeleteOutlined
+                  key="delete"
+                  onClick={() => {
+                    setDeleteIndex(index);
+                    setShowDeleteEnumModal(true);
+                  }}
+                />,
+              ]}
+            >
+              {renderEnumValues(enumItem.values)}
+            </Card>
+          </Col>
+        ))}
+      </Row>
+
+      <Modal
+        title="Delete Entity"
+        visible={showDeleteModal}
+        onOk={handleDeleteEntity}
+        onCancel={() => setShowDeleteModal(false)}
+        okText="Delete"
+        okButtonProps={{ danger: true }}
+      >
+        <p>Are you sure you want to delete this entity?</p>
+      </Modal>
+
+      <Modal
+        title="Delete Enum"
+        visible={showDeleteEnumModal}
+        onOk={handleDeleteEnum}
+        onCancel={() => setShowDeleteEnumModal(false)}
+        okText="Delete"
+        okButtonProps={{ danger: true }}
+      >
+        <p>Are you sure you want to delete this enum?</p>
+      </Modal>
 
       <AddEntity
         isOpen={isOpen}
-        onCancel={closeModal}
+        onClose={closeModal}
         onSubmit={handleSaveEntity}
         entity={selectedEntity}
-        enumValues={enumValues}
-      />
-
-      <Modal
-        show={showDeleteModal}
-        onHide={() => setShowDeleteModal(false)}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this entity?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="danger" onClick={handleDeleteEntity}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <AddRelationship
-        isOpen={showRelationshipModal}
-        onClose={() => setShowRelationshipModal(false)}
-        entities={entities}
-        onSave={handleSaveRelationship}
+        enumValues={localEnums}
       />
 
       <AddEnum
         isOpen={showAddEnumModal}
-        onClose={() => setShowAddEnumModal(false)}
-        onSubmit={handleSaveEnum}
+        onClose={closeEnumModal}
+        onSave={handleSaveEnum}
         enumData={selectedEnum}
       />
-    </>
+
+      <AddRelationship
+        isOpen={showRelationshipModal}
+        onClose={() => setShowRelationshipModal(false)}
+        onSave={handleSaveRelationship}
+        entities={localEntities}
+      />
+
+      {location.pathname.includes("/dashboard/project") && (
+        <Row gutter={[16, 16]} justify="end">
+          <Col>
+            <Button
+              type="primary"
+              style={{ backgroundColor: "#336699", borderColor: "#336699" }}
+              onClick={handleUpdateProject}
+            >
+              Update Project Settings
+            </Button>
+          </Col>
+          <Col>
+            <Button type="default" onClick={cancelbutton}>
+              Cancel
+            </Button>
+          </Col>
+        </Row>
+      )}
+    </div>
   );
 };
 

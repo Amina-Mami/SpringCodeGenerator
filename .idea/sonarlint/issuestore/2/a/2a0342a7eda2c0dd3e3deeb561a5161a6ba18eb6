@@ -3,4 +3,3 @@ _
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8´¨óœ2
 X
 java:S3416";Update this logger to use "AppPropertiesServiceImpl.class".(€›³˜8´¨óœ2
-W	java:S125"<This block of commented-out lines of code should be removed.(ÆªI8º¨óœ2

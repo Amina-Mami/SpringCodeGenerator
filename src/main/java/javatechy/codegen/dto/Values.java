@@ -10,4 +10,9 @@ public class Values {
     }
 
     private String values;
+
+    public Values(String values) {
+        this.values = values;
+    }
+
 }

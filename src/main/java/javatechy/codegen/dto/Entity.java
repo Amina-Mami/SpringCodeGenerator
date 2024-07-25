@@ -1,11 +1,14 @@
 package javatechy.codegen.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Entity {
 
     private String name;
+
     private Boolean crud;
     private FieldKey primaryKey;
     private List<Field> fields;
@@ -19,7 +22,7 @@ public class Entity {
     }
 
     private List<EnumDefinition> enums;
-    //works
+
     private List<Relationship> relationships;
 
 

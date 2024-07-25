@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -9,17 +10,19 @@ import {
   Select,
   Divider,
 } from "antd";
-import "./Entities.css";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { v4 as uuidv4 } from "uuid";
 
-function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
+function AddEntity({ isOpen, onClose, onSubmit, entity, enumValues }) {
   const [form] = Form.useForm();
   const [selectedOptions, setSelectedOptions] = useState({});
 
   useEffect(() => {
-    if (entity) {
+    if (entity && entity.id) {
       form.setFieldsValue({
+        id: entity.id,
         name: entity.name,
+
         primaryKey: {
           name: entity.primaryKey?.name || "",
           type: entity.primaryKey?.type || "",
@@ -40,30 +43,35 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
     form
       .validateFields()
       .then((values) => {
-        if (values.primaryKey.isPrimary) {
-          values.primaryKey.isPrimary = true;
+        console.log("Form Values:", values);
+
+        if (!entity) {
+          values.id = uuidv4();
+        } else {
+          values.id = entity.id;
         }
 
-        form.resetFields();
         onSubmit(values);
+        form.resetFields();
+        onClose();
       })
       .catch((info) => {
-        console.log("Validate Failed:", info);
+        console.log("Validation Failed:", info.errorFields);
       });
   };
 
   const handleCancel = () => {
     form.resetFields();
-    onCancel();
+    onClose();
   };
 
   const options = [
     { value: "String", label: "String" },
     { value: "Date", label: "Date" },
+    { value: "LocalDate", label: "LocalDate" },
     { value: "Integer", label: "Integer" },
     { value: "Long", label: "Long" },
     { value: "Boolean", label: "Boolean" },
-
     ...(enumValues || []).map((enumData) => ({
       value: enumData.name,
       label: enumData.name,
@@ -100,7 +108,7 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
         name="addEntityForm"
         className="entities-form"
         form={form}
-        oktext="Confirm"
+        okText="Confirm"
       >
         <Form.Item
           label="Name"
@@ -110,7 +118,7 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
           <Input placeholder="Entity name" />
         </Form.Item>
         <Space style={{ display: "flex", height: "30px" }} align="baseline">
-          <Form.Item valuePropName="checked">
+          <Form.Item name="mappedSuperclass" valuePropName="checked">
             <Checkbox>Mapped superclass</Checkbox>
           </Form.Item>
           <Form.Item name="restEndpoints" valuePropName="checked">
@@ -168,24 +176,9 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
                         onChange={(value) => onSelectChange(value, key)}
                       />
                     </Form.Item>
-                    {/* Add the enum type dropdown here */}
-                    {/* {selectedOptions[key] &&
-                      enumValues &&
-                      enumValues.find(
-                        (enumData) => enumData.name === selectedOptions[key]
-                      ) && (
-                        <Form.Item
-                          {...restField}
-                          name={[name, "enumType"]}
-                          rules={[{ required: true, message: "Missing field" }]}
-                          style={{ width: "170px" }}
-                        >
-                          <Input placeholder="Enum name" />
-                        </Form.Item>
-                      )} */}
                     <Form.Item
                       {...restField}
-                      name={[name, "field"]}
+                      name={[name, "name"]}
                       rules={[{ required: true, message: "Missing field" }]}
                       style={{ width: "170px" }}
                     >
@@ -194,7 +187,7 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
                     <Form.Item
                       {...restField}
                       name={[name, "size"]}
-                      rules={[{ required: false, message: "Missing field" }]}
+                      rules={[{ required: false }]}
                       style={{ width: "170px" }}
                     >
                       <Input
@@ -213,14 +206,14 @@ function AddEntity({ isOpen, onCancel, onSubmit, entity, enumValues }) {
                       name={[name, "required"]}
                       valuePropName="checked"
                     >
-                      <Checkbox value="required"> Required</Checkbox>
+                      <Checkbox> Required</Checkbox>
                     </Form.Item>
                     <Form.Item
                       {...restField}
                       name={[name, "unique"]}
                       valuePropName="checked"
                     >
-                      <Checkbox value="unique">Unique</Checkbox>
+                      <Checkbox>Unique</Checkbox>
                     </Form.Item>
                   </Space>
                   <Divider style={{ margin: "10px 0" }} />

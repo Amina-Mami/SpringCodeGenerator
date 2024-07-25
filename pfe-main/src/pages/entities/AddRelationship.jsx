@@ -1,92 +1,7 @@
-// import React, { useEffect, useState } from "react";
-// import { Form, Modal, Select } from "antd";
-
-// const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
-//   const [form] = Form.useForm();
-//   const [type, setType] = useState(null);
-
-//   useEffect(() => {
-//     form.resetFields();
-//     setType(null);
-//     console.log("Entities inside AddRelationship:", entities);
-//   }, [isOpen, form, entities]);
-
-//   const handleSubmit = async () => {
-//     try {
-//       const values = await form.validateFields();
-//       onSave({
-//         sourceEntity: values.sourceEntity,
-//         targetEntity: values.targetEntity,
-//         type: values.type,
-//       });
-//       onClose();
-//     } catch (errorInfo) {
-//       console.log("Validation Error:", errorInfo);
-//     }
-//   };
-
-//   return (
-//     <Modal
-//       title="Add Relationship"
-//       open={isOpen}
-//       onCancel={onClose}
-//       onOk={handleSubmit}
-//     >
-//       <Form form={form} layout="vertical">
-//         <Form.Item
-//           label="Relationship Type"
-//           name="type"
-//           rules={[
-//             { required: true, message: "Please select a relationship type." },
-//           ]}
-//         >
-//           <Select
-//             placeholder="Please select a relationship type"
-//             onChange={setType}
-//             value={type}
-//           >
-//             <Select.Option value="OneToOne">One to One</Select.Option>
-//             <Select.Option value="OneToMany">One to Many</Select.Option>
-//             <Select.Option value="ManyToOne">Many to One</Select.Option>
-//             <Select.Option value="ManyToMany">Many to Many</Select.Option>
-//           </Select>
-//         </Form.Item>
-
-//         <Form.Item
-//           label="From Entity"
-//           name="sourceEntity"
-//           rules={[{ required: true, message: "Please select a from entity." }]}
-//         >
-//           <Select placeholder="Please select an entity">
-//             {entities?.map((entity) => (
-//               <Select.Option key={entity.id} value={entity.id}>
-//                 {entity.name}
-//               </Select.Option>
-//             ))}
-//           </Select>
-//         </Form.Item>
-
-//         <Form.Item
-//           label="To Entity"
-//           name="targetEntity"
-//           rules={[{ required: true, message: "Please select a to entity." }]}
-//         >
-//           <Select placeholder="Please select an entity">
-//             {entities.map((entity) => (
-//               <Select.Option key={entity.id} value={entity.id}>
-//                 {entity.name}
-//               </Select.Option>
-//             ))}
-//           </Select>
-//         </Form.Item>
-//       </Form>
-//     </Modal>
-//   );
-// };
-
-// export default AddRelationship;
 import React, { useEffect, useState } from "react";
-import { Form, Modal, Select } from "antd";
+import { Form, Modal, Select, Button } from "antd";
+
+const { Option } = Select;
 
 const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
   const [form] = Form.useForm();
@@ -97,7 +12,6 @@ const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
     form.resetFields();
     setRelationshipType(null);
     setDirection(null);
-    console.log("Entities inside AddRelationship:", entities);
   }, [isOpen, form, entities]);
 
   const handleSubmit = async () => {
@@ -121,6 +35,14 @@ const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
       visible={isOpen}
       onCancel={onClose}
       onOk={handleSubmit}
+      footer={[
+        <Button key="back" onClick={onClose}>
+          Cancel
+        </Button>,
+        <Button key="submit" type="primary" onClick={handleSubmit}>
+          Save
+        </Button>,
+      ]}
     >
       <Form form={form} layout="vertical">
         <Form.Item
@@ -135,10 +57,10 @@ const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
             onChange={(value) => setRelationshipType(value)}
             value={relationshipType}
           >
-            <Select.Option value="OneToOne">One to One</Select.Option>
-            <Select.Option value="OneToMany">One to Many</Select.Option>
-            <Select.Option value="ManyToOne">Many to One</Select.Option>
-            <Select.Option value="ManyToMany">Many to Many</Select.Option>
+            <Option value="OneToOne">One to One</Option>
+            <Option value="OneToMany">One to Many</Option>
+            <Option value="ManyToOne">Many to One</Option>
+            <Option value="ManyToMany">Many to Many</Option>
           </Select>
         </Form.Item>
 
@@ -152,8 +74,8 @@ const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
             onChange={(value) => setDirection(value)}
             value={direction}
           >
-            <Select.Option value="Unidirectional">Unidirectional</Select.Option>
-            <Select.Option value="Bidirectional">Bidirectional</Select.Option>
+            <Option value="Unidirectional">Unidirectional</Option>
+            <Option value="Bidirectional">Bidirectional</Option>
           </Select>
         </Form.Item>
 
@@ -163,10 +85,10 @@ const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
           rules={[{ required: true, message: "Please select a from entity." }]}
         >
           <Select placeholder="Please select an entity">
-            {entities?.map((entity) => (
-              <Select.Option key={entity.id} value={entity.id}>
+            {entities.map((entity) => (
+              <Option key={entity.id} value={entity.id}>
                 {entity.name}
-              </Select.Option>
+              </Option>
             ))}
           </Select>
         </Form.Item>
@@ -178,9 +100,9 @@ const AddRelationship = ({ isOpen, onClose, onSave, entities }) => {
         >
           <Select placeholder="Please select an entity">
             {entities.map((entity) => (
-              <Select.Option key={entity.id} value={entity.id}>
+              <Option key={entity.id} value={entity.id}>
                 {entity.name}
-              </Select.Option>
+              </Option>
             ))}
           </Select>
         </Form.Item>

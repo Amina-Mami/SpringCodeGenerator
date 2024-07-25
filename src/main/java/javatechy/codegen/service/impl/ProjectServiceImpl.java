@@ -1,17 +1,16 @@
 package javatechy.codegen.service.impl;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.zip.*;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
 
-import javatechy.codegen.service.*;
+import javatechy.codegen.dto.JsonFile;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
-
 import javatechy.codegen.controller.CodeGenController;
 import javatechy.codegen.dto.Request;
+import javatechy.codegen.service.*;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -23,10 +22,12 @@ public class ProjectServiceImpl implements ProjectService {
     public static String applicationClassLocation = "template/DemoApplication.java";
     public static String controllerClassLocation = "template/TemplateController.java";
     public static String srcMainJavaLoc;
+    public static String srcTestJavaLoc;
     public static String resourceLoc;
     public static final String applicationProp = "template/application.properties";
     public static String applicationClassName;
     public static String javaCodeLoc;
+    public static String testCodeLoc;
     private static final String PROJECT_DIRECTORY = "C:\\Users\\User\\Desktop\\projects\\";
 
     @Autowired
@@ -49,6 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
         logger.info("== Creating empty project ==");
         projectLocation = projectDirectory.toString();
         srcMainJavaLoc = projectLocation + "/src/main/java";
+        srcTestJavaLoc = projectLocation + "/src/test/java";
         resourceLoc = projectLocation + "/src/main/resources";
         projectCreator.initiliaze(request);
         projectCreator.generateEmptyProject(request);

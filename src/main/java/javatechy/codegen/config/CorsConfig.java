@@ -14,11 +14,16 @@ import java.util.List;
 
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
+
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/download/project/{projectId}")
+        registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
-                .allowedMethods("GET","POST");
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .exposedHeaders("Content-Disposition");
 
     }
 

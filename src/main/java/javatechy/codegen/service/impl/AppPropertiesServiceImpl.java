@@ -23,14 +23,7 @@ public class AppPropertiesServiceImpl implements AppPropertiesService {
     @Autowired
     private FileUtilService fileUtilService;
 
-//    @Override
-//    public void generateApplicationProperties(Request request) throws IOException {
-//        logger.info("Creating application properties => ");
-//        String applicationPropertiesData = fileUtilService.getDataFromClassLoader(ProjectServiceImpl.applicationProp);
-//        Map<String, String> objectMapString = JacksonParser.jacksonObjectToMap(request.getProperties());
-//        applicationPropertiesData = Common.replaceParams(applicationPropertiesData, objectMapString);
-//        fileUtilService.writeDataToFile(applicationPropertiesData, ProjectServiceImpl.resourceLoc + "/" + "application.properties");
-//    }
+
 
     @Override
     public void generateApplicationProperties(Request request) throws IOException {

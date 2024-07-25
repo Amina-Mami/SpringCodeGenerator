@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { saveAs } from "file-saver";
 import {
   Button,
   Card,
@@ -13,16 +14,20 @@ import {
 } from "antd";
 import axios from "axios";
 import { EntityContext } from "../../context/EntityContext";
-
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 function General() {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
   const [database, setDatabase] = useState(false);
   const [databaseType, setDatabaseType] = useState("");
   const [swagger, setSwagger] = useState(false);
   const [front, setFront] = useState(false);
-  const { entities } = useContext(EntityContext);
+  const { entities, enumValues } = useContext(EntityContext);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const changeDatabaseState = () => setDatabase(!database);
   const changeDatabaseType = (e) => setDatabaseType(e.target.value);
@@ -33,160 +38,220 @@ function General() {
     form
       .validateFields()
       .then((values) => {
+        const savedEntities =
+          JSON.parse(localStorage.getItem("entities")) || [];
+        const savedEnums = JSON.parse(localStorage.getItem("enums")) || [];
+
+       
+      
+        const updatedEntities = savedEntities.map((entity) => ({
+          ...entity,
+          enums: savedEnums,
+        }));
+
+        console.log("Updated Entities with Enums:", updatedEntities);
+
         const requestData = {
           ...values,
-          entities: entities,
+          entities: updatedEntities,
+          userId: user?.id,
+          date: new Date().toISOString(),
         };
-        console.log(requestData);
-
+        requestData.properties.name = values.projectName;
         axios
-          .post("http://localhost:7070/project/create/4", requestData)
+          .post(
+            `http://localhost:7070/project/create/${user.id}`,
+            requestData,
+            {
+              responseType: "blob",
+            }
+          )
           .then((response) => {
-            console.log("Response:", response.data);
+            const contentDisposition = response.headers["content-disposition"];
+            const filename = contentDisposition
+              ? decodeURI(
+                  contentDisposition.split("filename=")[1].replace(/"/g, "")
+                )
+              : "project.zip";
+
+            const file = new Blob([response.data], { type: "application/zip" });
+            saveAs(file, filename);
             message.success("Project created successfully");
             form.resetFields();
+            navigate(`/dashboard`);
           })
           .catch((error) => {
             console.error("Error:", error);
-            message.error("Failed to create project");
+            message.error("Failed to download project");
           });
       })
       .catch((errorInfo) => {
         console.log("Validation failed:", errorInfo);
+        message.error("Validation failed. Please check your input.");
       });
   };
 
   return (
     <div style={styles.container}>
-      <Card style={styles.card}>
-        <Title level={3} style={styles.title}>
-          General Information
-        </Title>
-        <p style={styles.description}>
-          Fill in the details to kickstart your project creation process.
-        </p>
-      </Card>
-      <Card style={styles.card}>
-        <Form
-          form={form}
-          labelAlign="left"
-          layout="vertical"
-          size="large"
-          onFinish={handleOk}
-        >
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                label="Project Name"
-                name={["projectName"]}
-                rules={[
-                  { required: true, message: "Please enter the project name" },
-                ]}
-              >
-                <Input placeholder="Enter application name" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Project Group"
-                name={["properties", "groupId"]}
-                rules={[
-                  { required: true, message: "Please enter the project group" },
-                ]}
-              >
-                <Input placeholder="Enter project group (e.g., com.example)" />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                label="Artifact ID"
-                name={["properties", "artifactId"]}
-                rules={[
-                  { required: true, message: "Please enter the artifact ID" },
-                ]}
-              >
-                <Input placeholder="Enter artifact ID (e.g., myapplication)" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Application Port"
-                name={["properties", "applicationPort"]}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter the application port",
-                  },
-                ]}
-              >
-                <Input placeholder="Enter application port (e.g., 8080)" />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Form.Item
-            label="Description"
-            name={["properties", "description"]}
-            rules={[
-              { required: true, message: "Please enter the description" },
-            ]}
+      <div style={styles.formContainer}>
+        <Card style={styles.card}>
+          <Title level={3} style={styles.title}>
+            General Information
+          </Title>
+          <p style={styles.description}>
+            Fill in the details to kickstart your project creation process.
+          </p>
+        </Card>
+        <Card style={styles.card}>
+          <Form
+            form={form}
+            labelAlign="left"
+            layout="vertical"
+            size="large"
+            onFinish={handleOk}
           >
-            <Input.TextArea
-              rows={4}
-              placeholder="Enter description (e.g., This is my Spring Boot application)"
-            />
-          </Form.Item>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                label="Developer Name"
-                name={["properties", "developerName"]}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter the developer name",
-                  },
-                ]}
-              >
-                <Input placeholder="Enter developer name" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Developer Email"
-                name={["properties", "email"]}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter the developer email",
-                  },
-                ]}
-              >
-                <Input placeholder="Enter developer email" />
-              </Form.Item>
-            </Col>
-          </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  label="Project Name"
+                  name={["projectName"]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter the project name",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Enter application name" />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="Project Group"
+                  name={["properties", "groupId"]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter the project group",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Enter project group (e.g., com.example)" />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  label="Artifact ID"
+                  name={["properties", "artifactId"]}
+                  rules={[
+                    { required: true, message: "Please enter the artifact ID" },
+                  ]}
+                >
+                  <Input placeholder="Enter artifact ID (e.g., myapplication)" />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="Application Port"
+                  name={["properties", "applicationPort"]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter the application port",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Enter application port (e.g., 8080)" />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Form.Item
+              label="Description"
+              name={["properties", "description"]}
+              rules={[
+                { required: true, message: "Please enter the description" },
+              ]}
+            >
+              <Input.TextArea
+                rows={4}
+                placeholder="Enter description (e.g., This is my Spring Boot application)"
+              />
+            </Form.Item>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  label="Developer Name"
+                  name={["properties", "developerName"]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter the developer name",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Enter developer name" />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="Developer Email"
+                  name={["properties", "email"]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter the developer email",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Enter developer email" />
+                </Form.Item>
+              </Col>
+            </Row>
 
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item label="Enable Swagger" valuePropName="checked">
-                <Checkbox onChange={changeSwaggerState}>Enable</Checkbox>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Lombok enabled"
-                valuePropName="checked"
-                name={["properties", "isLombokEnabled"]}
-              >
-                <Checkbox>Enable</Checkbox>
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={12}>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  label="Enable Swagger"
+                  name={["swagger", "isEnabled"]}
+                  valuePropName="checked"
+                >
+                  <Checkbox onChange={changeSwaggerState}>Enable</Checkbox>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="Enable Lombok "
+                  valuePropName="checked"
+                  name={["properties", "isLombokEnabled"]}
+                >
+                  <Checkbox>Enable</Checkbox>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  label="Enable frontend React"
+                  name={["enableFrontendReact"]}
+                  valuePropName="checked"
+                >
+                  <Checkbox onChange={changeFrontState}>Enable</Checkbox>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label="Enabled docker ">
+                  <Form.Item
+                    name={["properties", "isDockerEnabled"]}
+                    valuePropName="checked"
+                  >
+                    <Checkbox>Enable</Checkbox>
+                  </Form.Item>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
               <Form.Item
                 label="Enable Database"
                 name={["database", "databaseEnabled"]}
@@ -194,9 +259,11 @@ function General() {
               >
                 <Checkbox onChange={changeDatabaseState}>Enable</Checkbox>
               </Form.Item>
-              {database && (
-                <>
-                  <Title level={4}>Database Configuration</Title>
+            </Row>
+
+            {database && (
+              <>
+                <Row gutter={16}>
                   <Form.Item
                     label="Database Type"
                     name={["database", "databaseType"]}
@@ -213,124 +280,117 @@ function General() {
                       <Radio value="mongodb">MongoDB</Radio>
                     </Radio.Group>
                   </Form.Item>
-                  <Row gutter={16}>
-                    <Col span={12}>
-                      <Form.Item
-                        label="Port"
-                        name={["database", "port"]}
-                        rules={[
-                          { required: true, message: "Please enter the port" },
-                        ]}
-                      >
-                        <Input placeholder="Enter port (e.g., 3306)" />
-                      </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                      <Form.Item
-                        label="Database Name"
-                        name={["database", "databaseName"]}
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please enter the database name",
-                          },
-                        ]}
-                      >
-                        <Input placeholder="Enter database name" />
-                      </Form.Item>
-                    </Col>
-                  </Row>
-                  {(databaseType === "mysql" ||
-                    databaseType === "postgresql") && (
+                </Row>
+                {databaseType && (
+                  <>
                     <Row gutter={16}>
                       <Col span={12}>
                         <Form.Item
-                          label="User Name"
-                          name={["database", "userName"]}
+                          label="Port"
+                          name={["database", "port"]}
                           rules={[
                             {
                               required: true,
-                              message: "Please enter the user name",
+                              message: "Please enter the port",
                             },
                           ]}
                         >
-                          <Input placeholder="Enter user name" />
+                          <Input placeholder="Enter port (e.g., 3306)" />
                         </Form.Item>
                       </Col>
                       <Col span={12}>
                         <Form.Item
-                          label="Password"
-                          name={["database", "password"]}
+                          label="Database Name"
+                          name={["database", "databaseName"]}
                           rules={[
                             {
                               required: true,
-                              message: "Please enter the password",
+                              message: "Please enter the database name",
                             },
                           ]}
                         >
-                          <Input.Password placeholder="Enter password" />
-                        </Form.Item>
-                      </Col>
-                      <Col span={12}>
-                        <Form.Item
-                          label="Enable frontend React"
-                          name={["enableFrontendReact"]}
-                          valuePropName="checked"
-                        >
-                          <Checkbox onChange={changeFrontState}>
-                            Enable
-                          </Checkbox>
+                          <Input placeholder="Enter database name" />
                         </Form.Item>
                       </Col>
                     </Row>
-                  )}
-                </>
-              )}
-            </Col>
-          </Row>
+                    {(databaseType === "mysql" ||
+                      databaseType === "postgresql") && (
+                      <Row gutter={16}>
+                        <Col span={12}>
+                          <Form.Item
+                            label="User Name"
+                            name={["database", "userName"]}
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please enter the user name",
+                              },
+                            ]}
+                          >
+                            <Input placeholder="Enter user name" />
+                          </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                          <Form.Item
+                            label="Password"
+                            name={["database", "password"]}
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please enter the password",
+                              },
+                            ]}
+                          >
+                            <Input.Password placeholder="Enter password" />
+                          </Form.Item>
+                        </Col>
+                      </Row>
+                    )}
+                  </>
+                )}
+              </>
+            )}
 
-          <div style={styles.footer}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </div>
-        </Form>
-      </Card>
+            <Form.Item>
+              <div style={styles.buttonContainer}>
+                <Button type="primary" htmlType="submit" loading={loading}>
+                  {loading ? "Creating Project..." : "Create Project"}
+                </Button>
+              </div>
+            </Form.Item>
+          </Form>
+        </Card>
+      </div>
     </div>
   );
 }
 
 const styles = {
   container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    paddingTop: "100px",
+    padding: "0px",
+  },
+  formContainer: {
+    position: "relative",
+    zIndex: 900,
+    background: "#fff",
     padding: "20px",
-    backgroundColor: "#f0f2f5",
-    minHeight: "100vh",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
   },
   card: {
-    width: "100%",
-    maxWidth: "800px",
-    margin: "20px 0",
-    padding: "20px",
-    background: "#fff",
-    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-    borderRadius: "8px",
+    marginBottom: "20px",
   },
   title: {
     textAlign: "center",
-    color: "#1890ff",
   },
   description: {
     textAlign: "center",
     marginBottom: "20px",
-    color: "#555",
   },
-  footer: {
+  buttonContainer: {
     display: "flex",
     justifyContent: "center",
-    marginTop: "20px",
+    marginTop: "30px",
   },
 };
 

@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Form, Modal, Input, Button, Alert } from "antd";
+import { EntityContext } from "../../context/EntityContext";
 
-const AddEnum = ({ isOpen, onClose, onSubmit }) => {
+const AddEnum = ({ isOpen, onClose, onSave, enumData }) => {
   const [form] = Form.useForm();
   const [valuesError, setValuesError] = useState(null);
   const [enumValues, setEnumValues] = useState([""]);
+  const { updateEnumValues } = useContext(EntityContext);
 
   useEffect(() => {
     form.resetFields();
-    setEnumValues([""]);
-  }, [isOpen, form]);
+    if (enumData) {
+      const { enumItem } = enumData;
+      form.setFieldsValue({ name: enumItem.name });
+      setEnumValues(enumItem.values.map((v) => v.values));
+    } else {
+      setEnumValues([""]);
+    }
+  }, [isOpen, form, enumData]);
 
   const handleSubmit = async () => {
     try {
@@ -19,7 +27,15 @@ const AddEnum = ({ isOpen, onClose, onSubmit }) => {
         setValuesError("Enum values cannot be empty.");
         return;
       }
-      onSubmit({ name: values.name, values: formattedValues });
+      const duplicates = formattedValues.filter(
+        (item, index) => formattedValues.indexOf(item) !== index
+      );
+      if (duplicates.length > 0) {
+        setValuesError("Enum values must be unique.");
+        return;
+      }
+      onSave({ name: values.name, values: formattedValues }, enumData?.index);
+      updateEnumValues(enumData?.index, formattedValues);
       onClose();
     } catch (errorInfo) {
       console.log("Validation Error:", errorInfo);
@@ -28,12 +44,15 @@ const AddEnum = ({ isOpen, onClose, onSubmit }) => {
 
   const validateValues = (rule, value) => {
     const values = value.split(",").map((v) => v.trim());
-    const pattern = /^[A-Z0-9_]+$/;
+    const pattern = /^[A-Z]+$/;
     const invalidValues = values.filter((v) => !pattern.test(v));
+    const duplicates = values.filter(
+      (item, index) => values.indexOf(item) !== index
+    );
     if (invalidValues.length > 0) {
-      setValuesError(
-        "Please only use capital letters, numbers, and underscores for enum values."
-      );
+      setValuesError("Please only use capitalized letters for enum values.");
+    } else if (duplicates.length > 0) {
+      setValuesError("Enum values must be unique.");
     } else {
       setValuesError(null);
     }
@@ -52,7 +71,7 @@ const AddEnum = ({ isOpen, onClose, onSubmit }) => {
 
   const handleInputChange = (value, index) => {
     const updatedValues = [...enumValues];
-    updatedValues[index] = value;
+    updatedValues[index] = value.toUpperCase();
     setEnumValues(updatedValues);
   };
 
