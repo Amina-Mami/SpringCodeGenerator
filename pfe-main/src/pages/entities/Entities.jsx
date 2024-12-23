@@ -28,43 +28,54 @@ const Entities = () => {
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     if (projectId) {
       axios
         .get(`http://localhost:7070/project/${projectId}`)
         .then((response) => {
-          const data = JSON.parse(response.data.request_data_json);
+          try {
+            // Parse JSON only if it's a string
+            const data =
+              typeof response.data.request_data_json === "string"
+                ? JSON.parse(response.data.request_data_json)
+                : response.data.request_data_json;
 
-          const updatedEntities = data.entities.map((entity) =>
-            entity.id
-              ? { ...entity, relationships: entity.relationships || [] }
-              : { ...entity, id: uuidv4(), relationships: [] }
-          );
+            // Process the entities
+            const updatedEntities = data.entities.map((entity) =>
+              entity.id
+                ? { ...entity, relationships: entity.relationships || [] }
+                : { ...entity, id: uuidv4(), relationships: [] }
+            );
 
-          const extractedEnums = [];
-          updatedEntities.forEach((entity) => {
-            if (entity.enums) {
-              entity.enums.forEach((enumItem) => {
-                if (!extractedEnums.find((e) => e.name === enumItem.name)) {
-                  extractedEnums.push(enumItem);
-                }
-              });
-              delete entity.enums;
-            }
-          });
+            // Extract and deduplicate enums
+            const extractedEnums = [];
+            updatedEntities.forEach((entity) => {
+              if (entity.enums) {
+                entity.enums.forEach((enumItem) => {
+                  if (!extractedEnums.find((e) => e.name === enumItem.name)) {
+                    extractedEnums.push(enumItem);
+                  }
+                });
+                delete entity.enums;
+              }
+            });
 
-          const updatedData = {
-            ...data,
-            entities: updatedEntities,
-            enums: extractedEnums,
-          };
+            // Prepare updated data
+            const updatedData = {
+              ...data,
+              entities: updatedEntities,
+              enums: extractedEnums,
+            };
 
-          setJsonData(updatedData);
-          setEntities(updatedEntities);
-          setEnumValues(extractedEnums);
-          setLocalEntities(updatedEntities);
-          setLocalEnums(extractedEnums);
+            // Update state
+            setJsonData(updatedData);
+            setEntities(updatedEntities);
+            setEnumValues(extractedEnums);
+            setLocalEntities(updatedEntities);
+            setLocalEnums(extractedEnums);
+          } catch (error) {
+            console.error("Error parsing JSON data:", error);
+          }
         })
         .catch((error) => console.error("Error fetching data:", error));
     } else {
@@ -202,14 +213,35 @@ const Entities = () => {
   };
   const handleUpdateProject = () => {
     const projectData = {
+      
       entities: localEntities,
       enums: localEnums,
     };
 
-    localStorage.setItem("projectData", JSON.stringify(projectData));
-    console.log("Updated entities stored in localStorage:", projectData);
+    // Include enums inside each entity
+    const entitiesWithEnums = localEntities.map((entity) => {
+      const entityEnums = localEnums.filter((enumItem) => {
+        return entity.fields.some((field) => field.type === enumItem.name);
+      });
+      return {
+        ...entity,
+        enums: entityEnums,
+      };
+    });
 
-    navigate(`/dashboard/update-project/${projectId}`, { state: projectData });
+    // Update projectData with entities including enums
+    const updatedProjectData = {
+      ...projectData,
+      entities: entitiesWithEnums,
+    };
+
+    // Save updated entities with enums to localStorage
+    localStorage.setItem("projectData", JSON.stringify(updatedProjectData));
+    console.log("Updated entities stored in localStorage:", updatedProjectData);
+
+    navigate(`/dashboard/update-project/${projectId}`, {
+      state: updatedProjectData,
+    });
   };
 
   const cancelbutton = () => {
@@ -219,7 +251,7 @@ const Entities = () => {
     localStorage.removeItem("entities");
     localStorage.removeItem("enums");
 
-    navigate(`/dashboard`);
+    navigate(`/dashboard/entities`);
   };
 
   const clearAll = () => {
@@ -228,6 +260,17 @@ const Entities = () => {
 
     localStorage.removeItem("entities");
     localStorage.removeItem("enums");
+  };
+
+  const handlecontinuesettings = () => {
+    const projectData = {
+      entities: localEntities,
+      enums: localEnums,
+    };
+
+    localStorage.setItem("projectData", JSON.stringify(projectData));
+
+    navigate(`/dashboard/general`);
   };
 
   const renderField = (fields) => {
@@ -298,17 +341,7 @@ const Entities = () => {
           </Button>
         </Col>
       </Row>
-      <Row gutter={[16, 16]} justify="center">
-        <Button
-          type="default"
-          style={{ borderColor: "#B0B6B1", marginLeft: "0px" }}
-          icon={<DeleteOutlined />}
-          onClick={clearAll}
-          className="me-3 mt-4"
-        >
-          Clear All
-        </Button>
-      </Row>
+
       <Row gutter={[16, 16]} className="mt-5">
         {localEntities.map((entity, index) => (
           <Col key={entity.id} span={8}>
@@ -421,12 +454,35 @@ const Entities = () => {
               style={{ backgroundColor: "#336699", borderColor: "#336699" }}
               onClick={handleUpdateProject}
             >
-              Update Project Settings
+              Save & Continue
             </Button>
           </Col>
           <Col>
             <Button type="default" onClick={cancelbutton}>
               Cancel
+            </Button>
+          </Col>
+        </Row>
+      )}
+      {location.pathname.includes("/dashboard/entities") && (
+        <Row gutter={[16, 16]} justify="end">
+          <Col>
+            <Button
+              type="primary"
+              style={{ backgroundColor: "#336699", borderColor: "#336699" }}
+              onClick={handlecontinuesettings}
+            >
+              Save & Continue
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              type="default"
+              style={{ borderColor: "#B0B6B1", marginLeft: "0px" }}
+              icon={<DeleteOutlined />}
+              onClick={clearAll}
+            >
+              Clear All
             </Button>
           </Col>
         </Row>

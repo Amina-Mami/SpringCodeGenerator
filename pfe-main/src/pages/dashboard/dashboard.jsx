@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import { Table, Button, Space, Popconfirm, message } from "antd";
 import {
@@ -62,25 +60,29 @@ const ProjectTable = () => {
   const handleDownload = async (projectId, projectName) => {
     try {
       const response = await axios.get(
-        `http://localhost:7070/project/download/${projectId}`,
-        { responseType: "blob" }
+        `http://localhost:7070/project/download/${user.id}/${projectName}`,
+        {
+          responseType: "blob",
+        }
       );
+
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", `${projectName}.zip`);
       document.body.appendChild(link);
       link.click();
-      link.parentNode.removeChild(link);
+      document.body.removeChild(link);
+
+      message.success("Project downloaded successfully");
     } catch (error) {
       console.error("Error downloading project:", error);
-      message.error("Failed to download project. Please try again later.");
+      setError(error.message);
     }
   };
 
   const handleUpdate = (projectId) => {
-
-    navigate(`project/${projectId}`); 
+    navigate(`project/${projectId}`);
   };
 
   const columns = [

@@ -1,14 +1,20 @@
 package javatechy.codegen.dto;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -44,18 +50,37 @@ public class JsonFile {
         }
     }
 
-    public static JsonFile fromRequestData(String projectName, String requestDataJson, User user) {
-        JsonFile jsonFile = new JsonFile();
-        jsonFile.setProjectName(projectName);
-        jsonFile.setRequestDataJson(requestDataJson);
-        jsonFile.setUser(user);
-        jsonFile.setDate(String.valueOf(new Date()));
-        return jsonFile;
-    }
 
     public void setEntities(List<javatechy.codegen.dto.Entity> entities) {
     }
 
     public void setEnums(List<EnumDefinition> enums) {
     }
+    // Convenience method to set requestDataJson as a Map
+    public void setRequestDataJson(Map<String, Object> map) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            this.requestDataJson = mapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace(); // Handle the exception properly
+        }
+    }
+
+    public Map<String, Object> getRequestDataJson() {
+        ObjectMapper mapper = new ObjectMapper();
+        if (this.requestDataJson == null) {
+            return new HashMap<>(); // Return an empty map if the JSON is null
+        }
+        try {
+            return mapper.readValue(this.requestDataJson, new TypeReference<Map<String, Object>>() {});
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception
+            return new HashMap<>(); // Return an empty map on failure
+        }
+    }
+
+
+
+    // Convenience method to get requestDataJson as a Map
+
 }

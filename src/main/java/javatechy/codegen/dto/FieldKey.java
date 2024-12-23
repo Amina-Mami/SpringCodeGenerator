@@ -1,5 +1,8 @@
 package javatechy.codegen.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FieldKey {
     private String name;
     private String type;

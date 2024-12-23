@@ -1,9 +1,6 @@
 package javatechy.codegen.controller;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -80,35 +77,21 @@ public class CodeGenController {
             boolean enableFrontendReact = request.isEnableFrontendReact();
             Path zipFilePath = zipProjectDirectoryContents(projectDirectory, projectName, enableFrontendReact);
 
-
             JsonFile existingProject = jsonFileRepository.findByUserAndProjectName(user, projectName);
 
-            if (existingProject != null) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map<String, Object> requestDataMap = objectMapper.convertValue(request, Map.class);
 
+            if (existingProject != null) {
                 existingProject.setFilePath(zipFilePath.toString());
-                ObjectMapper objectMapper = new ObjectMapper();
-                try {
-                    String requestDataJson = objectMapper.writeValueAsString(request);
-                    existingProject.setRequestDataJson(requestDataJson);
-                } catch (JsonProcessingException e) {
-                    logger.error("Error serializing Request object to JSON", e);
-                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error creating project", "500", e.getMessage()));
-                }
+                existingProject.setRequestDataJson(requestDataMap); // Use the convenience method
                 jsonFileRepository.save(existingProject);
             } else {
-
                 JsonFile newProject = new JsonFile();
                 newProject.setProjectName(projectName);
                 newProject.setFilePath(zipFilePath.toString());
                 newProject.setUser(user);
-                ObjectMapper objectMapper = new ObjectMapper();
-                try {
-                    String requestDataJson = objectMapper.writeValueAsString(request);
-                    newProject.setRequestDataJson(requestDataJson);
-                } catch (JsonProcessingException e) {
-                    logger.error("Error serializing Request object to JSON", e);
-                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error creating project", "500", e.getMessage()));
-                }
+                newProject.setRequestDataJson(requestDataMap); // Use the convenience method
                 jsonFileRepository.save(newProject);
             }
 
@@ -119,6 +102,73 @@ public class CodeGenController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error creating project", "500", e.getMessage()));
         }
     }
+
+
+//    @PostMapping(value = "/create/{userId}", produces = "application/zip")
+//    public ResponseEntity<?> createProject(@PathVariable Long userId, @RequestBody Request request) {
+//        try {
+//            if (userId == null) {
+//                return ResponseEntity.badRequest().body(new Response("User ID is required", "400", "User ID is required"));
+//            }
+//
+//            User user = userService.findUserById(userId);
+//            if (user == null) {
+//                return new ResponseEntity<>(new Response("User not found", "404", "User not found"), HttpStatus.NOT_FOUND);
+//            }
+//
+//            String projectName = request.getProjectName();
+//            Path projectDirectory = Files.createTempDirectory("projects-" + projectName);
+//            Path springBootDirectory = projectDirectory.resolve("spring-boot");
+//            Files.createDirectories(springBootDirectory);
+//
+//            projectService.createProject(request, springBootDirectory);
+//
+//            if (request.isEnableFrontendReact()) {
+//                generateReactProject(projectDirectory, "react-frontend");
+//            }
+//
+//            boolean enableFrontendReact = request.isEnableFrontendReact();
+//            Path zipFilePath = zipProjectDirectoryContents(projectDirectory, projectName, enableFrontendReact);
+//
+//
+//            JsonFile existingProject = jsonFileRepository.findByUserAndProjectName(user, projectName);
+//
+//            if (existingProject != null) {
+//
+//                existingProject.setFilePath(zipFilePath.toString());
+//                ObjectMapper objectMapper = new ObjectMapper();
+//                try {
+//                    String requestDataJson = objectMapper.writeValueAsString(request);
+//                    existingProject.setRequestDataJson(requestDataJson);
+//                } catch (JsonProcessingException e) {
+//                    logger.error("Error serializing Request object to JSON", e);
+//                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error creating project", "500", e.getMessage()));
+//                }
+//                jsonFileRepository.save(existingProject);
+//            } else {
+//
+//                JsonFile newProject = new JsonFile();
+//                newProject.setProjectName(projectName);
+//                newProject.setFilePath(zipFilePath.toString());
+//                newProject.setUser(user);
+//                ObjectMapper objectMapper = new ObjectMapper();
+//                try {
+//                    String requestDataJson = objectMapper.writeValueAsString(request);
+//                    newProject.setRequestDataJson(requestDataJson);
+//                } catch (JsonProcessingException e) {
+//                    logger.error("Error serializing Request object to JSON", e);
+//                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error creating project", "500", e.getMessage()));
+//                }
+//                jsonFileRepository.save(newProject);
+//            }
+//
+//            return prepareDownloadResponse(zipFilePath, projectName);
+//
+//        } catch (IOException | InterruptedException e) {
+//            logger.error("Error creating project", e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error creating project", "500", e.getMessage()));
+//        }
+//    }
 
 
 
@@ -137,6 +187,7 @@ public class CodeGenController {
                         Files.copy(path, zipOutputStream);
                         zipOutputStream.closeEntry();
                     } catch (IOException e) {
+                        e.printStackTrace();
                         throw new RuntimeException("Error adding file to zip", e);
                     }
                 });
@@ -145,21 +196,21 @@ public class CodeGenController {
 }
 
 
-    private void addDirectoryToZip(Path sourceDir, Path projectDirectory, ZipOutputStream zipOutputStream) throws IOException {
-        Files.walk(sourceDir)
-                .filter(path -> !Files.isDirectory(path))
-                .forEach(path -> {
-                    try {
-                        Path relativePath = projectDirectory.relativize(path);
-                        ZipEntry zipEntry = new ZipEntry(relativePath.toString());
-                        zipOutputStream.putNextEntry(zipEntry);
-                        Files.copy(path, zipOutputStream);
-                        zipOutputStream.closeEntry();
-                    } catch (IOException e) {
-                        throw new RuntimeException("Error adding directory to zip", e);
-                    }
-                });
-    }
+//    private void addDirectoryToZip(Path sourceDir, Path projectDirectory, ZipOutputStream zipOutputStream) throws IOException {
+//        Files.walk(sourceDir)
+//                .filter(path -> !Files.isDirectory(path))
+//                .forEach(path -> {
+//                    try {
+//                        Path relativePath = projectDirectory.relativize(path);
+//                        ZipEntry zipEntry = new ZipEntry(relativePath.toString());
+//                        zipOutputStream.putNextEntry(zipEntry);
+//                        Files.copy(path, zipOutputStream);
+//                        zipOutputStream.closeEntry();
+//                    } catch (IOException e) {
+//                        throw new RuntimeException("Error adding directory to zip", e);
+//                    }
+//                });
+//    }
 
 
 
@@ -237,16 +288,27 @@ public class CodeGenController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    @GetMapping("/update/{projectId}")
-    public ResponseEntity<JsonFile> getProjectById(@PathVariable Long projectId) {
-        Optional<JsonFile> project = Optional.ofNullable(jsonFileService.findById(projectId));
-        if (project.isPresent()) {
-            return ResponseEntity.ok(project.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+
+//    @GetMapping("/update/{projectId}")
+//    public ResponseEntity<JsonFile> getProjectById(@PathVariable Long projectId) {
+//        Optional<JsonFile> project = Optional.ofNullable(jsonFileService.findById(projectId));
+//        if (project.isPresent()) {
+//            return ResponseEntity.ok(project.get());
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//    }
+@GetMapping("/update/{projectId}")
+public ResponseEntity<JsonFile> getProjectById(@PathVariable Long projectId) {
+    JsonFile project = jsonFileService.findById(projectId);
+    if (project != null) {
+        return ResponseEntity.ok(project);
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
-@GetMapping("/{projectId}")
+}
+
+    @GetMapping("/{projectId}")
 public ResponseEntity<Map<String, Object>> getProjectDataById(@PathVariable Long projectId) {
     Optional<JsonFile> project = Optional.ofNullable(jsonFileService.findById(projectId));
     if (project.isPresent()) {
@@ -277,30 +339,99 @@ public ResponseEntity<Map<String, Object>> getProjectDataById(@PathVariable Long
     @PutMapping("/update/{projectId}")
     public ResponseEntity<?> updateProject(@PathVariable Long projectId, @RequestBody JsonFile updatedProject) {
         try {
+
+            System.out.println("Update request received for project ID: " + projectId);
+            System.out.println("Updated project data: " + updatedProject);
+
             JsonFile existingProject = jsonFileService.findById(projectId);
 
             if (existingProject == null) {
+                System.out.println("Project not found for ID: " + projectId);
                 return ResponseEntity.notFound().build();
             }
 
             if (updatedProject.getProjectName() != null) {
                 existingProject.setProjectName(updatedProject.getProjectName());
+                System.out.println("Updated project name to: " + updatedProject.getProjectName());
             }
 
             if (updatedProject.getRequestDataJson() != null) {
-
+                System.out.println("Updating requestDataJson...");
                 existingProject.setRequestDataJson(updatedProject.getRequestDataJson());
+                System.out.println("Updated requestDataJson to: " + updatedProject.getRequestDataJson());
             }
 
             jsonFileService.saveOrUpdate(existingProject);
+            System.out.println("Project updated successfully!");
 
             return ResponseEntity.ok().build();
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
+//    @GetMapping("/download/{userId}/{projectName}")
+//    public ResponseEntity<?> downloadProject(@PathVariable Long userId, @PathVariable String projectName) {
+//        try {
+//            User user = userService.findUserById(userId);
+//            if (user == null) {
+//                return new ResponseEntity<>(new Response("User not found", "404", "User not found"), HttpStatus.NOT_FOUND);
+//            }
+//
+//            JsonFile project = jsonFileRepository.findByUserAndProjectName(user, projectName);
+//            if (project == null) {
+//                return new ResponseEntity<>(new Response("Project not found", "404", "Project not found"), HttpStatus.NOT_FOUND);
+//            }
+//
+//            Path zipFilePath = Paths.get(project.getFilePath());
+//            return prepareDownloadResponse(zipFilePath, projectName);
+//
+//        } catch (IOException e) {
+//            logger.error("Error downloading project", e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error downloading project", "500", e.getMessage()));
+//        }
+//    }
 
+    @GetMapping("/download/{userId}/{projectName}")
+    public ResponseEntity<?> downloadProject(@PathVariable Long userId, @PathVariable String projectName) {
+        try {
+            User user = userService.findUserById(userId);
+            if (user == null) {
+                return new ResponseEntity<>(new Response("User not found", "404", "User not found"), HttpStatus.NOT_FOUND);
+            }
+
+            JsonFile project = jsonFileRepository.findByUserAndProjectName(user, projectName);
+            if (project == null) {
+                return new ResponseEntity<>(new Response("Project not found", "404", "Project not found"), HttpStatus.NOT_FOUND);
+            }
+
+            // Convert requestDataJson back to Request object
+            ObjectMapper objectMapper = new ObjectMapper();
+            Request requestData = objectMapper.convertValue(project.getRequestDataJson(), Request.class);
+
+            // Create project directory from requestDataJson
+            String tempDirPrefix = "projects-" + projectName;
+            Path projectDirectory = Files.createTempDirectory(tempDirPrefix);
+            Path springBootDirectory = projectDirectory.resolve("spring-boot");
+            Files.createDirectories(springBootDirectory);
+
+            projectService.createProject(requestData, springBootDirectory);
+
+            if (requestData.isEnableFrontendReact()) {
+                generateReactProject(projectDirectory, "react-frontend");
+            }
+
+            boolean enableFrontendReact = requestData.isEnableFrontendReact();
+            Path zipFilePath = zipProjectDirectoryContents(projectDirectory, projectName, enableFrontendReact);
+
+            return prepareDownloadResponse(zipFilePath, projectName);
+
+        } catch (IOException | InterruptedException e) {
+            logger.error("Error downloading project", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("Error downloading project", "500", e.getMessage()));
+        }
+    }
 
 
 }

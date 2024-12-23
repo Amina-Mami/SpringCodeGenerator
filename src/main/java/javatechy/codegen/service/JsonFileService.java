@@ -19,7 +19,7 @@ public interface JsonFileService {
     //
     //        return jsonFileRepository.save(jsonFile);
     //    }
-    JsonFile saveFileMetadata(String filePath, User user, String projectName, Request requestData);
+   // JsonFile saveFileMetadata(String filePath, User user, String projectName, Request requestData);
 
     JsonFile findById(Long id);
 

@@ -2,8 +2,9 @@
 package javatechy.codegen.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Swagger {
     private Boolean isEnabled;
     private String apiDocName;

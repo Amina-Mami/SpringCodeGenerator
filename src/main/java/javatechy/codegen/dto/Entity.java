@@ -1,10 +1,11 @@
 package javatechy.codegen.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Entity {
 
     private String name;
@@ -12,7 +13,9 @@ public class Entity {
     private Boolean crud;
     private FieldKey primaryKey;
     private List<Field> fields;
+    private List<EnumDefinition> enums;
 
+    private List<Relationship> relationships;
     public List<EnumDefinition> getEnums() {
         return enums;
     }
@@ -21,9 +24,7 @@ public class Entity {
         this.enums = enums;
     }
 
-    private List<EnumDefinition> enums;
 
-    private List<Relationship> relationships;
 
 
 

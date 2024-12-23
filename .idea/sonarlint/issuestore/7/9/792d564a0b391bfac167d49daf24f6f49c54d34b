@@ -1,7 +1,15 @@
 
 _
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8©®üÒş1
-J	java:S108 ")Either remove or fill this block of code.(¢­§Œÿÿÿÿÿ8ò…2
+W	java:S125"<This block of commented-out lines of code should be removed.(ïÓõ\8ä¯´Ş2
 L	java:S106C"+Replace this use of System.out by a logger.(îêĞ±úÿÿÿÿ8Ğ›ë×2
+q
+java:S1128"ORemove this unused import 'com.fasterxml.jackson.core.JsonProcessingException'.(ßÔïÇûÿÿÿÿ8áä®à2
+e
+java:S1128"HRemove this unused import 'com.fasterxml.jackson.databind.ObjectMapper'.(´‘¨™8áä®à2
 _
-java:S1128"=Remove this unused import 'javatechy.codegen.dto.Properties'.(ÚÇØüÿÿÿÿ8ÿÍé€2
+java:S1128"=Remove this unused import 'javatechy.codegen.dto.Properties'.(ÚÇØüÿÿÿÿ8áä®à2
+\
+java:S1128":Remove this unused import 'javatechy.codegen.dto.Request'.(½÷÷©ûÿÿÿÿ8áä®à2
+Y
+java:S1128	"7Remove this unused import 'javatechy.codegen.dto.User'.(Ö»Õ¸ÿÿÿÿÿ8áä®à2

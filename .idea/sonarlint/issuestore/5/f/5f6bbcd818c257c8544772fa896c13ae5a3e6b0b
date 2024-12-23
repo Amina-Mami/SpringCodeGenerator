@@ -3,3 +3,7 @@
 X	java:S125"<This block of commented-out lines of code should be removed.(®ˆŞŠ8 Êÿ˜Œ2
 _
 java:S1128"=Remove this unused import 'javatechy.codegen.dto.Properties'.(ÚÇØüÿÿÿÿ8©Ôê€2
+\
+java:S1128":Remove this unused import 'javatechy.codegen.dto.Request'.(½÷÷©ûÿÿÿÿ8õäµŞ2
+Y
+java:S1128"7Remove this unused import 'javatechy.codegen.dto.User'.(Ö»Õ¸ÿÿÿÿÿ8õäµŞ2

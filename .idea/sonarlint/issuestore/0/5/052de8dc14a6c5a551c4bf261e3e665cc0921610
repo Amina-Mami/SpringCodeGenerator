@@ -1,51 +1,55 @@
 
-h	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(§é˜Äúÿÿÿÿ8ãü‘ì‡2
-c	java:S112Ÿ"FDefine and throw a dedicated exception instead of using a generic one.(ÊÆÆ8´Ø¤ì‡2
-y
-java:S1192_"WDefine a constant instead of duplicating this literal "Error creating project" 4 times.(°Šáªûÿÿÿÿ8ûÙÊÿ2
-W
-java:S1141Z"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8şÙÊÿ2
-W
-java:S1141i"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ÿÙÊÿ2
+h	java:S112¿"FDefine and throw a dedicated exception instead of using a generic one.(§é˜Äúÿÿÿÿ8†×ªà2
+l
+java:S1192?"ODefine a constant instead of duplicating this literal "User not found" 4 times.(åÚ8¶»»á2
 g
-java:S2095‚"DUse try-with-resources or close this "Stream" in a "finally" clause.(„¸¥şÿÿÿÿ8ôØ¤ì‡2
-g
-java:S2095•"DUse try-with-resources or close this "Stream" in a "finally" clause.(¤‚Îãüÿÿÿÿ8¡ı‘ì‡2
+java:S2095´"DUse try-with-resources or close this "Stream" in a "finally" clause.(„¸¥şÿÿÿÿ8Ä×ªà2
 _
-java:S68130"BRemove this field injection and use constructor injection instead.(êæÄŞ8›¯è‡2
+java:S6813-"BRemove this field injection and use constructor injection instead.(êæÄŞ8Æ×ªà2
 _
-java:S68132"BRemove this field injection and use constructor injection instead.(êæÄŞ8›¯è‡2
+java:S6813/"BRemove this field injection and use constructor injection instead.(êæÄŞ8Æ×ªà2
 _
-java:S68134"BRemove this field injection and use constructor injection instead.(êæÄŞ8›¯è‡2
+java:S68131"BRemove this field injection and use constructor injection instead.(êæÄŞ8Æ×ªà2
 _
-java:S68136"BRemove this field injection and use constructor injection instead.(êæÄŞ8›¯è‡2
+java:S68133"BRemove this field injection and use constructor injection instead.(êæÄŞ8Æ×ªà2
 H
-java:S1452:"&Remove usage of generic wildcard type.(Ñ÷Äşøÿÿÿÿ8Û„»İ2
+java:S14527"&Remove usage of generic wildcard type.(Ñ÷Äşøÿÿÿÿ8Í×ªà2
 {
-java:S2142u"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ò¶È8·İÊÿ2
-W
-java:S1172~":Remove this unused method parameter "enableFrontendReact".(ùİÇæ8­Ù¤ì‡2
+java:S2142d"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ò¶È8Í×ªà2
+X
+java:S1172°":Remove this unused method parameter "enableFrontendReact".(ùİÇæ8ë×ªà2
+]	java:S125l"<This block of commented-out lines of code should be removed.(“ïåÿÿÿÿÿ8ë×ªà2
+^	java:S125Ç"<This block of commented-out lines of code should be removed.(ñÏ•ÿùÿÿÿÿ8²ûã2
+Y	java:S125¥"<This block of commented-out lines of code should be removed.(Ïş×8ÓÂä2
 ^
-java:S4684–"@Replace this persistent entity with a simple POJO or DTO object.(ÿÅ’8Šú–Ù2
+java:S4684Ô"@Replace this persistent entity with a simple POJO or DTO object.(ÿÅ’8„Øªà2
 D
-java:S1452–"&Remove usage of generic wildcard type.(ÿÅ’8Šú–Ù2
-[
-java:S1128"9Remove this unused import 'java.io.ByteArrayInputStream'.(Ëôæ±ûÿÿÿÿ8¿ÎîÖ2
-Q
-java:S1128"5Remove this unused import 'java.io.FileOutputStream'.(˜«ªg8ÁÎîÖ2
+java:S1452Ô"&Remove usage of generic wildcard type.(ÿÅ’8„Øªà2
+H	java:S106×"+Replace this use of System.out by a logger.(—êŞğ8„Øªà2
+H	java:S106Ø"+Replace this use of System.out by a logger.(ˆ£¾Ø8…Øªà2
+H	java:S106İ"+Replace this use of System.out by a logger.(ûšñ–8…Øªà2
+H	java:S106ã"+Replace this use of System.out by a logger.(¦Êı8†Øªà2
+M	java:S106ç"+Replace this use of System.out by a logger.(Ù‘á•øÿÿÿÿ8†Øªà2
+M	java:S106é"+Replace this use of System.out by a logger.(¬²ª‰úÿÿÿÿ8†Øªà2
+M	java:S106í"+Replace this use of System.out by a logger.(şí’Çüÿÿÿÿ8‡Øªà2
+I
+java:S1452"&Remove usage of generic wildcard type.(Şòşùÿÿÿÿ8Ã½»á2
+Y	java:S125÷"<This block of commented-out lines of code should be removed.(§–Á‰8Ö¹Œƒ2
+|
+java:S2142®"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ò¶È8Ø¹Œƒ2
 M
-java:S1128"0Remove this unused import 'java.net.URLEncoder'.(ê¢ºÆ8ÂÎîÖ2
+java:S1128"0Remove this unused import 'java.net.URLEncoder'.(ê¢ºÆ8î¢²à2
 [
-java:S1128">Remove this unused import 'java.nio.charset.StandardCharsets'.(ï˜ŞÛ8ÂÎîÖ2
+java:S1128">Remove this unused import 'java.nio.charset.StandardCharsets'.(ï˜ŞÛ8î¢²à2
 M
-java:S1128"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8ÂÎîÖ2
+java:S1128"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8ß¹Œƒ2
+q
+java:S1128"ORemove this unused import 'com.fasterxml.jackson.core.JsonProcessingException'.(ßÔïÇûÿÿÿÿ8î¢²à2
 g
-java:S1128"JRemove this unused import 'org.springframework.core.io.ByteArrayResource'.(Ã¤Ê¾8ÃÎîÖ2
+java:S1128"JRemove this unused import 'org.springframework.core.io.ByteArrayResource'.(Ã¤Ê¾8î¢²à2
 f
-java:S1128"DRemove this unused import 'org.springframework.core.io.UrlResource'.(ÿÙØ†ÿÿÿÿÿ8ÃÎîÖ2
+java:S1128"DRemove this unused import 'org.springframework.core.io.UrlResource'.(ÿÙØ†ÿÿÿÿÿ8î¢²à2
 a
-java:S1128"?Remove this unused import 'org.springframework.http.MediaType'.(úŸİ¯şÿÿÿÿ8ÃÎîÖ2
+java:S1128"?Remove this unused import 'org.springframework.http.MediaType'.(úŸİ¯şÿÿÿÿ8î¢²à2
 ^
-java:S1128%"ARemove this unused import 'org.springframework.core.io.Resource'.(¹ÒÁ8ÃÎîÖ2
-Y
-java:S1144”"6Remove this unused private "addDirectoryToZip" method.(ÏÖ¢šüÿÿÿÿ8ÆÙ¤ì‡2
+java:S1128""ARemove this unused import 'org.springframework.core.io.Resource'.(¹ÒÁ8î¢²à2

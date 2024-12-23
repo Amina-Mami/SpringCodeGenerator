@@ -1,9 +1,11 @@
 
 package javatechy.codegen.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Properties {
 
     private String name;

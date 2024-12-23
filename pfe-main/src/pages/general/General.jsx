@@ -42,8 +42,6 @@ function General() {
           JSON.parse(localStorage.getItem("entities")) || [];
         const savedEnums = JSON.parse(localStorage.getItem("enums")) || [];
 
-       
-      
         const updatedEntities = savedEntities.map((entity) => ({
           ...entity,
           enums: savedEnums,
@@ -353,7 +351,15 @@ function General() {
 
             <Form.Item>
               <div style={styles.buttonContainer}>
-                <Button type="primary" htmlType="submit" loading={loading}>
+                <Button
+                  style={{
+                    backgroundColor: "#336699",
+                    borderColor: "#336699",
+                    color: "white",
+                  }}
+                  htmlType="submit"
+                  loading={loading}
+                >
                   {loading ? "Creating Project..." : "Create Project"}
                 </Button>
               </div>

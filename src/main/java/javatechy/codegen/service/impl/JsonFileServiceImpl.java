@@ -18,23 +18,23 @@ public class JsonFileServiceImpl implements JsonFileService {
     @Autowired
     private JsonFileRepository jsonFileRepository;
 
-@Override
-public JsonFile saveFileMetadata(String filePath, User user, String projectName, Request requestData) {
-    JsonFile jsonFile = new JsonFile();
-    jsonFile.setFilePath(filePath);
-    jsonFile.setUser(user);
-    jsonFile.setProjectName(projectName);
-
-    ObjectMapper objectMapper = new ObjectMapper();
-    try {
-        String requestDataJson = objectMapper.writeValueAsString(requestData);
-        jsonFile.setRequestDataJson(requestDataJson);
-    } catch (JsonProcessingException e) {
-
-    }
-
-    return jsonFileRepository.save(jsonFile);
-}
+//@Override
+//public JsonFile saveFileMetadata(String filePath, User user, String projectName, Request requestData) {
+//    JsonFile jsonFile = new JsonFile();
+//    jsonFile.setFilePath(filePath);
+//    jsonFile.setUser(user);
+//    jsonFile.setProjectName(projectName);
+//
+//    ObjectMapper objectMapper = new ObjectMapper();
+//    try {
+//        String requestDataJson = objectMapper.writeValueAsString(requestData);
+//        jsonFile.setRequestDataJson(requestDataJson);
+//    } catch (JsonProcessingException e) {
+//
+//    }
+//
+//    return jsonFileRepository.save(jsonFile);
+//}
     @Override
     public JsonFile findById(Long id) {
         return jsonFileRepository.findOne(id);

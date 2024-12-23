@@ -9,33 +9,104 @@ const UpdateProject = () => {
   const navigate = useNavigate();
   const [projectData, setProjectData] = useState(null);
   const [database, setDatabase] = useState(false);
+  const [projectName, setProjectName] = useState(false);
   const [databaseType, setDatabaseType] = useState("");
+  const [localEntities, setLocalEntities] = useState([]);
+  const [localEnums, setLocalEnums] = useState([]);
 
   const [form] = Form.useForm();
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:7070/project/update/${projectId}`)
+  //     .then((response) => {
+  //       console.log("Raw project data:", response.data);
+
+  //       try {
+  //         const rawJson = response.data.requestDataJson;
+
+  //         const jsonData =
+  //           typeof rawJson === "string" ? JSON.parse(rawJson) : rawJson;
+
+  //         // Update state and form
+
+  //         setProjectData(jsonData);
+
+  //         form.setFieldsValue(jsonData);
+
+  //         if (jsonData.database && jsonData.database.databaseEnabled) {
+  //           setDatabase(true);
+  //           setDatabaseType(jsonData.database.databaseType);
+  //         }
+  //         if (jsonData.entities) {
+  //           console.log("Fetched entities:", jsonData.entities);
+  //         }
+  //       } catch (error) {
+  //         console.error("Error parsing project data:", error);
+  //         message.error(
+  //           "Failed to parse project data. Please check the backend."
+  //         );
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching project data:", error);
+  //       message.error(
+  //         "Failed to fetch project data. Please check the backend."
+  //       );
+  //     });
+  // }, [projectId, form]);
 
   useEffect(() => {
     axios
       .get(`http://localhost:7070/project/update/${projectId}`)
       .then((response) => {
-        console.log("Project data fetched successfully:", response.data);
-        const parsedData = JSON.parse(response.data.requestDataJson);
-        setProjectData(parsedData);
-        form.setFieldsValue(parsedData);
+        console.log("Raw project data:", response.data);
 
-        if (parsedData.database && parsedData.database.databaseEnabled) {
-          setDatabase(true);
-          setDatabaseType(parsedData.database.databaseType);
-        }
-        if (parsedData.entities) {
-          console.log("Fetched entities:", parsedData.entities);
+        try {
+          const rawJson = response.data.requestDataJson;
+
+          const jsonData =
+            typeof rawJson === "string" ? JSON.parse(rawJson) : rawJson;
+
+          // Update state and form
+          setProjectData(jsonData);
+
+          // Set the project name separately
+          form.setFieldsValue({ projectName: jsonData.properties.name });
+
+          form.setFieldsValue(jsonData);
+
+          if (jsonData.database && jsonData.database.databaseEnabled) {
+            setDatabase(true);
+            setDatabaseType(jsonData.database.databaseType);
+          }
+          if (jsonData.entities) {
+            console.log("Fetched entities:", jsonData.entities);
+          }
+        } catch (error) {
+          console.error("Error parsing project data:", error);
+          message.error(
+            "Failed to parse project data. Please check the backend."
+          );
         }
       })
       .catch((error) => {
         console.error("Error fetching project data:", error);
-        message.error("Failed to fetch project data");
+        message.error(
+          "Failed to fetch project data. Please check the backend."
+        );
       });
   }, [projectId, form]);
 
+  const cancelbutton = () => {
+    setLocalEntities([]);
+    setLocalEnums([]);
+
+    localStorage.removeItem("entities");
+    localStorage.removeItem("enums");
+
+    navigate(`/dashboard`);
+  };
   const handleUpdate = () => {
     setLoading(true);
     form
@@ -44,19 +115,94 @@ const UpdateProject = () => {
         const projectData = localStorage.getItem("projectData");
         console.log("Retrieved project data from localStorage:", projectData);
 
+        let requestDataJson = "";
+
+        const mapEnumsToEntities = (entities, enums) => {
+          return entities.map((entity) => {
+            const entityEnums = enums.filter((enumItem) =>
+              (entity.fields || []).some(
+                (field) => field.type === enumItem.name
+              )
+            );
+            return {
+              ...entity,
+              enums: entityEnums,
+              relationships: entity.relationships || [],
+            };
+          });
+        };
+
         if (projectData) {
           const parsedData = JSON.parse(projectData);
-          values.entities = parsedData.entities;
-          values.enums = parsedData.enums;
+
+          const updatedEntities = mapEnumsToEntities(
+            (parsedData.entities || []).map((entity, index) => {
+              const newEntity =
+                values.entities && values.entities[index]
+                  ? values.entities[index]
+                  : {};
+              return {
+                ...entity,
+                ...newEntity,
+                relationships: entity.relationships || [],
+              };
+            }),
+            parsedData.enums || []
+          );
+
+          // Ensure properties.name is set to projectName
+          const updatedProperties = {
+            ...parsedData.properties,
+            ...values.properties,
+            name: values.projectName,
+          };
+
+          requestDataJson = {
+            properties: updatedProperties,
+            swagger: values.swagger || parsedData.swagger,
+            enableFrontendReact: values.enableFrontendReact,
+            database: values.database || parsedData.database,
+            entities: updatedEntities,
+            enums: [],
+          };
         } else {
-          console.warn("No updated project data found in localStorage");
+          const updatedEntities = mapEnumsToEntities(
+            values.entities || [],
+            values.enums || []
+          );
+
+          // Ensure properties.name is set to projectName
+          const updatedProperties = {
+            ...values.properties,
+            name: values.projectName,
+          };
+
+          requestDataJson = {
+            properties: updatedProperties,
+            swagger: values.swagger,
+            enableFrontendReact: values.enableFrontendReact,
+            database: values.database,
+            entities: updatedEntities,
+            enums: [],
+          };
         }
 
+        const payload = {
+          projectName: values.projectName,
+          requestDataJson: requestDataJson,
+        };
+
+        console.log("Final payload before sending:", payload);
+
         axios
-          .put(`http://localhost:7070/project/update/${projectId}`, values)
+          .put(`http://localhost:7070/project/update/${projectId}`, payload, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
           .then((response) => {
             setLoading(false);
-            console.log("response to back:", values);
+            console.log("Response from backend:", response.data);
             message.success("Project updated successfully");
             navigate(
               `/dashboard/entities?entities=${encodeURIComponent(
@@ -325,9 +471,26 @@ const UpdateProject = () => {
           )}
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading}>
-              Update
-            </Button>
+            <Row gutter={[16, 16]} justify="end">
+              <Col>
+                <Button
+                  style={{
+                    backgroundColor: "#336699",
+                    borderColor: "#336699",
+                    color: "white",
+                  }}
+                  htmlType="submit"
+                  loading={loading}
+                >
+                  Update
+                </Button>
+              </Col>
+              <Col>
+                <Button type="default" onClick={cancelbutton}>
+                  Cancel
+                </Button>
+              </Col>
+            </Row>
           </Form.Item>
         </>
       )}
